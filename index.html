@@ -1,0 +1,1578 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Storyboard · Scenari | Space Economy</title>
+<style>
+@font-face{font-family:"Hedvig Letters Serif";src:url("assets/fonts/HedvigLettersSerif-18pt-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible Next";src:url("assets/fonts/AtkinsonHyperlegibleNext-VariableFont_wght.ttf") format("truetype-variations");font-weight:200 800;font-display:swap}
+@font-face{font-family:"Atkinson Hyperlegible Mono";src:url("assets/fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf") format("truetype-variations");font-weight:200 800;font-display:swap}
+
+/* ── Font ─────────────────────────────────────────────────────────────── */
+
+/* ── Token OE ─────────────────────────────────────────────────────────── */
+:root{
+  --bluette-050:#EFE5FF; --bluette-100:#D9C1FF; --bluette-200:#B991FF; --bluette-400:#8742FF;
+  --bluette-600:#5902EE; --bluette-700:#4400B3; --bluette-800:#340088; --bluette-900:#270065;
+  --lime-400:#B9FF69; --lime-500:#91FF15; --lime-700:#67C300;
+  --white:#FFFFFF; --black:#000000;
+  --gray-100:#F1F1F1; --gray-200:#E7E7E7; --gray-300:#D2D2D2; --gray-400:#AFAFAF;
+  --gray-500:#999999; --gray-600:#6E6E6E; --gray-700:#545454;
+
+  --serif:"Hedvig Letters Serif",Georgia,serif;
+  --sans:"Atkinson Hyperlegible Next",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"Atkinson Hyperlegible Mono",ui-monospace,"SF Mono",Menlo,monospace;
+
+  --max:1440px;
+  --pad:40px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+
+body{
+  background:var(--white);color:var(--black);
+  font-family:var(--sans);font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+.masthead{background:var(--bluette-700);color:var(--white);padding:64px 0 56px}
+.masthead .wrap{display:flex;flex-direction:column;gap:28px}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--lime-400);
+}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,60px);line-height:1.06;letter-spacing:-.01em;max-width:20ch}
+.sub{font-size:17px;line-height:1.5;max-width:66ch;color:rgba(255,255,255,.86)}
+
+.meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.28);margin-top:6px;
+}
+.meta div{background:var(--bluette-700);padding:16px 18px}
+.meta dt{
+  font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;color:rgba(255,255,255,.62);margin-bottom:6px;
+}
+.meta dd{font-size:15px;line-height:1.35}
+
+/* fasi di lavoro: prima foto statiche, poi clip animati */
+.phases{background:var(--black);color:var(--white);padding:36px 0 40px}
+.phases ol{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.22)}
+.phases li{background:var(--black);padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+.phases .n{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.phases li.on .n{color:var(--lime-400)}
+.phases li p{font-size:15px;line-height:1.45;color:rgba(255,255,255,.86)}
+.phases li.on{box-shadow:inset 0 3px 0 var(--lime-400)}
+
+/* ── Navigazione tra le parti ─────────────────────────────────────────── */
+.parts{display:flex;flex-wrap:wrap;gap:8px}
+.parts a{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--white);text-decoration:none;border:1px solid rgba(255,255,255,.5);padding:6px 10px}
+.parts a:hover{background:rgba(255,255,255,.12)}
+.parts a[aria-current="page"]{background:var(--lime-400);border-color:var(--lime-400);color:var(--black)}
+.parts a:focus-visible{outline:2px solid var(--lime-400);outline-offset:2px}
+
+/* ── Barra strumenti ──────────────────────────────────────────────────── */
+.toolbar{border-bottom:1px solid var(--gray-300);background:var(--white);position:sticky;top:0;z-index:10}
+.toolbar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:24px;padding-top:14px;padding-bottom:14px}
+.toolbar .label{
+  font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--gray-700);
+}
+.toggle{display:inline-flex;align-items:center;gap:9px;cursor:pointer;user-select:none;font-size:14px}
+.toggle input{
+  appearance:none;width:17px;height:17px;border:1.5px solid var(--black);
+  background:var(--white);cursor:pointer;flex:none;display:grid;place-content:center;
+}
+.toggle input:checked{background:var(--bluette-700);border-color:var(--bluette-700)}
+.toggle input:checked::after{content:"";width:8px;height:8px;background:var(--lime-400)}
+.toggle input:focus-visible{outline:2px solid var(--bluette-700);outline-offset:2px}
+.toolbar .hint{font-size:13px;color:var(--gray-600);margin-left:auto}
+
+/* ── Griglia frame ────────────────────────────────────────────────────── */
+.board{padding:48px 0 80px}
+.sec-h{
+  font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--gray-700);margin-bottom:28px;
+}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px 32px}
+.grid.big{grid-template-columns:1fr}
+.beat{display:flex;flex-direction:column;min-width:0}
+
+.frame{
+  container-type:inline-size;
+  position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;
+  background:var(--bluette-700);border:1px solid var(--black);color:var(--white);
+}
+.frame.light{background:var(--white);color:var(--black)}
+.frame.deep{background:var(--bluette-900)}
+.stage{position:absolute;inset:0;z-index:1}
+
+/* timecode e replay — solo in questa pagina */
+.tc{
+  position:absolute;left:1.2cqw;top:1.1cqw;z-index:4;
+  font-family:var(--mono);font-size:1.15cqw;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--lime-400);background:rgba(0,0,0,.55);padding:.3cqw .6cqw;
+}
+.replay{
+  position:absolute;right:2.4cqw;bottom:2cqw;z-index:4;
+  font-family:var(--mono);font-size:1.1cqw;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--white);background:rgba(0,0,0,.55);padding:.35cqw .7cqw;opacity:0;transition:opacity .2s;
+}
+.frame:hover .replay,.frame:focus-visible .replay{opacity:1}
+.frame:focus-visible{outline:3px solid var(--bluette-700);outline-offset:3px}
+
+/* Title safe 16:9 — toggle */
+.safe{position:absolute;inset:0;z-index:3;display:none;pointer-events:none}
+.grid.show-safe .safe{display:block}
+.safe::before{content:"";position:absolute;inset:10%;outline:1px dashed rgba(185,255,105,.9)}
+.frame.light .safe::before{outline-color:rgba(68,0,179,.7)}
+
+/* ── Tipografia nei frame (unità cqw: 100cqw = 1920px del video) ─────── */
+.k{font-family:var(--mono);font-size:1.8cqw;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.74)}
+.light .k{color:var(--gray-700)}
+.hl{font-family:var(--serif);font-weight:400;line-height:1.14;letter-spacing:-.005em}
+.num{font-family:var(--mono);font-weight:700;line-height:.84;letter-spacing:-.035em;color:var(--lime-400);font-variant-numeric:lining-nums;white-space:nowrap}
+.num small{font-size:.42em;letter-spacing:-.01em;margin-left:.12em}
+.cap{font-family:var(--serif);font-weight:400;font-size:4.3cqw;line-height:1.14;color:var(--white)}
+.cap.s{font-size:3.6cqw}
+/* ombra neutra sfumata sotto i testi: non altera il colore dell'immagine */
+.shade{position:absolute;inset:0;background:radial-gradient(ellipse 85% 110% at 0% 55%,rgba(0,0,0,.74) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,0) 80%)}
+/* blocco titoli a sinistra, centrato in verticale sul frame (revisione 3 novembre); il chip resta in alto */
+.tblock{position:absolute;left:5cqw;top:50%;transform:translateY(-50%);max-width:58cqw;display:flex;flex-direction:column}
+.tblock .k{margin-bottom:2cqw}
+.tblock .num{font-size:11cqw}
+.tblock .num + .cap{margin-top:1.6cqw}
+.on-photo{text-shadow:0 0 2.2cqw rgba(0,0,0,.45)}
+/* chip di capitolo in alto a sinistra (chip DS: lime, mono, niente icone) */
+.chap{position:absolute;left:5cqw;top:4.4cqw;z-index:2;font-family:var(--mono);font-size:1.5cqw;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--lime-400);color:var(--black);padding:.45cqw .9cqw}
+/* marchi: ANCI in alto a destra solo in cover, monogramma OE in basso a sinistra su tutti i frame */
+.anci{position:absolute;right:5cqw;top:4cqw;width:6.5cqw;height:auto;z-index:2;display:block}
+.foot{position:absolute;left:5cqw;bottom:4cqw;display:flex;align-items:center;gap:2cqw;z-index:2}
+.foot img{height:3.4cqw;width:auto;display:block}
+.foot .src{font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.74)}
+.light .foot .src{color:var(--gray-700)}
+/* il mono dà cassa piena a punto e virgola: stretta come in burn_titles.py (−0,42em) */
+.num .sep{margin:0 -.21em}
+/* Hedvig: la legatura ff non è nel taglio 18pt e lascia un buco */
+.hl,.cap,.tgt{font-variant-ligatures:no-common-ligatures}
+
+/* clip con il duotone Bluette già impresso (duotone.sh): nessun filtro in pagina */
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* ── Confronto a barre: Viterbo in Lime, resto del Lazio in bianco ───── */
+.bars{display:flex;flex-direction:column;gap:1.5cqw;margin-top:2.6cqw;--bw:30cqw}
+.bar{display:flex;flex-direction:column;gap:.55cqw}
+.bar .bl{font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.74)}
+.bar .row{display:flex;align-items:center;gap:1.2cqw}
+.bar i{display:block;height:1.3cqw;width:calc(var(--w) * var(--bw));background:var(--lime-400)}
+.bar.ot i{background:rgba(255,255,255,.58)}
+.bar b{font-family:var(--mono);font-size:2.2cqw;font-weight:700;letter-spacing:-.01em;color:var(--lime-400);white-space:nowrap}
+.bar.ot b{color:var(--white)}
+.bar b .sep{margin:0 -.21em}
+.light .bar .bl{color:var(--gray-700)}
+
+/* ── Layout «duo»: numero a sinistra, grafico a destra (scene su fondo pieno) ── */
+.duo .tblock{max-width:46cqw}
+.duo .tblock .num{font-size:15cqw}
+.duo .side{position:absolute;right:5cqw;top:50%;transform:translateY(-50%);width:38cqw;display:flex;flex-direction:column;gap:3cqw}
+.duo .side .bars{--bw:32cqw;margin-top:0}
+
+/* ── Animazioni: senza .play il frame mostra lo stato finale ─────────── */
+@keyframes up{from{opacity:0;transform:translateY(2.2cqw)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes out{from{opacity:1}to{opacity:0}}
+@keyframes dim{from{opacity:1}to{opacity:.42}}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(-14px) scale(.6)}to{opacity:1;transform:none}}
+@keyframes growX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes draw{from{stroke-dashoffset:var(--len,3000)}to{stroke-dashoffset:0}}
+@keyframes slideIn{from{opacity:0;transform:translateX(4cqw)}to{opacity:1;transform:none}}
+@keyframes panel{from{transform:translateX(101%)}to{transform:none}}
+@keyframes lime{from{color:var(--white)}to{color:var(--lime-400)}}
+@keyframes lit{from{background:rgba(255,255,255,.14);color:rgba(255,255,255,.74)}to{background:var(--lime-400);color:var(--black)}}
+
+.play .a-up{animation:up .7s var(--ease) var(--d,0s) both}
+.play .a-fade{animation:fade .8s ease var(--d,0s) both}
+.play .a-out{animation:out .5s ease var(--d,0s) both}
+.play .a-dim{animation:dim .6s ease var(--d,0s) both}
+.play .a-pop{animation:pop .45s var(--ease) var(--d,0s) both;transform-box:fill-box;transform-origin:center}
+.play .a-rise{animation:rise .55s var(--ease) var(--d,0s) both;transform-box:fill-box;transform-origin:center}
+.play .a-growX{animation:growX .9s var(--ease) var(--d,0s) both;transform-origin:left center}
+.play .a-draw{animation:draw var(--t,1.6s) ease-in-out var(--d,0s) both}
+.play .a-in{animation:slideIn .7s var(--ease) var(--d,0s) both}
+.play .a-panel{animation:panel .9s var(--ease) var(--d,0s) both}
+.play .a-lime{animation:lime .5s ease var(--d,0s) both}
+.play .a-lit{animation:lit .5s ease var(--d,0s) both}
+/* stati finali per gli elementi che a fine scena spariscono, si attenuano o cambiano colore */
+.is-out{opacity:0}
+.is-dim{opacity:.42}
+.frame:not(.play) .a-lime{color:var(--lime-400)}
+.frame:not(.play) .a-lit{background:var(--lime-400);color:var(--black)}
+.frame:not(.play) .a-draw{stroke-dashoffset:0}
+
+/* ── Cover (stile del video ANCI di Rieti) ── */
+.cover .tblock{max-width:80cqw;top:50%;bottom:auto;transform:translateY(-50%)}
+.cover .hl{font-size:4.9cqw}
+.cover .line1{color:rgba(255,255,255,.74)}
+.cover .big{position:absolute;right:-1.5cqw;bottom:-3.5cqw;font-family:var(--serif);font-size:26cqw;white-space:nowrap;line-height:1;color:rgba(255,255,255,.06);letter-spacing:-.04em;pointer-events:none}
+
+/* ── Scena 1: foto + le due righe del cambio di regole ── */
+.s1 .tblock{max-width:70cqw}
+.s1 .hl{font-size:3.9cqw}
+.s1 .swap{display:grid}
+.s1 .swap > div{grid-area:1/1;display:flex;flex-direction:column;justify-content:flex-end}
+.s1 .neg{margin-top:2cqw;font-size:1.5cqw}
+
+/* ── Scena 2: mappa dei 60 comuni ── */
+.s2 .mapwrap{position:absolute;right:4cqw;top:3.5cqw;bottom:3.5cqw;width:52cqw;display:flex;align-items:center;justify-content:center}
+.s2 svg{height:100%;width:auto;overflow:visible}
+.s2 .swap{display:grid}
+.s2 .swap > div{grid-area:1/1;display:flex;flex-direction:column;justify-content:flex-end}
+.s2 .big .num{font-size:16cqw}
+.s2 .small .num{font-size:9cqw}
+.s2 .small .cap + .cap{margin-top:.6cqw;color:rgba(255,255,255,.74)}
+
+/* ── Scena 3: il filo dello studio ── */
+.s3 .tblock{max-width:84cqw;top:18cqw;bottom:auto;transform:translateY(-50%)}
+.s3 .hl{font-size:5.6cqw}
+.s3 .hl .lm{color:var(--lime-400)}
+.s3 .hl span{display:inline}
+.chaps{position:absolute;left:5cqw;right:5cqw;bottom:10.5cqw;display:grid;grid-template-columns:repeat(5,1fr);gap:2cqw}
+.chaps .ch{display:flex;flex-direction:column;gap:1.2cqw;position:relative}
+.chaps svg{width:5.4cqw;height:5.4cqw;display:block}
+.chaps .t{font-family:var(--mono);font-size:1.35cqw;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.86);line-height:1.3}
+.chaps .t b{color:var(--lime-400);font-weight:700;margin-right:.5cqw}
+.chaps .wire{position:absolute;left:5.4cqw;right:-2cqw;top:2.7cqw;height:.18cqw;background:var(--lime-400);transform-origin:left center}
+.chaps .ch:last-child .wire{display:none}
+
+/* ── Scena 7: mesi ── */
+.months{display:grid;grid-template-columns:repeat(12,1fr);gap:.4cqw}
+.months span{font-family:var(--mono);font-size:1.3cqw;font-weight:700;text-align:center;padding:1.6cqw 0;background:rgba(255,255,255,.14);color:rgba(255,255,255,.74)}
+.months-k{font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.74);margin-bottom:.8cqw}
+
+/* ── Scena 10: 100 persone, 62 occupate; la soglia del resto del Lazio sotto le 60 ── */
+.s10 .side{gap:1.4cqw}
+.waffle{position:relative;width:24cqw}
+.waffle .cells{display:grid;grid-template-columns:repeat(10,1fr);gap:.4cqw}
+.waffle .cells span{aspect-ratio:1;background:rgba(255,255,255,.14)}
+.waffle .cells span.a-lit{background:var(--lime-400)}
+.play .waffle .cells span.a-lit{background:rgba(255,255,255,.14)}
+.waffle .limit{position:absolute;left:-1cqw;width:26cqw;bottom:calc(60% - .1cqw);border-top:.2cqw dashed var(--white)}
+.waffle .limit .bl{position:absolute;left:27.6cqw;bottom:.1cqw;font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;line-height:1.35;color:rgba(255,255,255,.74);white-space:nowrap}
+.waffle .limit b{position:absolute;left:27.6cqw;top:.5cqw;font-family:var(--mono);font-size:2.2cqw;font-weight:700;letter-spacing:-.01em;color:var(--white);white-space:nowrap}
+
+/* ── Scena 11: cerchi in linea d'aria ── */
+.s11 .tblock{max-width:41cqw}
+.s11 svg.rings{position:absolute;left:63%;top:35%;width:30cqw;height:30cqw;transform:translate(-50%,-50%);overflow:visible;z-index:1}
+
+/* ── Scena 13: fondo bianco, barra del finanziamento ── */
+.s13 .num{color:var(--bluette-700)}
+.s13 .cap{color:var(--black)}
+.stack{display:flex;flex-direction:column;gap:1cqw}
+.stack .track{position:relative;height:4.2cqw;background:var(--gray-200);width:100%}
+.stack .part{position:absolute;left:0;top:0;bottom:0;width:27.3%;background:var(--lime-400);box-shadow:inset 0 0 0 .14cqw var(--bluette-700)}
+.stack .lbls{display:flex;justify-content:space-between;font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-700)}
+.stack .lbls b{color:var(--bluette-700);font-weight:700}
+.s13 .cmp{font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-700);line-height:1.5;border-top:1px solid var(--gray-300);padding-top:1.2cqw}
+.s13 .cmp b{font-size:2.2cqw;color:var(--black);letter-spacing:-.01em;display:block;margin-top:.3cqw}
+
+/* ── Scena 14: le connessioni ── */
+.s14 .dark{position:absolute;inset:0;background:var(--bluette-900)}
+.s14 svg.net{position:absolute;inset:0;width:100%;height:100%}
+.s14 .tgt{font-family:var(--serif)}
+.s14 .final{position:absolute;left:5cqw;right:5cqw;bottom:10cqw;text-align:center}
+.s14 .final .hl{font-size:4.6cqw}
+.s14 .final .hl + .hl{color:var(--lime-400)}
+
+/* ── Codino ── */
+.end .stage{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3.4cqw}
+.end img.logo{width:34cqw;height:auto;display:block}
+.end .hl{font-size:4.6cqw;text-align:center}
+.end .line{position:absolute;left:5cqw;bottom:4.4cqw;font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.74)}
+
+/* ── Video montato ── */
+.vhero{background:var(--black);padding:56px 0 64px}
+.vhero .wrap{display:flex;flex-direction:column;gap:20px}
+.vhero h2{font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--lime-400)}
+.vhero video{width:100%;height:auto;display:block;border:1px solid rgba(255,255,255,.25)}
+.vhero .caption{font-size:14px;color:rgba(255,255,255,.7);max-width:90ch}
+.vhero .caption strong{color:rgba(255,255,255,.92)}
+
+/* ── Metadati sotto il frame ──────────────────────────────────────────── */
+.info{border-left:1px solid var(--black);padding:16px 0 0 16px;margin-top:16px}
+.info .idx{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--bluette-700);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.chip{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--lime-400);color:var(--black);padding:3px 6px;
+}
+.chip.g{background:var(--gray-200)}
+.chip.w{background:var(--black);color:var(--lime-400)}
+.info dl{display:flex;flex-direction:column;gap:11px}
+.info dt{
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gray-600);margin-bottom:2px;
+}
+.info dd{font-size:14px;line-height:1.5}
+.info dd.vo{color:var(--gray-700);border-left:3px solid var(--bluette-200);padding-left:10px}
+.info dd.prompt{font-size:13px;color:var(--gray-700)}
+.info dd.note{font-size:13px;border-left:3px solid var(--lime-400);padding-left:10px}
+.info mark{background:var(--bluette-050);color:inherit;padding:0 2px}
+.info a{color:var(--bluette-700)}
+
+/* ── Revisione ────────────────────────────────────────────────────────── */
+.review{background:var(--gray-100);padding:64px 0 72px}
+.review h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.1;margin-bottom:12px}
+.review .lead{font-size:17px;max-width:70ch;color:var(--gray-700);margin-bottom:36px}
+.cols{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px;align-items:start}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--white)}
+th{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:10px 12px;border-bottom:1px solid var(--black);background:var(--white)}
+td{padding:9px 12px;border-bottom:1px solid var(--gray-200);vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+td a{color:var(--bluette-700)}
+.fix{list-style:none;display:flex;flex-direction:column;gap:14px}
+.fix li{background:var(--white);padding:14px 16px;border-left:3px solid var(--bluette-700)}
+.fix .w{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bluette-700);display:block;margin-bottom:4px}
+.fix del{color:var(--gray-600)}
+.fix ins{text-decoration:none;background:var(--lime-400);padding:0 2px}
+.tbl-note{font-size:13px;color:var(--gray-600);margin-top:10px}
+.credits{margin-top:48px}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+footer{background:var(--black);color:var(--white);padding:56px 0}
+footer .wrap{display:flex;flex-direction:column;gap:18px}
+footer h2{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.2}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:9px;max-width:86ch}
+footer li{font-size:15px;line-height:1.5;color:rgba(255,255,255,.8);padding-left:18px;position:relative}
+footer li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--lime-400)}
+footer code{font-family:var(--mono);font-size:.9em;color:var(--lime-400)}
+footer .fine{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-top:14px;
+}
+
+@media (max-width:1000px){ .grid{grid-template-columns:minmax(0,1fr)} .cols{grid-template-columns:minmax(0,1fr)} }
+@media (max-width:640px){
+  :root{--pad:16px}
+  .grid{gap:40px}
+  .masthead{padding:44px 0 40px}
+  .phases ol{grid-template-columns:1fr}
+  .toolbar .hint{display:none}
+  .review table{font-size:13px}
+  .review .tw{overflow-x:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  .play *{animation:none!important}
+}
+/* ── Commento per scena + PDF ─────────────────────────────────────────── */
+.cmt{margin-top:16px;padding:14px 16px 16px;background:var(--gray-100);display:flex;flex-direction:column;gap:10px}
+.cmt label{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gray-700)}
+.cmt textarea,.cmt input{
+  font-family:var(--sans);font-size:15px;line-height:1.5;color:var(--black);
+  background:var(--white);border:1px solid var(--gray-300);padding:9px 11px;width:100%;
+}
+.cmt textarea{min-height:88px;resize:vertical}
+.cmt textarea:focus,.cmt input:focus{outline:2px solid var(--bluette-700);outline-offset:-1px;border-color:var(--bluette-700)}
+.cmt .saved{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-600)}
+.toolbar .pdf-all{
+  font-family:var(--sans);font-size:14px;font-weight:700;line-height:1.3;
+  background:var(--bluette-700);color:var(--white);border:1px solid var(--bluette-700);padding:7px 15px;cursor:pointer;transition:background .14s;
+}
+.toolbar .pdf-all:hover,.toolbar .pdf-all:focus-visible{background:var(--bluette-900);border-color:var(--bluette-900)}
+.toolbar .pdf-all:focus-visible{outline:2px solid var(--black);outline-offset:2px}
+.toolbar .copy-all,.copy-out button{
+  font-family:var(--sans);font-size:14px;font-weight:700;line-height:1.3;
+  background:transparent;color:var(--bluette-700);border:1px solid var(--bluette-700);padding:7px 15px;cursor:pointer;transition:background .14s;
+}
+.toolbar .copy-all:hover,.copy-out button:hover{background:var(--bluette-050)}
+.toolbar .copy-all:focus-visible,.copy-out button:focus-visible{outline:2px solid var(--black);outline-offset:2px}
+.toolbar .copied{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray-600)}
+.copy-out{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;max-width:720px;margin:0 auto;background:var(--white);border:1px solid var(--black);padding:14px;display:flex;flex-direction:column;gap:10px}
+.copy-out textarea{font-family:var(--sans);font-size:14px;line-height:1.5;height:40vh;width:100%;border:1px solid var(--gray-300);padding:9px 11px}
+.copy-out button{align-self:flex-end}
+.pdf-head,.pdf-note,.pdf-poster{display:none}
+
+@media print{
+  .toolbar{display:none}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .beat{break-inside:avoid}
+  .cmt{display:none}
+}
+/* stampa di una sola scena: è il «Scarica PDF» del commento */
+@page{size:A4 portrait;margin:12mm}
+@media print{
+  body.print-one{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body.print-one .masthead,body.print-one .phases,body.print-one .review,body.print-one footer,
+  body.print-one .sec-h,body.print-one .beat:not(.printing){display:none!important}
+  body.print-one .wrap{padding:0;max-width:none}
+  body.print-one .board{padding:0}
+  body.print-one .grid{display:block}
+  body.print-one .frame .replay,body.print-one .frame .safe{display:none}
+  body.print-one .printing video.clip{display:none}
+  body.print-one .printing .pdf-poster{display:block}
+  body.print-one .pdf-head{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--black);padding-bottom:8px;margin-bottom:12px;font-family:var(--mono);font-size:9pt;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+  body.print-one .pdf-head b{color:var(--bluette-700)}
+  body.print-one .info{margin-top:10px;padding-top:10px}
+  body.print-one .info dd{font-size:9.5pt}
+  body.print-one .beat.printing:not(.pdf-first){break-before:page}
+  body.print-one .pdf-note{display:block;margin-top:14px;padding:12px 14px;border-left:3px solid var(--bluette-700);background:var(--bluette-050);break-inside:avoid}
+  body.print-one .pdf-note p:first-child{font-family:var(--mono);font-size:9pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bluette-700);margin-bottom:6px}
+  body.print-one .pdf-note p + p{font-size:11pt;line-height:1.5;white-space:pre-wrap}
+}
+
+/* ── Rieti Parte 1: aggiunte ── */
+.s1 .sub1{margin-top:2.2cqw;font-size:2.8cqw;color:var(--white)}
+@keyframes left{from{opacity:0;transform:translateX(-4cqw)}to{opacity:1;transform:none}}
+@keyframes cut{from{opacity:0}to{opacity:1}}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.08)}}
+@keyframes slice{0%{opacity:0;transform:none}40%{opacity:1;transform:none}100%{opacity:1;transform:translate(5px,-4px)}}
+.play .a-left{animation:left .7s var(--ease) var(--d,0s) both}
+.play .a-cut{animation:cut .01s linear var(--d,0s) both}
+.play .a-slow{animation:fade 1.8s ease var(--d,0s) both}
+.play .kb{animation:kb 14s linear both;transform-origin:60% 50%}
+.play .slice{animation:slice 1s var(--ease) var(--d,0s) both}
+.frame:not(.play) .slice{transform:translate(5px,-4px)}
+/* segnaposto per l'immagine AI da confermare */
+.ph-ai{position:absolute;inset:0;background:repeating-linear-gradient(135deg,var(--bluette-800) 0 2cqw,var(--bluette-900) 2cqw 4cqw);display:flex;align-items:flex-start;justify-content:flex-end;padding:4.4cqw 5cqw}
+.ph-ai p{font-family:var(--mono);font-size:1.3cqw;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime-400);text-align:right;max-width:34cqw;line-height:1.5}
+.ph-ai span{color:rgba(255,255,255,.74);font-weight:600}
+/* torta della scena 5 */
+.duo .side.pie{width:30cqw;right:8cqw}
+.side.pie svg{width:100%;height:auto;overflow:visible}
+.cmpk{font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.74);margin-top:2cqw}
+/* barre su fondo bianco (scena 9) */
+.light .cap{color:var(--black)}
+.light .num{color:var(--bluette-700)}
+.light .bar i{background:var(--bluette-700)}
+.light .bar.ot i{background:var(--gray-400)}
+.light .bar b{color:var(--bluette-700)}
+.light .bar.ot b{color:var(--black)}
+.s9 .tblock .k{margin-bottom:.6cqw}
+/* scena 10: soglia a 80,7 e l'85° quadratino pieno per sei decimi */
+.waffle .limit.l81{bottom:calc(80.7% - .1cqw)}
+.waffle .cells span.part6{background:linear-gradient(to top,var(--lime-400) 60%,rgba(255,255,255,.14) 60%)}
+/* scena 13: tacca del resto del Lazio */
+.stack .tick{position:absolute;left:24.4%;top:-.8cqw;bottom:-.8cqw;width:.3cqw;background:var(--black)}
+.stack .part{width:36.5%}
+/* scena 3: righe più lunghe di Viterbo */
+.s3 .tblock{top:21cqw}
+.s3 .hl{font-size:4.2cqw}
+.s3 .hl .a-lime{display:inline}
+
+/* ── Footer di ogni frame (17/11, per le tv locali): OpenEconomics per esteso + ANCI Lazio + Regione Lazio ── */
+/* 18/11 (commento del cliente): loghi più piccoli e più in basso, uguali in tutte le scene; bottom 3cqw = 5,3% dell'altezza, dentro l'area di sicurezza tv */
+.foot{gap:2.1cqw;bottom:3cqw}
+.foot img{height:auto;width:auto;display:block}
+.foot img.f-oe{height:1.5cqw}
+.foot img.f-anci{height:2.8cqw}
+.foot img.f-lazio{height:2.3cqw}
+.light .foot img{filter:brightness(0)}
+
+/* ══ Scene 15–20 (dalla Parte 2) ══ */
+/* ── Scena 15: cubo vettoriale, senza prospettiva ── */
+.s15 .scene3d{position:absolute;left:50%;top:46%;width:19cqw;height:19cqw;margin:-9.5cqw 0 0 -9.5cqw}
+.cube3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-24deg) rotateY(-35deg)}
+@keyframes spin{from{transform:rotateX(-24deg) rotateY(-35deg)}to{transform:rotateX(-24deg) rotateY(325deg)}}
+.play .cube3d{animation:spin 16s linear infinite}
+.cube3d .face{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);gap:.45cqw;padding:.45cqw;background:var(--bluette-900);box-shadow:0 0 0 .22cqw var(--lime-400);backface-visibility:hidden}
+.cube3d .f-front{transform:translateZ(9.5cqw)}
+.cube3d .f-right{transform:rotateY(90deg) translateZ(9.5cqw)}
+.cube3d .f-back{transform:rotateY(180deg) translateZ(9.5cqw)}
+.cube3d .f-left{transform:rotateY(-90deg) translateZ(9.5cqw)}
+.cube3d .f-top{transform:rotateX(90deg) translateZ(9.5cqw)}
+.cube3d .f-bottom{transform:rotateX(-90deg) translateZ(9.5cqw)}
+.cube3d .face i{display:block;background:var(--lime-400)}
+@keyframes solve{from{background:var(--c)}to{background:var(--lime-400)}}
+.play .cube3d .face i{animation:solve .5s ease var(--d,0s) both}
+.cube3d .plate{position:absolute;left:-4cqw;right:-4cqw;top:100%;margin-top:2.4cqw;text-align:center;font-family:var(--mono);font-size:1.6cqw;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--white)}
+
+.s15 .holo{position:absolute;inset:0;z-index:0;overflow:hidden}
+.s15 .holo canvas{display:block;width:100%!important;height:100%!important}
+/* righe di scansione leggere sopra il rendering */
+.s15 .holo::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.035) 0 1px,transparent 1px 3px)}
+.s15 .holo-plate{position:absolute;transform:translate(-50%,-50%);margin:0;font-family:var(--mono);font-size:1.6cqw;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--lime-400);text-shadow:0 0 1.2cqw rgba(185,255,105,.6);white-space:nowrap;pointer-events:none;z-index:1}
+.s15.has-holo .scene3d{display:none}
+
+/* ── Scena 16: il cubo aperto in croce ── */
+.s16 .tblock{max-width:30cqw}
+.s16 .net{position:absolute;right:5cqw;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:repeat(4,14.2cqw);grid-template-rows:repeat(3,14.2cqw);gap:.4cqw}
+.s16 .net .tile{display:flex;flex-direction:column;justify-content:space-between;padding:1.3cqw;background:var(--lime-400);color:var(--black)}
+.s16 .net .tile .n{font-family:var(--mono);font-size:1.2cqw;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.s16 .net .tile .nm{font-family:var(--sans);font-size:1.6cqw;font-weight:700;line-height:1.2}
+@keyframes unfold{from{transform:translate(var(--dx),var(--dy))}to{transform:none}}
+@keyframes tile{from{background:var(--bluette-600);color:var(--white)}to{background:var(--lime-400);color:var(--black)}}
+.play.s16 .net .tile{animation:unfold .9s var(--ease) 1.8s both,tile .5s ease var(--d,0s) both}
+
+/* ── Scena 18: i 15 ambiti su fondo bianco ── */
+.s18 .num{color:var(--bluette-700)}
+.s18 .cap{color:var(--black)}
+.s18 .tblock{max-width:24cqw}
+.s18 .tblock .num{font-size:13cqw}
+.amb{position:absolute;right:5cqw;top:50%;transform:translateY(-50%);width:60cqw;display:flex;flex-direction:column;gap:.5cqw;padding-top:3cqw}
+.amb .r{display:grid;grid-template-columns:27cqw 1fr;align-items:center;column-gap:1.2cqw;height:2.3cqw}
+.amb .nm{font-family:var(--sans);font-size:1.5cqw;line-height:1;color:var(--gray-700);white-space:nowrap;text-align:right}
+.amb .row{display:flex;align-items:center;gap:.8cqw}
+.amb .b{display:block;height:1.6cqw;width:calc(var(--v) * .27cqw);background:var(--gray-300);transform-origin:left center}
+.amb .r.lo .b{background:var(--bluette-700)}
+.amb .v{font-family:var(--mono);font-size:1.4cqw;font-weight:700;color:var(--gray-700)}
+.amb .r.hot .nm,.amb .r.hot .v{font-weight:700;color:var(--black)}
+.amb .r.hot.lo .nm,.amb .r.hot.lo .v{color:var(--bluette-700)}
+.amb .ref{position:absolute;left:calc(28.2cqw + 13.5cqw);top:0;bottom:0;border-left:.16cqw dashed var(--black);padding-left:.7cqw;font-family:var(--mono);font-size:1.2cqw;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-700);white-space:nowrap;line-height:1.2}
+.amb .ref b{color:var(--black)}
+.s18 .ttl{margin:2.4cqw 0 0;font-family:var(--mono);font-size:1.3cqw;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bluette-700);line-height:1.5}
+/* nomi e valori entrano con la loro barra, non prima */
+.play .amb .nm{animation:fade .5s ease var(--d,0s) both}
+.play .amb .v{animation:fade .4s ease calc(var(--d,0s) + .6s) both}
+@keyframes toblu{from{background:var(--gray-300)}to{background:var(--bluette-700)}}
+.play .amb .r.lo .b{animation:growX .9s var(--ease) var(--d,0s) both,toblu .5s ease var(--d2,20s) both}
+.play .amb .r .b{animation:growX .9s var(--ease) var(--d,0s) both}
+
+/* ── Scena 20: dato → obiettivo → indicatore ── */
+.chain{position:absolute;left:5cqw;right:5cqw;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:minmax(0,1fr) 5cqw minmax(0,1fr) 5cqw minmax(0,1fr);align-items:stretch}
+.chain .card{background:var(--bluette-800);padding:2.4cqw;min-height:25cqw;display:flex;flex-direction:column;gap:1.8cqw}
+.chain .card .num{font-size:9cqw}
+.chain .card .cap.s{font-size:2.9cqw}
+.chain .arr{width:4cqw;height:auto;align-self:center;justify-self:center;overflow:visible}
+.chain .tag{display:inline-block;margin-left:.8cqw;background:var(--lime-400);color:var(--black);font-weight:700;padding:.2cqw .6cqw;letter-spacing:.12em}
+
+/* ── Stacco ── */
+.end .lines{position:absolute;left:5cqw;bottom:4.4cqw;display:flex;flex-direction:column;gap:.9cqw;font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.74)}
+/* scena 18 (Rieti): la barra più alta si accende in Lime con filetto Bluette, come la barra della coesione */
+@keyframes tolime{from{background:var(--gray-300);box-shadow:none}to{background:var(--lime-400);box-shadow:inset 0 0 0 .14cqw var(--bluette-700)}}
+.amb .r.top .b{background:var(--lime-400);box-shadow:inset 0 0 0 .14cqw var(--bluette-700)}
+.play .amb .r.top .b{animation:growX .9s var(--ease) var(--d,0s) both,tolime .5s ease var(--d2,9s) both}
+.amb .r.top .nm,.amb .r.top .v{font-weight:700;color:var(--black)}
+
+/* scena 20 (Rieti): il filo Lime che riporta l'indicatore al dato */
+.s20 .chain{transform:translateY(-58%)}
+.chain .loop{position:absolute;left:0;top:100%;width:100%;height:6cqw;overflow:visible}
+
+
+/* ══ Scene 21–40 (dalla Parte 3) ══ */
+/* ── Rieti Parte 3: ingressi dei numeroni (v4) ──
+   conta (21, 30, 37) · fermo (22, 36) · scala morbida (27, 34) · dissolvenza (25, 33) · da sinistra (28) · dal basso (24, 31) */
+@keyframes show{from{opacity:0}to{opacity:1}}
+@keyframes soft{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+@keyframes left{from{opacity:0;transform:translateX(-4cqw)}to{opacity:1;transform:none}}
+.play .a-show{animation:show .12s linear var(--d,0s) both}
+.a-soft{transform-origin:0 60%}
+.play .a-soft{animation:soft .9s var(--ease) var(--d,0s) both}
+.play .a-left{animation:left .7s var(--ease) var(--d,0s) both}
+/* lento avvicinamento sulle foto senza clip */
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.1)}}
+.play .kb{animation:kb var(--kt,14s) linear 0s both}
+.ph-miss{position:absolute;inset:0;background:var(--bluette-900);display:flex;align-items:flex-start;justify-content:flex-end;padding:4cqw 5cqw}
+.ph-miss p{font-family:var(--mono);font-size:1.3cqw;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime-400)}
+/* nelle barre il valore entra dopo la barra (revisione 10 novembre su Viterbo) */
+.play .bars .bar b{animation:fade .4s ease calc(var(--d,0s) + .7s) both}
+
+/* ── Chiusura: claim + tre loghi su una riga ── */
+.end .stage{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0}
+.end .claim{font-size:6cqw;text-align:center;line-height:1.1}
+.end .claim + .claim{color:var(--lime-400)}
+.end .loghi{display:flex;align-items:center;justify-content:center;gap:6cqw;margin-top:5cqw}
+.end .l-oe{height:2.6cqw;width:auto;display:block}
+.end .l-anci{height:5cqw;width:auto;display:block}
+.end .l-lazio{height:4.4cqw;width:auto;display:block}
+
+/* ── Cubo piccolo in alto a destra, con la faccia della scena accesa ── */
+.mini{position:absolute;right:5cqw;top:4cqw;z-index:2;display:grid;grid-template-columns:repeat(4,1.5cqw);grid-template-rows:repeat(3,1.5cqw);gap:.22cqw}
+.mini i{display:block;box-sizing:border-box;border:.12cqw solid rgba(255,255,255,.6)}
+.mini i.on{background:var(--lime-400);border-color:var(--lime-400)}
+.light .mini i{border-color:var(--gray-500)}
+.light .mini i.on{background:var(--bluette-700);border-color:var(--bluette-700)}
+.deep .mini{filter:drop-shadow(0 0 .5cqw rgba(0,0,0,.55))}
+.k .neg,.k.neg{color:rgba(255,255,255,.6)}
+.tag{display:inline-block;background:var(--lime-400);color:var(--black);font-family:var(--mono);font-size:1.3cqw;font-weight:700;padding:.2cqw .6cqw;letter-spacing:.12em;text-transform:uppercase;vertical-align:middle}
+.srcl{font-family:var(--mono);font-size:1.15cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.cmpl{margin-top:1.4cqw;font-family:var(--mono);font-size:1.4cqw;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.cmpl b{font-size:2.2cqw;color:var(--white);letter-spacing:-.01em;margin-left:.4cqw}
+.num small{font-size:.32em;letter-spacing:.02em;margin-left:.35em}
+.veil{position:absolute;inset:0;background:rgba(39,0,101,.62)}
+.play .a-out2{animation:up .7s var(--ease) var(--d,0s) both,out .5s ease var(--d2) forwards}
+.frame:not(.play) .a-out2{opacity:0}
+
+/* ── Scene 21 e 27: i 15 ambiti con un solo ambito acceso ── */
+.a21 .tblock .num,.a27 .tblock .num{color:var(--bluette-700);font-size:13cqw}
+.a21 .cap,.a27 .cap{color:var(--black)}
+.a21 .tblock,.a27 .tblock{max-width:24cqw}
+.a21 .amb,.a27 .amb{top:calc(50% + .5cqw);gap:.45cqw}
+.a21 .amb .r,.a27 .amb .r{height:2cqw}  /* più compatto: lascia libero il footer con i tre loghi (17/11) */
+.amb-k{margin-top:1.6cqw;color:var(--bluette-700)!important;font-weight:700;line-height:1.35}
+.amb .r.hot .b{background:var(--bluette-700)}
+.play .amb .r.hot .b{animation:growX .9s var(--ease) var(--d,0s) both,toblu .5s ease var(--d2) both}
+/* scena 21: su «base produttiva» le altre barre si attenuano */
+.play .amb.dimr .r:not(.hot){animation:dim .6s ease var(--d3) both}
+.frame:not(.play) .amb.dimr .r:not(.hot){opacity:.42}
+
+/* ── Card OBIETTIVO → INDICATORE (scena 37) ── */
+.cards{position:absolute;left:5cqw;right:5cqw;bottom:8.6cqw;display:grid;grid-template-columns:minmax(0,1.7fr) 5cqw minmax(0,1fr);align-items:stretch;z-index:1}
+.cards .card{background:var(--bluette-800);padding:1.8cqw 2.2cqw;display:flex;flex-direction:column;gap:1cqw}
+.cards .card .row{display:flex;align-items:center;gap:2cqw}
+.cards .card .num{font-size:7cqw}
+.cards .card .cap.s{font-size:2.3cqw}
+.cards .card .srcl{margin-top:auto}
+.cards .ind{background:none;border:.16cqw dashed rgba(255,255,255,.6);justify-content:flex-start}
+.cards .ind .cap{color:rgba(255,255,255,.74)}
+.cards .arr,.arr{width:4cqw;height:auto;align-self:center;justify-self:center;overflow:visible}
+.a37 .cards{bottom:auto;top:50%;transform:translateY(-50%)}
+/* la card entra al centro del frame e su «A Rieti i comuni» si sposta a sinistra */
+@keyframes shiftL{from{transform:translateX(17cqw)}to{transform:none}}
+.play .a37 .card.c37{animation:fade .7s ease var(--d,0s) both,shiftL .8s var(--ease) var(--d2) both}
+
+/* ── Scena 22: mini-mappa su foto velata ── */
+.pmap{position:absolute;right:5cqw;top:7cqw;bottom:7cqw;width:34cqw;display:flex;align-items:center;justify-content:center;z-index:1}
+.pmap svg,.mapR svg{height:100%;width:auto;overflow:visible}
+.a22 .tblock{max-width:48cqw}
+.maplbl{font-family:'Atkinson Hyperlegible Mono',monospace;font-size:19px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.maplbl.halo{font-size:24px;paint-order:stroke;stroke:#270065;stroke-width:7px;stroke-linejoin:round}
+
+/* ── Scene 24 e 30: quadratini ── */
+.dots{display:grid;grid-template-columns:repeat(13,1fr);gap:.55cqw;width:36cqw}
+.dots.g100{grid-template-columns:repeat(10,1fr);width:24cqw;gap:.4cqw}
+.dots span{aspect-ratio:1;background:rgba(255,255,255,.18);position:relative}
+.dots span.a-lit{background:var(--lime-400)}
+.play .dots span.a-lit{background:rgba(255,255,255,.18)}
+.dots span.ref::after{content:"";position:absolute;inset:-.3cqw;border:.16cqw dashed var(--white)}
+.play .dots span.ref::after{animation:fade .5s ease var(--d3,0s) both}
+.a30 .side{width:24cqw}
+
+/* ── Scena 25: etichetta della proposta in basso ── */
+.reg25{position:absolute;left:5cqw;bottom:9.4cqw;z-index:2;margin:0}
+
+/* ── Scena 31: numerone nel terzo inferiore, su fondo colorato ── */
+.lower{position:absolute;left:5cqw;right:22cqw;bottom:9cqw;background:var(--bluette-700);padding:2cqw 2.6cqw;display:flex;align-items:center;gap:2.4cqw;z-index:1}
+.lower .num{font-size:9cqw}
+.lower .lt{display:flex;flex-direction:column;gap:.4cqw}
+.lower .cap.s{font-size:2.6cqw}
+.lower .cmpl{margin-top:.6cqw}
+.lower .reg{position:absolute;left:2.6cqw;top:-1.6cqw;margin:0}
+
+/* ── Scena 33: cerchi in linea d'aria attorno al borgo; testi a destra ── */
+.a33 .shade{background:radial-gradient(ellipse 85% 110% at 100% 55%,rgba(0,0,0,.74) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,0) 80%)}
+.a33 .tblock{left:auto;right:5cqw;max-width:38cqw}
+.a33 svg.rings{position:absolute;left:30%;top:51%;width:26cqw;height:26cqw;transform:translate(-50%,-50%);overflow:visible;z-index:1}
+
+/* ── Scena 34: mappa delle aree interne e asset ── */
+.colL{position:absolute;left:5cqw;top:10.6cqw;bottom:7.6cqw;width:44cqw;display:flex;flex-direction:column;justify-content:center;gap:1.6cqw}
+.colL .num{font-size:7.6cqw}
+.colL .cap.s{margin-top:1cqw;font-size:2.8cqw}
+.colL .swap{display:grid}
+.colL .swap > *{grid-area:1/1}
+.swap34{display:grid;align-items:center}
+.swap34 > div{grid-area:1/1;display:flex;flex-direction:column;gap:1.6cqw}
+.swap34 .k + .assets{margin-top:.6cqw}
+.end .loghi.solo{margin-top:0}
+.card.obj{background:var(--bluette-800);padding:1.6cqw 2cqw;display:flex;flex-direction:column;gap:.9cqw}
+.card.obj .cap.s{font-size:2.3cqw}
+.icons{list-style:none;margin:0;padding:0;display:flex;gap:1.6cqw;flex-wrap:wrap}
+.icons li{display:flex;flex-direction:column;gap:.5cqw;font-family:var(--mono);font-size:1.05cqw;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.86);width:8.6cqw}
+.icons svg{width:3.4cqw;height:3.4cqw;display:block}
+.assets{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7cqw;align-self:start}
+.assets li{display:flex;align-items:center;gap:1.1cqw;font-family:var(--serif);font-size:2.4cqw}
+.assets li b{display:grid;place-items:center;width:2.6cqw;height:2.6cqw;background:var(--lime-400);color:var(--black);font-family:var(--mono);font-size:1.4cqw}
+.mapR{position:absolute;right:4cqw;top:5cqw;bottom:5cqw;width:46cqw;display:flex;align-items:center;justify-content:center}
+
+/* ── Scena 37: linea del ciclo 2028–2034 e card scritta a macchina ── */
+.tline{position:absolute;left:5cqw;right:5cqw;top:10cqw;display:flex;flex-direction:column;gap:1cqw}
+.tline svg{width:100%;height:auto;overflow:visible}
+.tline .yr{font-family:'Atkinson Hyperlegible Mono',monospace;font-size:40px;font-weight:700;fill:#B9FF69}
+.tline .ms{font-family:'Atkinson Hyperlegible Mono',monospace;font-size:30px;font-weight:600;letter-spacing:.1em;fill:#FFFFFF;text-transform:uppercase}
+.type span{opacity:1}
+.play .type span{animation:fade .01s linear var(--d,0s) both}
+
+
+
+/* ===== Scenari | Space Economy: fondi del Tema Spazio, una sola luce Lime ===== */
+:root{--notte-0:#05060F;--notte-2:#0B081B;--notte-4:#150D28;--linea:#2B2851;--testo-2:#C9CCEB}
+.masthead{background:var(--notte-2)}
+.meta{background:var(--linea);border-color:var(--linea)}
+.meta div{background:var(--notte-2)}
+.frame{background:var(--notte-0)}
+.frame.deep{background:var(--notte-0)}
+.frame .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.play .kb{animation:kb var(--k,12s) linear both}
+.play .kb2{animation:kb2 var(--k,12s) linear both}
+@keyframes kb2{from{transform:scale(1.1) translateX(1.5%)}to{transform:scale(1)}}
+.velo{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,15,.86) 0%,rgba(5,6,15,.5) 42%,rgba(5,6,15,0) 72%),linear-gradient(0deg,rgba(5,6,15,.7) 0%,rgba(5,6,15,0) 35%)}
+.velo.pieno{background:rgba(5,6,15,.62)}
+.globo{position:absolute;inset:0}
+.globo canvas{width:100%;height:100%;display:block}
+.globo-lbl{position:absolute;transform:translate(1.4cqw,-50%);font-family:var(--mono);font-weight:600;font-size:1.6cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--lime-400);text-shadow:0 0 1.2cqw rgba(0,0,0,.8);white-space:nowrap;pointer-events:none}
+.frame:not(.has-globo) .globo-fallback{display:block}
+.globo-fallback{display:none}
+/* etichetta di sezione dello script, in alto a sinistra */
+.etq{position:absolute;left:5cqw;top:4.4cqw;z-index:2;font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.62);display:flex;gap:1.2cqw;align-items:center}
+.etq i{width:.7cqw;height:.7cqw;background:var(--lime-400);display:block}
+/* fonti e firma dei dati */
+.src2{position:absolute;left:5cqw;bottom:3.6cqw;z-index:2;font-family:var(--mono);font-size:1.25cqw;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.stima{font-family:var(--mono);font-size:1.3cqw;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--black);background:var(--lime-400);padding:.35cqw .7cqw;display:inline-block}
+.ph-n{color:var(--lime-400)}
+
+/* Sc. 2 · montaggio: cinque inquadrature, da ognuna parte una linea verso il satellite */
+.shot{position:absolute;inset:0;overflow:hidden}
+.shot .lbl{position:absolute;left:5cqw;bottom:6.4cqw;z-index:2;display:flex;flex-direction:column;gap:.8cqw}
+.shot .lbl b{font-family:var(--mono);font-weight:600;font-size:1.3cqw;letter-spacing:.16em;color:rgba(255,255,255,.62)}
+.shot .lbl span{font-family:var(--mono);font-weight:700;font-size:4.6cqw;letter-spacing:.06em;color:var(--white);line-height:1}
+.shot svg,.conv svg{position:absolute;inset:0;width:100%;height:100%}
+.sat{fill:var(--lime-400)}
+.conv{position:absolute;inset:0;background:var(--notte-0)}
+.conv .rete-lbl{font-family:var(--mono);font-weight:600;font-size:22px;letter-spacing:4px;fill:rgba(255,255,255,.74)}
+
+/* Sc. 4 · mappa a punti */
+.mappa{position:absolute;right:6cqw;top:50%;transform:translateY(-50%);height:88%;}
+.mappa svg{height:100%;width:auto;display:block;overflow:visible}
+.cifre{position:absolute;left:5cqw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:3.2cqw}
+.cifra{display:flex;flex-direction:column;gap:.6cqw}
+.cifra .num{font-size:9cqw}
+.cifra .k{font-size:1.8cqw}
+.hublbl{font-family:var(--mono);font-weight:600;font-size:15px;letter-spacing:2px;fill:rgba(255,255,255,.8);text-transform:uppercase}
+
+/* Sc. 5–6 · €1 */
+.euro{position:absolute;left:5cqw;top:50%;transform:translateY(-50%);font-family:var(--mono);font-weight:700;color:var(--lime-400);font-size:22cqw;line-height:.8;letter-spacing:-.05em}
+.ripple{position:absolute;inset:0;width:100%;height:100%}
+.ripple circle{fill:none;stroke:var(--lime-400);transform-box:fill-box;transform-origin:center}
+.play .ripple circle{animation:onda 3.6s cubic-bezier(.2,.6,.3,1) var(--d,0s) infinite}
+@keyframes onda{from{transform:scale(.2);opacity:.9}to{transform:scale(3.2);opacity:0}}
+.frame:not(.play) .ripple circle{opacity:.0}
+.sankey{position:absolute;inset:0;width:100%;height:100%}
+.sk-lbl{font-family:var(--mono);font-weight:600;font-size:26px;letter-spacing:4px;fill:rgba(255,255,255,.74);text-transform:uppercase}
+.sk-num{font-family:var(--mono);font-weight:700;font-size:96px;letter-spacing:-3px;fill:var(--lime-400)}
+.sk-euro{font-family:var(--mono);font-weight:700;font-size:150px;letter-spacing:-6px;fill:var(--lime-400)}
+
+/* Sc. 6 · sankey olografico */
+.holo{position:absolute;inset:0;perspective:110cqw;perspective-origin:50% 30%;overflow:hidden}
+.holo-base{position:absolute;left:50%;top:72%;width:120cqw;height:60cqw;transform:translate(-50%,-50%) rotateX(74deg);transform-style:preserve-3d;
+  background-image:linear-gradient(rgba(185,255,105,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(185,255,105,.22) 1px,transparent 1px);background-size:3cqw 3cqw;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 20%,transparent 70%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 20%,transparent 70%)}
+.holo-anello{position:absolute;left:50%;top:50%;border:.15cqw solid rgba(185,255,105,.7);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 2cqw rgba(185,255,105,.35)}
+.holo-fascio{position:absolute;left:50%;top:14%;width:78cqw;height:58%;transform:translateX(-50%);background:linear-gradient(0deg,rgba(185,255,105,.16),rgba(185,255,105,0) 85%);clip-path:polygon(12% 0,88% 0,100% 100%,0 100%);mix-blend-mode:screen}
+.holo-piano{position:absolute;inset:4% 3% 18%;transform:rotateX(16deg) rotateY(-6deg);transform-origin:50% 100%}
+.holo-piano svg{width:100%;height:100%;overflow:visible}
+.scanline{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(185,255,105,.05) 0,rgba(185,255,105,.05) 1px,transparent 1px,transparent 4px);mix-blend-mode:screen}
+.play .flicker{animation:flicker 1.4s steps(1) var(--d,0s) both}
+@keyframes flicker{0%{opacity:0}8%{opacity:.8}12%{opacity:.1}20%{opacity:.9}26%{opacity:.3}34%,100%{opacity:1}}
+.flusso{fill:none;stroke:#B9FF69;stroke-linecap:round}
+.particelle{fill:none;stroke:#F2FFE0;stroke-linecap:round;stroke-dasharray:2 34}
+.play .particelle{animation:scorre 1.6s linear infinite}
+@keyframes scorre{to{stroke-dashoffset:-36}}
+.holo-lbl{font-family:var(--mono);font-weight:600;font-size:24px;letter-spacing:5px;fill:#C9CCEB;text-transform:uppercase}
+.holo-num{font-family:var(--mono);font-weight:700;font-size:92px;letter-spacing:-3px;fill:#B9FF69}
+.holo-euro{font-family:var(--mono);font-weight:700;font-size:140px;letter-spacing:-6px;fill:#B9FF69}
+.holo-box{fill:rgba(185,255,105,.06);stroke:rgba(185,255,105,.55);stroke-width:1.5}
+
+/* Sc. 7–8 · osservazione della Terra */
+.hud{position:absolute;inset:0;pointer-events:none}
+.hud .scan{position:absolute;left:0;right:0;height:.2cqw;background:var(--lime-400);box-shadow:0 0 1.4cqw .2cqw rgba(185,255,105,.55);top:12%}
+.play .hud .scan{animation:scan 4.5s cubic-bezier(.6,0,.4,1) var(--d,0s) infinite alternate}
+@keyframes scan{from{top:12%}to{top:88%}}
+.hud .mir{position:absolute;width:3cqw;height:3cqw;border:0 solid var(--lime-400)}
+.mosaico{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:.5cqw;padding:.5cqw;background:var(--notte-0)}
+.mosaico figure{margin:0;position:relative;overflow:hidden}
+.mosaico img,.mosaico video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.parole3{position:absolute;left:5cqw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1.4cqw;z-index:2}
+.parole3 p{font-family:var(--serif);font-size:6cqw;line-height:1;color:var(--white);display:flex;align-items:center;gap:2cqw;text-shadow:0 0 2cqw rgba(0,0,0,.6)}
+.parole3 p i{width:1.4cqw;height:1.4cqw;background:var(--lime-400);display:block;flex:none}
+.velo-sx{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,6,15,.92) 0%,rgba(5,6,15,.7) 45%,rgba(5,6,15,.1) 80%);z-index:1}
+
+/* Sc. 10 · barre */
+.barre{position:absolute;right:6cqw;bottom:16cqw;display:flex;align-items:flex-end;gap:5cqw}
+.barra{display:flex;flex-direction:column;align-items:center;gap:1.2cqw}
+.barra .col{width:9cqw;background:rgba(255,255,255,.28);transform-origin:bottom}
+.barra.new .col{background:var(--lime-400)}
+.barra .v{font-family:var(--mono);font-weight:700;font-size:4cqw;letter-spacing:-.03em;color:var(--white);white-space:nowrap}
+.barra.new .v{color:var(--lime-400)}
+.barra .per{font-family:var(--mono);font-weight:600;font-size:1.5cqw;letter-spacing:.14em;color:rgba(255,255,255,.74)}
+.play .a-grow{animation:grow 1.4s var(--ease) var(--d,0s) both}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.tl{position:absolute;left:5cqw;right:5cqw;bottom:9cqw;height:4cqw}
+.tl svg{width:100%;height:100%;overflow:visible}
+.tl-lbl{font-family:var(--mono);font-weight:600;font-size:20px;letter-spacing:3px;fill:rgba(255,255,255,.74)}
+
+/* Sc. 11 · ciclo di vita */
+.ciclo{position:absolute;left:5cqw;right:5cqw;top:14cqw;bottom:12cqw;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2cqw}
+.fase{position:relative;overflow:hidden;background:var(--notte-2);display:flex;flex-direction:column}
+.fase figure{margin:0;position:relative;flex:1;overflow:hidden}
+.fase figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.45);transition:filter .6s}
+.fase .nome{padding:1.2cqw 1.2cqw .6cqw;font-family:var(--mono);font-weight:700;font-size:1.3cqw;letter-spacing:.06em;white-space:nowrap;color:rgba(255,255,255,.5)}
+.fase .strum{display:flex;flex-wrap:wrap;gap:.5cqw;padding:0 1.2cqw 1.2cqw}
+.fase .strum span{font-family:var(--mono);font-weight:600;font-size:1.05cqw;letter-spacing:.1em;padding:.3cqw .55cqw;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6)}
+.fase .barretta{position:absolute;left:0;right:0;top:0;height:.35cqw;background:var(--lime-400);transform-origin:left}
+.play .fase .a-on img{animation:accendi .8s ease var(--d,0s) both}
+@keyframes accendi{from{filter:grayscale(1) brightness(.45)}to{filter:none}}
+.frame:not(.play) .fase .a-on img{filter:none}
+.play .fase .a-on2{animation:on2 .6s ease var(--d,0s) both}
+@keyframes on2{from{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.3);background:transparent}to{color:var(--black);border-color:var(--lime-400);background:var(--lime-400)}}
+.frame:not(.play) .fase .a-on2{color:var(--black);border-color:var(--lime-400);background:var(--lime-400)}
+.play .fase .a-nome{animation:nome .6s ease var(--d,0s) both}
+@keyframes nome{from{color:rgba(255,255,255,.5)}to{color:var(--white)}}
+.frame:not(.play) .fase .a-nome{color:var(--white)}
+.freccia{position:absolute;left:5cqw;right:5cqw;top:10.6cqw;height:1.6cqw}
+.freccia svg{width:100%;height:100%;overflow:visible}
+
+/* Sc. 12–13 · chiusura */
+.claim{position:absolute;left:5cqw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1cqw;z-index:2}
+.claim p{font-family:var(--serif);font-size:6.4cqw;line-height:1.02;color:var(--white)}
+.lockup{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2.4cqw;z-index:2}
+.lockup .marchio{display:flex;align-items:center;gap:1.4cqw;font-family:var(--serif);font-size:6.4cqw;line-height:1;color:var(--white);white-space:nowrap}
+.lockup .marchio img{height:5.6cqw;width:auto}
+.lockup .marchio .sep{opacity:.45}
+.lockup .desc{font-family:var(--mono);font-weight:600;font-size:1.6cqw;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.74)}
+.firma{position:absolute;left:50%;bottom:7cqw;transform:translateX(-50%);display:flex;align-items:center;gap:2.4cqw;z-index:2}
+.firma img.oe{height:2.2cqw}
+.firma img.ir{height:4.2cqw}
+.firma .x{font-family:var(--mono);font-size:1.6cqw;color:rgba(255,255,255,.6)}
+.codino{position:absolute;inset:0;background:var(--bluette-900);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.6cqw}
+.codino img{height:4.6cqw}
+.codino p{font-family:var(--serif);font-size:3.4cqw;color:var(--white)}
+.codino .riga{position:absolute;left:5cqw;bottom:4cqw;font-family:var(--mono);font-weight:600;font-size:1.25cqw;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+
+/* testa della pagina */
+.princ{background:var(--notte-0);color:var(--white);padding:40px 0 44px}
+.princ h2{font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--lime-400);margin-bottom:18px}
+.princ ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea)}
+.princ li{background:var(--notte-0);padding:18px 20px;font-size:15px;line-height:1.45;color:rgba(255,255,255,.86)}
+.princ li b{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:6px;font-weight:600}
+
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">OpenEconomics × Inrete · Storyboard visivo · Bozza</p>
+    <h1>Scenari | Space Economy · video di apertura</h1>
+    <p class="sub">Il video che apre il momento OpenEconomics agli Stati Generali della Space Economy, davanti alle imprese del settore e ai rappresentanti del Governo. Dallo script della proposta «Minisito permanente e contenuto video»: otto blocchi, qui divisi in 14 scene. Stesse immagini, stessa Terra 3D e stessi colori del minisito, così video e sito sono una cosa sola.</p>
+    <dl class="meta">
+      <div><dt>Durata</dt><dd>2:35 con il codino</dd></div>
+      <div><dt>Formato</dt><dd>16:9, master 4K, export 1080p per la regia</dd></div>
+      <div><dt>Evento</dt><dd>Milano, MiCo · 30.11.2026</dd></div>
+      <div><dt>Voce</dt><dd>Una voce narrante italiana professionale, sottotitoli sempre attivi</dd></div>
+      <div><dt>Tono</dt><dd>Istituzionale, tecnologico, essenziale</dd></div>
+    </dl>
+  </div>
+</header>
+
+<section class="princ" aria-labelledby="pr-h">
+  <div class="wrap">
+    <h2 id="pr-h">Linguaggio visivo</h2>
+    <ul>
+      <li><b>Colore</b>Fondo quasi nero del Tema Spazio, blu notte nelle immagini, una sola luce: il Lime. Il rosso Inrete solo nel logo.</li>
+      <li><b>Immagini</b>Cinematografiche, nessuna posa da stock: ingegneri al lavoro, satelliti, la Terra dall'orbita.</li>
+      <li><b>Dati</b>Linee sottili e punti luminosi; numeri in Atkinson Mono Lime, frasi in Hedvig. Ogni stima porta «Stima OE» e la fonte.</li>
+      <li><b>Movimento</b>Lento, sulle parole della voce. La Terra in 3D apre e torna in chiusura, come nel sito.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="phases" aria-label="Fasi di lavoro">
+  <div class="wrap">
+    <ol>
+      <li class="on"><span class="n">Fase 1 · ora</span><p>Storyboard animato con foto, clip già pronti e Terra 3D. Testi e tempi da approvare.</p></li>
+      <li><span class="n">Fase 2</span><p>Clip mancanti con Kling 2.5 (scene 2, 3 e 8), numeri della stima SAM, loghi degli strumenti.</p></li>
+      <li><span class="n">Fase 3</span><p>Voce, musica, render 4K e montaggio, con le animazioni agganciate alle parole.</p></li>
+    </ol>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="label">Vista</span>
+    <label class="toggle"><input type="checkbox" id="animToggle" checked> Anima i frame</label>
+    <label class="toggle"><input type="checkbox" id="safeToggle"> Mostra title safe 16:9</label>
+    <label class="toggle"><input type="checkbox" id="bigToggle"> Frame grandi</label>
+    <label class="who">Il tuo nome <input type="text" id="whoName" autocomplete="name" placeholder="per firmare i commenti"></label>
+    <button type="button" class="pdf-all" id="pdfAll">Scarica PDF dei commenti</button>
+    <button type="button" class="copy-all" id="copyAll">Copia il testo</button>
+    <span class="copied" id="copied" aria-live="polite"></span>
+    <span class="hint">Clic su un frame per rivedere l'animazione</span>
+  </div>
+</div>
+
+<main class="board">
+  <div class="wrap">
+    <h2 class="sec-h">Scena per scena</h2>
+    <div class="grid" id="grid">
+
+      <article class="beat">
+        <div class="frame " data-dur="12" tabindex="0" role="button" aria-label="Scena 01, rivedi animazione">
+          <div class="stage">
+            <video class="ph clip" src="assets/video/apertura.mp4?v=1795278750" poster="assets/img/13_alba-punto.webp?v=1795278750" muted playsinline preload="none"></video>
+          </div>
+          <span class="tc">Sc. 01 · 0:00 – 0:12</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 01 · Il punto di luce <span class="chip w">Clip</span> <span class="chip w">Kling 2.5 · 10 s</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessun testo. Solo il sottotitolo della voce, sempre attivo.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Ogni giorno, senza vederlo, usiamo lo spazio.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Nero assoluto. Un punto di luce nasce sul bordo della Terra, l'alba orbitale. Senza tagli la camera scende e gira: emerge il lato notturno del pianeta con le luci delle città e il filo d'atmosfera dal blu al verde, finché l'Italia illuminata riempie l'inquadratura. Negli ultimi 2 s l'immagine resta ferma sull'Italia (fermo immagine della clip da 10 s). Suono basso, un respiro.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s, generata dal primo e dall'ultimo fotogramma: immagine 13 della moodboard (punto di luce) e immagine 01 (Italia di notte).</dd></div>
+            <div><dt>Nota</dt><dd class="note">La Terra 3D del sito resta nella scena 9 e nella hero del minisito.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="18" tabindex="0" role="button" aria-label="Scena 02, rivedi animazione">
+          <div class="stage">
+            <div class="shot a-cut" style="--d:0s;z-index:1">
+              <video class="ph clip2" data-start="0" src="assets/video/14_navigazione.mp4?v=1795278750" poster="assets/img/14_navigazione.webp?v=1795278750" muted playsinline preload="none"></video>
+              <div class="velo"></div>
+              <svg viewBox="0 0 1920 1080" aria-hidden="true">
+                <path class="a-draw" style="--d:0.5s;--t:1.6s" d="M780 640 C 1040 380, 1500 300, 1700 170" fill="none" stroke="#B9FF69" stroke-width="3"/>
+                <rect class="a-pop" style="--d:0.3s" x="771" y="631" width="18" height="18" fill="#B9FF69"/>
+                <g class="a-pop" style="--d:1.9s" transform="translate(1700 170)"><g class="sat"><rect x="-9" y="-9" width="18" height="18"/><rect x="-34" y="-5" width="20" height="10" opacity=".7"/><rect x="14" y="-5" width="20" height="10" opacity=".7"/></g></g>
+              </svg>
+              <div class="lbl a-up" style="--d:0.2s"><b>01 / 05</b><span>Navigazione</span></div>
+            </div>
+            <div class="shot a-cut" style="--d:3s;z-index:2">
+              <video class="ph clip2" data-start="3" src="assets/video/15_meteo.mp4?v=1795278750" poster="assets/img/15_meteo.webp?v=1795278750" muted playsinline preload="none"></video>
+              <div class="velo"></div>
+              <svg viewBox="0 0 1920 1080" aria-hidden="true">
+                <path class="a-draw" style="--d:3.5s;--t:1.6s" d="M1040 520 C 1300 260, 1500 300, 1700 170" fill="none" stroke="#B9FF69" stroke-width="3"/>
+                <rect class="a-pop" style="--d:3.3s" x="1031" y="511" width="18" height="18" fill="#B9FF69"/>
+                <g class="a-pop" style="--d:4.9s" transform="translate(1700 170)"><g class="sat"><rect x="-9" y="-9" width="18" height="18"/><rect x="-34" y="-5" width="20" height="10" opacity=".7"/><rect x="14" y="-5" width="20" height="10" opacity=".7"/></g></g>
+              </svg>
+              <div class="lbl a-up" style="--d:3.2s"><b>02 / 05</b><span>Meteo</span></div>
+            </div>
+            <div class="shot a-cut" style="--d:6s;z-index:3">
+              <video class="ph clip2" data-start="6" src="assets/video/16_pagamento.mp4?v=1795278750" poster="assets/img/16_pagamento.webp?v=1795278750" muted playsinline preload="none"></video>
+              <div class="velo"></div>
+              <svg viewBox="0 0 1920 1080" aria-hidden="true">
+                <path class="a-draw" style="--d:6.5s;--t:1.6s" d="M900 700 C 1160 440, 1500 300, 1700 170" fill="none" stroke="#B9FF69" stroke-width="3"/>
+                <rect class="a-pop" style="--d:6.3s" x="891" y="691" width="18" height="18" fill="#B9FF69"/>
+                <g class="a-pop" style="--d:7.9s" transform="translate(1700 170)"><g class="sat"><rect x="-9" y="-9" width="18" height="18"/><rect x="-34" y="-5" width="20" height="10" opacity=".7"/><rect x="14" y="-5" width="20" height="10" opacity=".7"/></g></g>
+              </svg>
+              <div class="lbl a-up" style="--d:6.2s"><b>03 / 05</b><span>Finanza</span></div>
+            </div>
+            <div class="shot a-cut" style="--d:9s;z-index:4">
+              <video class="ph clip2" data-start="9" src="assets/video/17_agricoltura.mp4?v=1795278750" poster="assets/img/17_agricoltura.webp?v=1795278750" muted playsinline preload="none"></video>
+              <div class="velo"></div>
+              <svg viewBox="0 0 1920 1080" aria-hidden="true">
+                <path class="a-draw" style="--d:9.5s;--t:1.6s" d="M960 560 C 1220 300, 1500 300, 1700 170" fill="none" stroke="#B9FF69" stroke-width="3"/>
+                <rect class="a-pop" style="--d:9.3s" x="951" y="551" width="18" height="18" fill="#B9FF69"/>
+                <g class="a-pop" style="--d:10.9s" transform="translate(1700 170)"><g class="sat"><rect x="-9" y="-9" width="18" height="18"/><rect x="-34" y="-5" width="20" height="10" opacity=".7"/><rect x="14" y="-5" width="20" height="10" opacity=".7"/></g></g>
+              </svg>
+              <div class="lbl a-up" style="--d:9.2s"><b>04 / 05</b><span>Agricoltura</span></div>
+            </div>
+            <div class="shot a-cut" style="--d:12s;z-index:5">
+              <video class="ph clip2" data-start="12" src="assets/video/18_alluvione.mp4?v=1795278750" poster="assets/img/18_alluvione.webp?v=1795278750" muted playsinline preload="none"></video>
+              <div class="velo"></div>
+              <svg viewBox="0 0 1920 1080" aria-hidden="true">
+                <path class="a-draw" style="--d:12.5s;--t:1.6s" d="M1100 600 C 1360 340, 1500 300, 1700 170" fill="none" stroke="#B9FF69" stroke-width="3"/>
+                <rect class="a-pop" style="--d:12.3s" x="1091" y="591" width="18" height="18" fill="#B9FF69"/>
+                <g class="a-pop" style="--d:13.9s" transform="translate(1700 170)"><g class="sat"><rect x="-9" y="-9" width="18" height="18"/><rect x="-34" y="-5" width="20" height="10" opacity=".7"/><rect x="14" y="-5" width="20" height="10" opacity=".7"/></g></g>
+              </svg>
+              <div class="lbl a-up" style="--d:12.2s"><b>05 / 05</b><span>Emergenze</span></div>
+            </div>
+            <div class="conv a-cut" style="--d:15s;z-index:9">
+              <svg viewBox="0 0 1920 1080" aria-hidden="true"><path class="a-draw" style="--d:15.20s;--t:1.2s" d="M220 900 C 220 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.00s" x="211" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.00s" x="220" y="960" text-anchor="middle">NAVIGAZIONE</text><path class="a-draw" style="--d:15.32s;--t:1.2s" d="M590 900 C 590 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.12s" x="581" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.12s" x="590" y="960" text-anchor="middle">METEO</text><path class="a-draw" style="--d:15.44s;--t:1.2s" d="M960 900 C 960 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.24s" x="951" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.24s" x="960" y="960" text-anchor="middle">FINANZA</text><path class="a-draw" style="--d:15.56s;--t:1.2s" d="M1330 900 C 1330 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.36s" x="1321" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.36s" x="1330" y="960" text-anchor="middle">AGRICOLTURA</text><path class="a-draw" style="--d:15.68s;--t:1.2s" d="M1700 900 C 1700 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.48s" x="1691" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.48s" x="1700" y="960" text-anchor="middle">EMERGENZE</text>
+                <circle class="a-fade" style="--d:16.4s" cx="960" cy="300" r="60" fill="none" stroke="#B9FF69" stroke-opacity=".35"/>
+                <g class="a-pop" style="--d:16.3s" transform="translate(960 300) scale(2)"><g class="sat"><rect x="-9" y="-9" width="18" height="18"/><rect x="-34" y="-5" width="20" height="10" opacity=".7"/><rect x="14" y="-5" width="20" height="10" opacity=".7"/></g></g>
+              </svg>
+            </div>
+          </div>
+          <span class="tc">Sc. 02 · 0:12 – 0:30</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 02 · Usi quotidiani dello spazio <span class="chip w">5 clip</span> <span class="chip">Motion graphic</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>NAVIGAZIONE · METEO · FINANZA · AGRICOLTURA · EMERGENZE, una parola per inquadratura, in basso a sinistra con il contatore 01/05. In chiusura le cinque parole in fila, collegate allo stesso satellite.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Per orientarci. Per prevedere il tempo. Per pagare. Per coltivare. Per proteggere un territorio quando l'acqua sale.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Montaggio rapido a tempo di voce, un taglio ogni 3 s. Su ogni inquadratura un punto Lime si accende sul soggetto (la rotta, la perturbazione, il pagamento, il trattore, il fiume) e una linea sottile sale verso un satellite in alto a destra. A 15 s le cinque scene diventano cinque punti in fila che si collegano allo stesso satellite: lo spazio è l'infrastruttura comune.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Cinque clip Kling 2.5 da 5 s, dalle immagini 14, 15, 16, 17 e 18 della moodboard: auto che avanza sotto la pioggia, perturbazione che ruota, pagamento che va a buon fine, trattore che traccia i filari, fiume in piena visto dal drone. Nel video se ne usano 3 s ciascuna.</dd></div>
+            <div><dt>Nota</dt><dd class="note">L'alluvione è un'illustrazione: nel video vero si può affiancare una mappa Copernicus EMS reale, con il credito.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="8" tabindex="0" role="button" aria-label="Scena 03, rivedi animazione">
+          <div class="stage">
+            <video class="ph clip" src="assets/video/linea-produttiva.mp4?v=1795278750" poster="assets/img/26_linea-produttiva.webp?v=1795278750" muted loop playsinline preload="none"></video>
+            <video class="ph a-cut clip2" style="--d:4.2s" data-start="4.2" src="assets/video/39_cu-mani-connettore.mp4?v=1795278750" poster="assets/img/39_cu-mani-connettore.webp?v=1795278750" muted playsinline preload="none"></video>
+            <div class="velo"></div>
+          </div>
+          <span class="tc">Sc. 03 · 0:30 – 0:38</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 03 · L'industria italiana <span class="chip w">2 clip</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessun testo: le persone al lavoro parlano da sole.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Dietro questi servizi c'è un'industria italiana.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Taglio netto dal satellite alla sala di integrazione: tecnici al lavoro, lento avanzamento della camera (0–4 s). Stacco sul dettaglio delle mani che serrano un connettore (4–8 s).</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip della linea produttiva (la stessa del sito) e clip Kling 2.5 del closeup 39, le mani sul connettore.</dd></div>
+            <div><dt>Nota</dt><dd class="note">Persone solo al lavoro, mai in posa, come chiede lo script.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="12" tabindex="0" role="button" aria-label="Scena 04, rivedi animazione">
+          <div class="stage">
+            <div class="mappa"><svg id="itamap" viewBox="0 0 686 900" data-d="0.3" data-h="3.4" aria-hidden="true"></svg></div>
+            <div class="cifre">
+              <div class="cifra a-up" style="--d:6.2s"><span class="num ph-n">N</span><span class="k">imprese</span></div>
+              <div class="cifra a-up" style="--d:7.6s"><span class="num ph-n">N</span><span class="k">distretti</span></div>
+              <div class="cifra a-up" style="--d:9s"><span class="num ph-n">N</span><span class="k">addetti</span></div>
+            </div>
+            <p class="src2 a-fade" style="--d:9.6s">Fonte: Catalogo ASI · valori da produrre</p>
+          </div>
+          <span class="tc">Sc. 04 · 0:38 – 0:50</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 04 · La filiera sulla mappa <span class="chip">Motion graphic</span> <span class="chip g">Dati da produrre</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd><mark>[N] imprese · [N] distretti · [N] addetti</mark>, i tre numeri in Lime a sinistra, uno dopo l'altro. A destra l'Italia a punti; i poli della filiera si accendono in Lime.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Una delle poche al mondo capace di coprire l'intera filiera: dai satelliti ai lanciatori, dai moduli abitativi ai dati.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">L'Italia si compone a punti da nord a sud (0–3 s), come vista da un satellite. Sui segmenti della voce si accendono i poli: satelliti (Torino, Roma, L'Aquila), lanciatori (Colleferro), moduli abitativi (Torino), dati (Matera, Fucino). Entrano i tre numeri.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Mappa dai confini openpolis, la stessa del minisito (sezione «La filiera italiana»).</dd></div>
+            <div><dt>Nota</dt><dd class="note">I poli sono segnaposto presi da luoghi noti della filiera: vanno verificati con il Catalogo ASI insieme ai tre numeri.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="12" tabindex="0" role="button" aria-label="Scena 05, rivedi animazione">
+          <div class="stage">
+            <video class="ph clip" src="assets/video/goccia-impatto.mp4?v=1795278750" poster="assets/img/21_goccia.webp?v=1795278750" muted playsinline preload="none"></video>
+            <video class="ph a-cut clip2" style="--d:5s" data-start="5" src="assets/video/goccia.mp4?v=1795278750" poster="assets/img/21_goccia.webp?v=1795278750" muted loop playsinline preload="none"></video>
+            <div class="velo pieno a-fade" style="--d:1.2s"></div>
+            <svg class="ripple" viewBox="0 0 1920 1080" aria-hidden="true"><circle cx="430" cy="540" r="160" stroke-width="2" style="--d:1.2s"/><circle cx="430" cy="540" r="160" stroke-width="2" style="--d:2.1s"/><circle cx="430" cy="540" r="160" stroke-width="2" style="--d:3.0s"/><circle cx="430" cy="540" r="160" stroke-width="2" style="--d:3.9s"/></svg>
+            <div class="euro a-up" style="--d:1.2s">€1</div>
+          </div>
+          <span class="tc">Sc. 05 · 0:50 – 1:02</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 05 · Un euro <span class="chip w">2 clip</span> <span class="chip">Motion graphic</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd><b>€1</b> enorme in Lime, a sinistra, nell'istante in cui la goccia tocca l'acqua.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Ogni euro investito nello spazio non resta nello spazio.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Acqua scura e ferma. Una goccia cade e tocca la superficie: in quell'istante entra «€1» e dal simbolo partono cerchi concentrici Lime, insieme alle onde vere. Finita la caduta, l'acqua continua a muoversi in loop sotto il testo. Ritmo lento, si respira.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 della goccia che cade (nuovo), poi il loop della goccia già usato nel sito.</dd></div>
+            
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="13" tabindex="0" role="button" aria-label="Scena 06, rivedi animazione">
+          <div class="stage">
+            <div class="holo">
+              <div class="holo-fascio a-fade" style="--d:.4s"></div>
+              <div class="holo-base a-fade" style="--d:.1s"><div class="holo-anello" style="width:34cqw;height:34cqw"></div><div class="holo-anello" style="width:46cqw;height:46cqw;opacity:.5"></div></div>
+              <div class="holo-piano flicker" style="--d:.5s"><svg id="sankey" viewBox="0 0 1920 1000" aria-hidden="true"></svg></div>
+              <div class="scanline"></div>
+            </div>
+            <p class="src2 a-fade" style="--d:10s"><span class="stima">Stima OE</span> &nbsp;modello SAM, perimetro spazio · valori da produrre</p>
+          </div>
+          <span class="tc">Sc. 06 · 1:02 – 1:15</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 06 · La filiera moltiplica <span class="chip">Motion graphic</span> <span class="chip">Ologramma</span> <span class="chip g">Stima OE</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd><mark>€1 → €[x] di PIL · [N] occupati · €[x] mld di gettito</mark>, con l'etichetta «Stima OE».</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Attraversa la filiera, genera reddito, lavoro, entrate per lo Stato.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il sankey compare come un ologramma proiettato da una base luminosa: griglia a terra, due anelli, un fascio di luce verso l'alto, linee di scansione e un tremolio quando si accende. Da «€1» parte un flusso luminoso che attraversa la filiera e si apre in tre rami; dentro i flussi scorrono particelle di luce. Su «reddito» si accende il PIL, su «lavoro» gli occupati, su «entrate per lo Stato» il gettito, ognuno nel suo riquadro olografico.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Grafico disegnato in SVG con effetti olografici. Nel montaggio si può passare a three.js con bagliore (bloom), come il cubo di Rieti.</dd></div>
+            <div><dt>Nota</dt><dd class="note">I valori arrivano dalla stima SAM sul perimetro spazio, da avviare subito: il video si monta con i segnaposto e i numeri entrano a fine montaggio.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="9" tabindex="0" role="button" aria-label="Scena 07, rivedi animazione">
+          <div class="stage">
+            <video class="ph clip" src="assets/video/satellite-passaggio.mp4?v=1795278750" poster="assets/img/22_satellite-eo.webp?v=1795278750" muted playsinline preload="none"></video>
+            <div class="hud"><div class="scan" style="--d:1.2s"></div></div>
+          </div>
+          <span class="tc">Sc. 07 · 1:15 – 1:24</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 07 · Il valore che non si vede <span class="chip w">Clip</span> <span class="chip w">Kling 2.5 · 10 s</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessun testo.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">E poi c'è il valore che non si vede nei bilanci:</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il satellite di osservazione attraversa l'inquadratura sopra il Mediterraneo al tramonto, la camera lo segue. Una linea di scansione Lime attraversa la Terra dall'alto in basso: il satellite sta guardando.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s dall'immagine 22: il satellite attraversa l'inquadratura, la camera lo segue girandogli intorno, la Terra ruota sotto.</dd></div>
+            
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="11" tabindex="0" role="button" aria-label="Scena 08, rivedi animazione">
+          <div class="stage">
+            <div class="mosaico"><figure class="a-fade" style="--d:0.20s"><video class="clip2" data-start="0.20" src="assets/video/31_eo-ghiacciaio.mp4?v=1795278750" poster="assets/img/31_eo-ghiacciaio.webp?v=1795278750" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.45s"><video class="clip2" data-start="0.45" src="assets/video/36_eo-vulcano.mp4?v=1795278750" poster="assets/img/36_eo-vulcano.webp?v=1795278750" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.70s"><video class="clip2" data-start="0.70" src="assets/video/34_eo-delta.mp4?v=1795278750" poster="assets/img/34_eo-delta.webp?v=1795278750" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.95s"><video class="clip2" data-start="0.95" src="assets/video/35_eo-campi.mp4?v=1795278750" poster="assets/img/35_eo-campi.webp?v=1795278750" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:1.20s"><video class="clip2" data-start="1.20" src="assets/video/33_eo-dune.mp4?v=1795278750" poster="assets/img/33_eo-dune.webp?v=1795278750" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:1.45s"><video class="clip2" data-start="1.45" src="assets/video/32_eo-costa.mp4?v=1795278750" poster="assets/img/32_eo-costa.webp?v=1795278750" muted loop playsinline preload="none"></video></figure></div>
+            <div class="velo-sx"></div>
+            <div class="parole3">
+              <p class="a-in" style="--d:1s"><i></i>Sicurezza</p>
+              <p class="a-in" style="--d:3.6s"><i></i>Clima</p>
+              <p class="a-in" style="--d:6.4s"><i></i>Autonomia strategica</p>
+            </div>
+          </div>
+          <span class="tc">Sc. 08 · 1:24 – 1:35</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 08 · Sicurezza, clima, autonomia <span class="chip w">6 clip</span> <span class="chip">Motion graphic</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>SICUREZZA · CLIMA · AUTONOMIA STRATEGICA, in Hedvig grande, una parola alla volta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">la sicurezza del Paese, la lotta al cambiamento climatico, la capacità di decidere da soli.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Si apre un mosaico di riprese satellitari in movimento (ghiacciaio, vulcano, delta, campi, dune, costa) a tutto schermo. A sinistra entrano le tre parole sulla voce: «sicurezza» (1 s), «clima» (3,6 s), «autonomia strategica» (6,4 s).</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Sei clip Kling 2.5 dalle immagini 31–36 della moodboard, illustrative: nuvole sul ghiacciaio, vapore dal vulcano, sedimenti del delta, ombre di nuvole sui campi, fiume tra le dune, onde sulla costa.</dd></div>
+            <div><dt>Nota</dt><dd class="note">Per il video finale meglio immagini Copernicus Sentinel vere (ghiacciai, incendi, siccità), con il credito ESA/Copernicus: si tratta di valore pubblico e non deve sembrare inventato.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="9" tabindex="0" role="button" aria-label="Scena 09, rivedi animazione">
+          <div class="stage">
+            <div class="globo" data-globo="geo"><img class="ph globo-fallback" src="assets/img/30_terra-europa.webp?v=1795278750" alt=""></div>
+          </div>
+          <span class="tc">Sc. 09 · 1:35 – 1:44</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 09 · Lo spazio è potere <span class="chip">3D</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>STATI UNITI · EUROPA · CINA, etichette Mono in Lime accanto ai marcatori.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Il mondo ha capito che lo spazio è potere.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il globo ruota da ovest a est: si accendono gli Stati Uniti (2 s), l'Europa (4,6 s), la Cina (7 s), ognuno con un marcatore Lime e un'onda che si allarga.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Terra in 3D, stesso modello della scena 1.</dd></div>
+            
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="11" tabindex="0" role="button" aria-label="Scena 10, rivedi animazione">
+          <div class="stage">
+            <video class="ph clip" src="assets/video/europa-notte.mp4?v=1795278750" poster="assets/img/30_terra-europa.webp?v=1795278750" muted playsinline preload="none"></video>
+            <div class="velo" style="background:linear-gradient(90deg,rgba(5,6,15,.9) 0%,rgba(5,6,15,.72) 50%,rgba(5,6,15,.55) 100%),linear-gradient(0deg,rgba(5,6,15,.9) 0%,rgba(5,6,15,0) 45%)"></div>
+            <div class="tblock" style="top:36%;max-width:34cqw">
+              <p class="k a-up" style="--d:.3s">UE · difesa e spazio</p>
+              <p class="cap a-up" style="--d:.8s">Le risorse<br>si moltiplicano</p>
+            </div>
+            <div class="barre">
+              <div class="barra"><span class="v a-fade" style="--d:1.6s">€27,7 mld</span><div class="col a-grow" style="--d:1s;height:5.6cqw"></div><span class="per">2021–2027</span></div>
+              <div class="barra new"><span class="v a-fade" style="--d:4.4s">~€131 mld</span><div class="col a-grow" style="--d:2.6s;height:26.5cqw"></div><span class="per">2028–2034</span></div>
+            </div>
+            <div class="tl"><svg id="timeline" viewBox="0 0 1728 72" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+            <p class="src2 a-fade" style="--d:5s">Proposta della Commissione per il QFP 2028–2034, prezzi correnti</p>
+          </div>
+          <span class="tc">Sc. 10 · 1:44 – 1:55</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 10 · L'Europa moltiplica le risorse <span class="chip w">Clip</span> <span class="chip">Motion graphic</span> <span class="chip g">Dato da verificare</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>«UE · difesa e spazio» · <b>€27,7 mld</b> 2021–2027 contro <b>~€131 mld</b> 2028–2034 (proposta, prezzi correnti) · linea del tempo 2021 → 2034 con la Ministeriale ESA 2026.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">L'Europa sta moltiplicando le risorse. La partita dei prossimi anni si gioca adesso.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Due barre crescono dal basso: quella del periodo in corso, bianca e bassa; quella proposta, Lime, quasi cinque volte più alta. Sotto scorre la linea del tempo dal 2021 al 2034; su «adesso» si accende il punto Lime sul 2026.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s dall'immagine 30: l'Europa di notte vista dallo spazio, che ruota lentamente; velata per leggere le barre. Grafico con il motore OE Charts.</dd></div>
+            <div><dt>Nota</dt><dd class="note">I due valori sono quelli dello script: vanno verificati e serve dire che il secondo è una proposta in negoziazione, come a schermo.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="20" tabindex="0" role="button" aria-label="Scena 11, rivedi animazione">
+          <div class="stage">
+            <p class="etq"><i></i>Ciclo di vita · strumenti pubblici</p>
+            <div class="freccia"><svg viewBox="0 0 1728 30" preserveAspectRatio="none" aria-hidden="true"><path class="a-draw" style="--d:.8s;--t:15s" d="M0 15H1728" stroke="#B9FF69" stroke-width="3" fill="none"/></svg></div>
+            <div class="ciclo">
+              <div class="fase a-up" style="--d:0.20s">
+                <figure class="a-on" style="--d:1.0s"><img src="assets/img/24_laboratorio-ottico.webp?v=1795278750" alt=""></figure>
+                <div class="barretta a-growX" style="--d:1.0s"></div>
+                <p class="nome a-nome" style="--d:1.0s">RICERCA</p>
+                <div class="strum"><span class="a-on2" style="--d:1.60s">UE</span><span class="a-on2" style="--d:1.95s">ESA</span></div>
+              </div>
+              <div class="fase a-up" style="--d:0.35s">
+                <figure class="a-on" style="--d:5.2s"><img src="assets/img/25_camera-termovuoto.webp?v=1795278750" alt=""></figure>
+                <div class="barretta a-growX" style="--d:5.2s"></div>
+                <p class="nome a-nome" style="--d:5.2s">SVILUPPO</p>
+                <div class="strum"><span class="a-on2" style="--d:5.80s">UE</span><span class="a-on2" style="--d:6.15s">ESA</span><span class="a-on2" style="--d:6.50s">Nazionali</span></div>
+              </div>
+              <div class="fase a-up" style="--d:0.50s">
+                <figure class="a-on" style="--d:9.4s"><img src="assets/img/26_linea-produttiva.webp?v=1795278750" alt=""></figure>
+                <div class="barretta a-growX" style="--d:9.4s"></div>
+                <p class="nome a-nome" style="--d:9.4s">INDUSTRIALIZZAZIONE</p>
+                <div class="strum"><span class="a-on2" style="--d:10.00s">Nazionali</span><span class="a-on2" style="--d:10.35s">Regionali</span></div>
+              </div>
+              <div class="fase a-up" style="--d:0.65s">
+                <figure class="a-on" style="--d:13.6s"><img src="assets/img/27_decollo.webp?v=1795278750" alt=""></figure>
+                <div class="barretta a-growX" style="--d:13.6s"></div>
+                <p class="nome a-nome" style="--d:13.6s">CAPACITÀ PRODUTTIVA</p>
+                <div class="strum"><span class="a-on2" style="--d:14.20s">UE</span><span class="a-on2" style="--d:14.55s">Nazionali</span><span class="a-on2" style="--d:14.90s">Regionali</span></div>
+              </div>
+            </div>
+          </div>
+          <span class="tc">Sc. 11 · 1:55 – 2:15</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 11 · Dalla ricerca alla fabbrica <span class="chip w">Foto</span> <span class="chip">Motion graphic</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>RICERCA → SVILUPPO → INDUSTRIALIZZAZIONE → CAPACITÀ PRODUTTIVA. Sotto ogni fase si accendono gli strumenti: UE, ESA, nazionali, regionali.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Dalla ricerca alla fabbrica, ogni fase ha le sue risorse pubbliche. Europee, nazionali, regionali. Ma vanno conosciute, combinate, conquistate.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Quattro finestre in fila, spente in bianco e nero. Una linea Lime le attraversa da sinistra a destra: ogni fase che tocca si accende a colori, il nome diventa bianco e sotto si illuminano gli strumenti che la finanziano. Su «conosciute, combinate, conquistate» tutte e quattro sono accese.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Foto della moodboard 24, 25, 26 e 27. Nel video le etichette degli strumenti diventano i loghi UE, ESA, ASI e regionali, vettoriali dai siti istituzionali.</dd></div>
+            <div><dt>Nota</dt><dd class="note">Quali strumenti per quale fase va controllato con il Funding Finder del sito: qui sono segnaposto.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="9" tabindex="0" role="button" aria-label="Scena 12, rivedi animazione">
+          <div class="stage">
+            <video class="ph clip" src="assets/video/controluce-alba.mp4?v=1795278750" poster="assets/img/28_terra-controluce.webp?v=1795278750" muted playsinline preload="none"></video>
+            <div class="claim">
+              <p class="a-up" style="--d:.6s">Misurare il valore.</p>
+              <p class="a-up" style="--d:2.6s">Trovare le risorse.</p>
+              <p class="a-up" style="--d:4.6s"><span class="a-lime" style="--d:5s">Crescere.</span></p>
+            </div>
+          </div>
+          <span class="tc">Sc. 12 · 2:15 – 2:24</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 12 · Misurare. Trovare. Crescere. <span class="chip w">Clip</span> <span class="chip w">Kling 2.5 · 10 s</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>«Misurare il valore.» · «Trovare le risorse.» · «Crescere.» in Hedvig, una riga per volta; «Crescere» passa al Lime.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Misurare il valore. Trovare le risorse. Crescere.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">La Terra torna intera, in controluce: il sole sorge da dietro il pianeta e l'anello d'atmosfera si accende, mentre la camera arretra. Le tre frasi entrano a sinistra sulla voce. Sono le due porte del sito («Misura il tuo impatto», «Mappa i tuoi fondi») più il risultato.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s dall'immagine 28: il sole sorge da dietro la Terra, l'anello d'atmosfera si accende e la camera arretra.</dd></div>
+            
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="6" tabindex="0" role="button" aria-label="Scena 13, rivedi animazione">
+          <div class="stage">
+            <video class="ph clip" src="assets/video/fondo-logo.mp4?v=1795278750" poster="assets/img/29_fondo-logo.webp?v=1795278750" muted loop playsinline preload="none"></video>
+            <div class="lockup">
+              <div class="marchio a-up" style="--d:.4s"><img src="assets/loghi/oe-monogramma-bianco.svg?v=1795278750" alt="OpenEconomics"><span>Scenari</span><span class="sep">|</span><span>Space Economy</span></div>
+              <p class="desc a-fade" style="--d:1.4s">L'osservatorio sull'economia dello spazio italiana</p>
+            </div>
+            <div class="firma a-fade" style="--d:2.6s"><img class="oe" src="assets/loghi/oe-logo-white.svg?v=1795278750" alt="OpenEconomics"><span class="x">×</span><img class="ir" src="assets/loghi/inrete-logo-negativo.svg?v=1795278750" alt="Inrete"></div>
+          </div>
+          <span class="tc">Sc. 13 · 2:24 – 2:30</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 13 · Scenari | Space Economy <span class="chip w">Clip</span> <span class="chip">Motion graphic</span> <span class="chip">Loghi</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Lockup «Scenari | Space Economy» con il monogramma OE, come nella testata del sito · sotto, «L'osservatorio sull'economia dello spazio italiana» · in basso OpenEconomics × Inrete.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Scenari, Space Economy: l'osservatorio sull'economia dello spazio italiana.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Sul fondo quasi nero resta solo il filo dell'atmosfera in basso. Entra il nome, poi la descrizione, poi la firma dei due marchi. Resta a schermo il tempo di leggerlo.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 in loop dal fondo 29 della moodboard (il filo d'atmosfera respira, la camera avanza piano), loghi OE e Inrete negativi.</dd></div>
+            <div><dt>Nota</dt><dd class="note">Nome scelto il 21/11 al posto di ORBITA, per allinearlo al sito.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame deep" data-dur="5" tabindex="0" role="button" aria-label="Scena 14, rivedi animazione">
+          <div class="stage">
+            <div class="codino">
+              <img class="a-up" style="--d:.3s" src="assets/loghi/oe-logo-white.svg?v=1795278750" alt="OpenEconomics">
+              <p class="a-up" style="--d:1s">We measure what really matters</p>
+              <span class="riga a-fade" style="--d:1.6s">Stati Generali della Space Economy · Milano · 30.11.2026</span>
+            </div>
+          </div>
+          <span class="tc">Sc. 14 · 2:30 – 2:35</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 14 · Codino <span class="chip w">Fisso per tutti i video OE</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Logo OpenEconomics e «We measure what really matters», su Bluette 900. In basso a sinistra la riga dell'evento.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">—</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il codino uguale per tutti i video OE. Musica in chiusura.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">—</dd></div>
+            <div><dt>Nota</dt><dd class="note">Il video di chiusura con QR code (45") è un contenuto separato, vedi script 2.4.</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </div>
+</main>
+
+<script src="assets/data/italia-punti.js?v=1795278750"></script>
+<script>
+
+(function(){
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  var fmt = function(v, dec){ return new Intl.NumberFormat('it-IT',{minimumFractionDigits:dec||0,maximumFractionDigits:dec||0,useGrouping:'always'}).format(v); };
+  var fmtNum = function(v, dec){ return fmt(v, dec).replace(/[.,]/g, '<span class="sep">$&</span>'); };
+  function el(tag, attrs, parent){
+    var n = document.createElementNS(NS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  var css = function(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); };
+  function drawable(p, d, t){
+    var len = Math.ceil(p.getTotalLength ? p.getTotalLength() : 3000);
+    p.style.strokeDasharray = len; p.style.setProperty('--len', len);
+    p.style.setProperty('--d', d + 's'); if (t) p.style.setProperty('--t', t + 's');
+    p.classList.add('a-draw');
+  }
+
+
+  
+  /* ── Più video nello stesso frame: ognuno parte al suo taglio (data-start) ── */
+  document.querySelectorAll('.frame').forEach(function(f){
+    var vs = f.querySelectorAll('video.clip2'); if (!vs.length) return;
+    var tm = [];
+    new MutationObserver(function(){
+      tm.forEach(clearTimeout); tm = [];
+      var on = f.classList.contains('play');
+      vs.forEach(function(v){
+        if (!on){ v.pause(); return; }
+        if (v.preload === 'none'){ v.preload = 'auto'; v.load(); }
+        try { v.currentTime = 0; } catch(e){}
+        v.pause();
+        tm.push(setTimeout(function(){ v.play().catch(function(){}); }, parseFloat(v.dataset.start || 0) * 1000));
+      });
+    }).observe(f, { attributes: true, attributeFilter: ['class'] });
+  });
+
+  /* ── Sc. 4: l'Italia a punti, da nord a sud, poi i poli della filiera ── */
+  (function(){
+    var svg = document.getElementById('itamap'); if (!svg || !window.ITA) return;
+    var d0 = parseFloat(svg.dataset.d), dh = parseFloat(svg.dataset.h), H = window.ITA.h;
+    window.ITA.dots.forEach(function(p){
+      var r = el('rect', {x:p[0] - 2.6, y:p[1] - 2.6, width:5.2, height:5.2, fill:'rgba(255,255,255,.34)', class:'a-pop'}, svg);
+      r.style.setProperty('--d', (d0 + p[1] / H * dh).toFixed(2) + 's');
+    });
+    var T = {"Torino":4.2,"Roma":4.4,"L'Aquila":4.6,"Colleferro":5.6,"Matera":8.6,"Fucino":8.8,"Milano":4.8,"Napoli":5,"Firenze":5.2,"Brindisi":6,"Cagliari":6.2,"Taranto":6.4};
+    window.ITA.hub.forEach(function(h){
+      var d = T[h[0]] || 5;
+      var g = el('g', {class:'a-pop'}, svg); g.style.setProperty('--d', d + 's');
+      el('circle', {cx:h[1], cy:h[2], r:16, fill:'none', stroke:css('--lime-400'), 'stroke-opacity':.45, 'stroke-width':2}, g);
+      el('rect', {x:h[1] - 6, y:h[2] - 6, width:12, height:12, fill:css('--lime-400')}, g);
+      var t = el('text', {x:h[1] + 22, y:h[2] + 5, class:'hublbl a-fade'}, svg); t.textContent = h[0]; t.style.setProperty('--d', (d + .2) + 's');
+    });
+  })();
+
+  /* ── Sc. 6: sankey olografico da €1 a PIL, occupati, gettito ── */
+  (function(){
+    var svg = document.getElementById('sankey'); if (!svg) return;
+    var defs = el('defs', {}, svg);
+    var f = el('filter', {id:'bagliore', x:'-20%', y:'-40%', width:'140%', height:'180%'}, defs);
+    el('feGaussianBlur', {stdDeviation:7, result:'b'}, f);
+    var m = el('feMerge', {}, f); el('feMergeNode', {in:'b'}, m); el('feMergeNode', {in:'SourceGraphic'}, m);
+    var g = el('g', {filter:'url(#bagliore)'}, svg);
+    var e = el('text', {x:80, y:560, class:'holo-euro a-up'}, g); e.textContent = '€1'; e.style.setProperty('--d', '.6s');
+    var Y = 510, rami = [['PIL', '€[x]', 230, 4.0], ['Occupati', '[N]', 510, 6.2], ['Gettito', '€[x] mld', 790, 8.4]];
+    function flusso(d, w, at, t){
+      var corpo = el('path', {d:d, class:'flusso', 'stroke-width':w, 'stroke-opacity':.16}, g); drawable(corpo, at, t);
+      var bordo = el('path', {d:d, class:'flusso', 'stroke-width':2, 'stroke-opacity':.9}, g); drawable(bordo, at, t);
+      var p = el('path', {d:d, class:'particelle a-fade', 'stroke-width':Math.max(3, w * .12)}, g); p.style.setProperty('--d', (at + t) + 's');
+    }
+    flusso('M400 '+Y+'H860', 130, 1.2, 1.2);
+    rami.forEach(function(r, i){
+      var y0 = Y - 44 + i * 44;
+      flusso('M860 '+y0+' C 1120 '+y0+', 1100 '+r[2]+', 1340 '+r[2], 44, r[3] - 1.3, 1.3);
+      var box = el('rect', {x:1370, y:r[2] - 96, width:470, height:170, class:'holo-box a-fade'}, g); box.style.setProperty('--d', (r[3] - .1) + 's');
+      [[1370,r[2]-96],[1840,r[2]-96],[1370,r[2]+74],[1840,r[2]+74]].forEach(function(c){
+        var k = el('rect', {x:c[0]-5, y:c[1]-5, width:10, height:10, fill:'#B9FF69', class:'a-pop'}, g); k.style.setProperty('--d', (r[3]) + 's');
+      });
+      var l = el('text', {x:1400, y:r[2] - 44, class:'holo-lbl a-fade'}, g); l.textContent = r[0]; l.style.setProperty('--d', r[3] + 's');
+      var n = el('text', {x:1396, y:r[2] + 46, class:'holo-num a-up'}, g); n.textContent = r[1]; n.style.setProperty('--d', (r[3] + .2) + 's');
+    });
+  })();
+
+  /* ── Sc. 10: linea del tempo 2021 → 2034 ── */
+  (function(){
+    var svg = document.getElementById('timeline'); if (!svg) return;
+    var W = 1728, a = 2021, b = 2034, X = function(y){ return (y - a) / (b - a) * W; };
+    var line = el('path', {d:'M0 20H'+W, stroke:'rgba(255,255,255,.4)', 'stroke-width':2, fill:'none'}, svg); drawable(line, .4, 4);
+    for (var y = a; y <= b; y++){
+      var big = (y === 2021 || y === 2027 || y === 2028 || y === 2034);
+      var t = el('rect', {x:X(y) - 1, y:big ? 8 : 14, width:2, height:big ? 24 : 12, fill:'rgba(255,255,255,.6)', class:'a-fade'}, svg);
+      t.style.setProperty('--d', (.4 + (y - a) * .25) + 's');
+      if (big){ var l = el('text', {x:X(y), y:62, 'text-anchor':'middle', class:'tl-lbl a-fade'}, svg); l.textContent = y; l.style.setProperty('--d', (.6 + (y - a) * .25) + 's'); }
+    }
+    var now = el('g', {class:'a-pop'}, svg); now.style.setProperty('--d', '8.6s');
+    el('rect', {x:X(2026) - 9, y:11, width:18, height:18, fill:css('--lime-400')}, now);
+    var l = el('text', {x:X(2026), y:62, 'text-anchor':'middle', class:'tl-lbl', fill:css('--lime-400')}, now); l.textContent = 'ADESSO';
+  })();
+
+/* ── Testo scritto a macchina ── */
+  document.querySelectorAll('.type').forEach(function(p){
+    var txt = p.textContent, d = parseFloat(p.dataset.d), t = parseFloat(p.dataset.t), n = txt.length;
+    p.textContent = '';
+    for (var i = 0; i < n; i++){ var s = document.createElement('span'); s.textContent = txt[i]; s.style.setProperty('--d', (d + t * i / n).toFixed(2) + 's'); p.appendChild(s); }
+  });
+
+  /* ── Riproduzione ── */
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+  var animOn = true, timers = new Map();
+
+  function runCounters(f){
+    f.querySelectorAll('.count').forEach(function(c){
+      var to = parseFloat(c.dataset.to), dec = parseInt(c.dataset.dec || 0, 10);
+      var d = parseFloat(c.dataset.d || 0) * 1000, t = parseFloat(c.dataset.t || 1) * 1000;
+      c.innerHTML = fmtNum(0, dec);
+      var start = performance.now() + d;
+      (function step(now){
+        if (!f.classList.contains('play')) { c.innerHTML = fmtNum(to, dec); return; }
+        var k = Math.min(1, Math.max(0, (now - start) / t));
+        k = 1 - Math.pow(1 - k, 3);
+        c.innerHTML = fmtNum(to * k, dec);
+        if (k < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  }
+  function settle(f){
+    // stato finale statico: elementi che a fine scena spariscono o si attenuano
+    f.querySelectorAll('.a-out').forEach(function(n){ n.classList.add('is-out'); });
+    f.querySelectorAll('.a-dim').forEach(function(n){ n.classList.add('is-dim'); });
+  }
+  function play(f){
+    if (document.body.classList.contains('print-one')) return;
+    clearTimeout(timers.get(f));
+    f.classList.remove('play');
+    f.querySelectorAll('.is-out,.is-dim').forEach(function(n){ n.classList.remove('is-out','is-dim'); });
+    void f.offsetWidth;
+    f.classList.add('play');
+    runCounters(f);
+    var v = f.querySelector('video.clip');
+    if (v){ if (v.preload === 'none'){ v.preload = 'auto'; v.load(); } try { v.currentTime = 0; } catch(e){} v.play().catch(function(){}); }
+    var dur = (parseFloat(f.dataset.dur) || 10) * 1000;
+    timers.set(f, setTimeout(function(){ if (animOn && f.__visible) play(f); }, dur + 1800));
+  }
+  function stop(f){
+    clearTimeout(timers.get(f));
+    f.classList.remove('play');
+    settle(f);
+    var v = f.querySelector('video.clip'); if (v) v.pause();
+    f.querySelectorAll('.count').forEach(function(c){ c.innerHTML = fmtNum(parseFloat(c.dataset.to), parseInt(c.dataset.dec || 0, 10)); });
+  }
+  frames.forEach(settle);
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var f = e.target; f.__visible = e.isIntersecting;
+      if (e.isIntersecting && animOn) { if (!f.classList.contains('play')) play(f); }
+      else if (!e.isIntersecting) stop(f);
+    });
+  }, { threshold: 0.4 });
+  frames.forEach(function(f){
+    io.observe(f);
+    f.addEventListener('click', function(){ if (animOn) play(f); });
+    f.addEventListener('keydown', function(e){ if ((e.key === 'Enter' || e.key === ' ') && animOn){ e.preventDefault(); play(f); } });
+  });
+
+  document.getElementById('animToggle').addEventListener('change', function(e){
+    animOn = e.target.checked;
+    frames.forEach(function(f){ if (!animOn) stop(f); else if (f.__visible) play(f); });
+  });
+  document.getElementById('safeToggle').addEventListener('change', function(e){
+    document.getElementById('grid').classList.toggle('show-safe', e.target.checked);
+  });
+  document.getElementById('bigToggle').addEventListener('change', function(e){
+    document.getElementById('grid').classList.toggle('big', e.target.checked);
+  });
+  /* ── Commenti: uno per scena, salvati nel browser di chi scrive; «Scarica PDF» li raccoglie tutti ── */
+  var store = {
+    get: function(k){ try { return localStorage.getItem(k) || ''; } catch(e){ return ''; } },
+    set: function(k, v){ try { localStorage.setItem(k, v); return true; } catch(e){ return false; } }
+  };
+  var PFX = 'oe-sgse-video:';
+  var who = document.getElementById('whoName');
+  who.value = store.get(PFX + 'nome');
+  who.addEventListener('input', function(){ store.set(PFX + 'nome', who.value.trim()); });
+  var today = function(){ return new Date().toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'}); };
+  var beats = Array.prototype.slice.call(document.querySelectorAll('.beat'));
+  var sceneTitle = function(beat){ return beat.querySelector('.info .idx').firstChild.textContent.trim(); };  // «Scena 01 · Il cambio di regole»
+
+  beats.forEach(function(beat, i){
+    var short = sceneTitle(beat).split('·')[0].trim();                 // «Scena 01» · «Cover» · «Codino»
+    var key = PFX + 'scena-' + i, id = 'cmt-' + i;
+    var box = document.createElement('div'); box.className = 'cmt';
+    box.innerHTML = '<label for="' + id + '">Commento · ' + short + '</label>' +
+      '<textarea id="' + id + '" placeholder="Scrivi qui cosa cambiare in questa scena"></textarea>' +
+      '<span class="saved" aria-live="polite"></span>';
+    beat.appendChild(box);
+    var ta = box.querySelector('textarea'), saved = box.querySelector('.saved');
+    ta.value = store.get(key);
+    if (ta.value) saved.textContent = 'Salvato in questo browser';
+    ta.addEventListener('input', function(){
+      saved.textContent = store.set(key, ta.value) ? 'Salvato in questo browser' : 'Non salvato: scarica il PDF prima di chiudere';
+    });
+  });
+  var commented = function(){
+    return beats.filter(function(beat){ return beat.querySelector('.cmt textarea').value.trim(); });
+  };
+  var copied = document.getElementById('copied');
+
+  // un solo PDF: una pagina per ogni scena commentata, con il frame, le schede e il commento
+  document.getElementById('pdfAll').addEventListener('click', function(){
+    var list = commented();
+    if (!list.length){ copied.textContent = 'Nessun commento da scaricare'; return; }
+    var name = who.value.trim(), added = [], waits = [];
+    list.forEach(function(beat, n){
+      var f = beat.querySelector('.frame');
+      stop(f);
+      var head = document.createElement('div'); head.className = 'pdf-head';
+      head.innerHTML = '<span></span><span><b></b></span>';
+      head.firstChild.textContent = 'Storyboard Scenari | Space Economy · commenti' + (name ? ' di ' + name : '') + ' · ' + today();
+      head.querySelector('b').textContent = sceneTitle(beat) + ' · ' + (n + 1) + '/' + list.length;
+      var note = document.createElement('div'); note.className = 'pdf-note';
+      note.innerHTML = '<p>Commento</p><p></p>';
+      note.lastChild.textContent = beat.querySelector('.cmt textarea').value.trim();
+      beat.insertBefore(head, beat.firstChild); beat.appendChild(note);
+      added.push(head, note);
+      // il video non si stampa: al suo posto il fotogramma
+      var v = f.querySelector('video.clip');
+      if (v){
+        var img = document.createElement('img'); img.className = 'photo pdf-poster'; img.alt = '';
+        img.src = v.getAttribute('poster'); v.parentNode.insertBefore(img, v.nextSibling);
+        added.push(img); if (img.decode) waits.push(img.decode().catch(function(){}));
+      }
+      beat.classList.add('printing'); if (n === 0) beat.classList.add('pdf-first');
+    });
+    var oldTitle = document.title;
+    document.title = 'Space-Economy-storyboard-commenti' + (name ? '-' + name.replace(/\s+/g, '-') : '');   // nome del file PDF
+    document.body.classList.add('print-one');
+    var done = function(){
+      window.removeEventListener('afterprint', done);
+      document.body.classList.remove('print-one');
+      list.forEach(function(beat){ beat.classList.remove('printing', 'pdf-first'); });
+      added.forEach(function(n){ n.remove(); });
+      document.title = oldTitle;
+    };
+    window.addEventListener('afterprint', done);
+    Promise.all(waits).then(function(){ window.print(); });
+  });
+
+  // tutti i commenti in un testo solo, da incollare in una mail o in un documento
+  document.getElementById('copyAll').addEventListener('click', function(){
+    var name = who.value.trim(), parts = commented().map(function(beat){
+      return sceneTitle(beat) + '\n' + beat.querySelector('.cmt textarea').value.trim();
+    });
+    if (!parts.length){ copied.textContent = 'Nessun commento da copiare'; return; }
+    var text = 'Storyboard Scenari | Space Economy · commenti' + (name ? ' di ' + name : '') + ' · ' + today() +
+      '\n' + location.href.split('#')[0] + '\n\n' + parts.join('\n\n');
+    var fallback = function(){
+      var old = document.querySelector('.copy-out'); if (old) old.remove();
+      var p = document.createElement('div'); p.className = 'copy-out';
+      p.innerHTML = '<textarea readonly aria-label="Testo dei commenti"></textarea><button type="button">Chiudi</button>';
+      p.querySelector('textarea').value = text;
+      p.querySelector('button').addEventListener('click', function(){ p.remove(); });
+      document.body.appendChild(p); p.querySelector('textarea').select();
+      copied.textContent = 'Seleziona e copia il testo';
+    };
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(function(){
+        copied.textContent = parts.length + (parts.length === 1 ? ' commento copiato' : ' commenti copiati');
+      }, fallback);
+    } else fallback();
+  });
+
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.getElementById('animToggle').checked = false; animOn = false; frames.forEach(stop);
+  }
+})();
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="assets/globo.js?v=1795278750"></script>
+</body>
+</html>
