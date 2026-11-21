@@ -813,16 +813,16 @@ footer .fine{
 
 /* Sc. 11 · ciclo di vita */
 .ciclo{position:absolute;left:5cqw;right:5cqw;top:14cqw;bottom:12cqw;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2cqw}
-.fase{position:relative;overflow:hidden;background:var(--notte-2);display:flex;flex-direction:column}
-.fase figure{margin:0;position:relative;flex:1;overflow:hidden}
-.fase figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.45);transition:filter .6s}
+.fase{position:relative;overflow:hidden;background:var(--notte-2);display:grid;grid-template-rows:minmax(0,1fr) auto auto}
+.fase figure{margin:0;position:relative;overflow:hidden;min-height:0}
+.fase figure img,.fase figure video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.45);transition:filter .6s}
 .fase .nome{padding:1.2cqw 1.2cqw .6cqw;font-family:var(--mono);font-weight:700;font-size:1.3cqw;letter-spacing:.06em;white-space:nowrap;color:rgba(255,255,255,.5)}
-.fase .strum{display:flex;flex-wrap:wrap;gap:.5cqw;padding:0 1.2cqw 1.2cqw}
+.fase .strum{display:flex;flex-wrap:wrap;align-content:flex-start;gap:.5cqw;padding:0 1.2cqw 1.2cqw;height:5.4cqw}
 .fase .strum span{font-family:var(--mono);font-weight:600;font-size:1.05cqw;letter-spacing:.1em;padding:.3cqw .55cqw;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.6)}
 .fase .barretta{position:absolute;left:0;right:0;top:0;height:.35cqw;background:var(--lime-400);transform-origin:left}
-.play .fase .a-on img{animation:accendi .8s ease var(--d,0s) both}
+.play .fase .a-on img,.play .fase .a-on video{animation:accendi .8s ease var(--d,0s) both}
 @keyframes accendi{from{filter:grayscale(1) brightness(.45)}to{filter:none}}
-.frame:not(.play) .fase .a-on img{filter:none}
+.frame:not(.play) .fase .a-on img,.frame:not(.play) .fase .a-on video{filter:none}
 .play .fase .a-on2{animation:on2 .6s ease var(--d,0s) both}
 @keyframes on2{from{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.3);background:transparent}to{color:var(--black);border-color:var(--lime-400);background:var(--lime-400)}}
 .frame:not(.play) .fase .a-on2{color:var(--black);border-color:var(--lime-400);background:var(--lime-400)}
@@ -919,7 +919,7 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="12" tabindex="0" role="button" aria-label="Scena 01, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/apertura.mp4?v=1795280573" poster="assets/img/13_alba-punto.webp?v=1795280573" muted playsinline preload="none"></video>
+            <video class="ph clip" src="assets/video/apertura.mp4?v=1795281315" poster="assets/img/13_alba-punto.webp?v=1795281315" muted playsinline preload="none"></video>
           </div>
           <span class="tc">Sc. 01 · 0:00 – 0:12</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
@@ -938,45 +938,39 @@ footer .fine{
         <div class="frame " data-dur="18" tabindex="0" role="button" aria-label="Scena 02, rivedi animazione">
           <div class="stage">
             <div class="shot a-cut" style="--d:0s;z-index:1">
-              <video class="ph clip2" data-start="0" src="assets/video/14_navigazione.mp4?v=1795280573" poster="assets/img/14_navigazione.webp?v=1795280573" muted playsinline preload="none"></video>
+              <video class="ph clip2" data-start="0" src="assets/video/14_navigazione.mp4?v=1795281315" poster="assets/img/14_navigazione.webp?v=1795281315" muted playsinline preload="none"></video>
               <div class="velo"></div>
               <div class="lbl a-up" style="--d:0.2s"><b>01 / 05</b><span>Navigazione</span></div>
             </div>
             <div class="shot a-cut" style="--d:3s;z-index:2">
-              <video class="ph clip2" data-start="3" src="assets/video/15_meteo.mp4?v=1795280573" poster="assets/img/15_meteo.webp?v=1795280573" muted playsinline preload="none"></video>
+              <video class="ph clip2" data-start="3" src="assets/video/15_meteo.mp4?v=1795281315" poster="assets/img/15_meteo.webp?v=1795281315" muted playsinline preload="none"></video>
               <div class="velo"></div>
               <div class="lbl a-up" style="--d:3.2s"><b>02 / 05</b><span>Meteo</span></div>
             </div>
             <div class="shot a-cut" style="--d:6s;z-index:3">
-              <video class="ph clip2" data-start="6" src="assets/video/16_pagamento.mp4?v=1795280573" poster="assets/img/16_pagamento.webp?v=1795280573" muted playsinline preload="none"></video>
+              <video class="ph clip2" data-start="6" src="assets/video/16_pagamento.mp4?v=1795281315" poster="assets/img/16_pagamento.webp?v=1795281315" muted playsinline preload="none"></video>
               <div class="velo"></div>
               <div class="lbl a-up" style="--d:6.2s"><b>03 / 05</b><span>Finanza</span></div>
             </div>
             <div class="shot a-cut" style="--d:9s;z-index:4">
-              <video class="ph clip2" data-start="9" src="assets/video/17_agricoltura.mp4?v=1795280573" poster="assets/img/17_agricoltura.webp?v=1795280573" muted playsinline preload="none"></video>
+              <video class="ph clip2" data-start="9" src="assets/video/17_agricoltura.mp4?v=1795281315" poster="assets/img/17_agricoltura.webp?v=1795281315" muted playsinline preload="none"></video>
               <div class="velo"></div>
               <div class="lbl a-up" style="--d:9.2s"><b>04 / 05</b><span>Agricoltura</span></div>
             </div>
             <div class="shot a-cut" style="--d:12s;z-index:5">
-              <video class="ph clip2" data-start="12" src="assets/video/18_alluvione.mp4?v=1795280573" poster="assets/img/18_alluvione.webp?v=1795280573" muted playsinline preload="none"></video>
+              <video class="ph clip2" data-start="12" src="assets/video/18_alluvione.mp4?v=1795281315" poster="assets/img/18_alluvione.webp?v=1795281315" muted playsinline preload="none"></video>
               <div class="velo"></div>
               <div class="lbl a-up" style="--d:12.2s"><b>05 / 05</b><span>Emergenze</span></div>
-            </div>
-            <div class="conv a-cut" style="--d:15s;z-index:9">
-              <svg viewBox="0 0 1920 1080" aria-hidden="true"><path class="a-draw" style="--d:15.20s;--t:1.2s" d="M220 900 C 220 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.00s" x="211" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.00s" x="220" y="960" text-anchor="middle">NAVIGAZIONE</text><path class="a-draw" style="--d:15.32s;--t:1.2s" d="M590 900 C 590 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.12s" x="581" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.12s" x="590" y="960" text-anchor="middle">METEO</text><path class="a-draw" style="--d:15.44s;--t:1.2s" d="M960 900 C 960 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.24s" x="951" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.24s" x="960" y="960" text-anchor="middle">FINANZA</text><path class="a-draw" style="--d:15.56s;--t:1.2s" d="M1330 900 C 1330 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.36s" x="1321" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.36s" x="1330" y="960" text-anchor="middle">AGRICOLTURA</text><path class="a-draw" style="--d:15.68s;--t:1.2s" d="M1700 900 C 1700 640, 960 520, 960 330" fill="none" stroke="#B9FF69" stroke-width="2.5" stroke-opacity=".9"/><rect class="a-pop" style="--d:15.48s" x="1691" y="891" width="18" height="18" fill="#B9FF69"/><text class="rete-lbl a-fade" style="--d:15.48s" x="1700" y="960" text-anchor="middle">EMERGENZE</text>
-                <circle class="a-fade" style="--d:16.4s" cx="960" cy="300" r="60" fill="none" stroke="#B9FF69" stroke-opacity=".35"/>
-                <g class="a-pop" style="--d:16.3s" transform="translate(960 300) scale(2)"><g class="sat"><rect x="-9" y="-9" width="18" height="18"/><rect x="-34" y="-5" width="20" height="10" opacity=".7"/><rect x="14" y="-5" width="20" height="10" opacity=".7"/></g></g>
-              </svg>
             </div>
           </div>
           <span class="tc">Sc. 02 · 0:12 – 0:30</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 02 · Usi quotidiani dello spazio <span class="chip w">5 clip</span> <span class="chip">Motion graphic</span></p>
+          <p class="idx">Scena 02 · Usi quotidiani dello spazio <span class="chip w">5 clip</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>NAVIGAZIONE · METEO · FINANZA · AGRICOLTURA · EMERGENZE, una parola per inquadratura, in basso a sinistra con il contatore 01/05. In chiusura le cinque parole in fila, collegate allo stesso satellite.</dd></div>
+            <div><dt>On-screen</dt><dd>NAVIGAZIONE · METEO · FINANZA · AGRICOLTURA · EMERGENZE, una parola per inquadratura, in basso a sinistra con il contatore 01/05.</dd></div>
             <div><dt>Voiceover</dt><dd class="vo">Per orientarci. Per prevedere il tempo. Per pagare. Per coltivare. Per proteggere un territorio quando l'acqua sale.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Montaggio rapido a tempo di voce, un taglio ogni 3 s, cinque video puliti con solo la parola in basso a sinistra. A 15 s le cinque scene diventano cinque punti in fila che si collegano allo stesso satellite: lo spazio è l'infrastruttura comune.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Montaggio rapido a tempo di voce, un taglio ogni 3 s, cinque video puliti con solo la parola in basso a sinistra. L'ultima inquadratura, il fiume in piena, resta fino alla fine della scena (12–18 s).</dd></div>
             <div><dt>Materiale</dt><dd class="prompt">Cinque clip Kling 2.5 da 5 s, dalle immagini 14, 15, 16, 17 e 18 della moodboard: auto che avanza sotto la pioggia, perturbazione che ruota, pagamento che va a buon fine, trattore che traccia i filari, fiume in piena visto dal drone. Nel video se ne usano 3 s ciascuna.</dd></div>
             <div><dt>Nota</dt><dd class="note">L'alluvione è un'illustrazione: nel video vero si può affiancare una mappa Copernicus EMS reale, con il credito.</dd></div>
           </dl>
@@ -985,8 +979,8 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="8" tabindex="0" role="button" aria-label="Scena 03, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/linea-produttiva.mp4?v=1795280573" poster="assets/img/26_linea-produttiva.webp?v=1795280573" muted loop playsinline preload="none"></video>
-            <video class="ph a-cut clip2" style="--d:4.2s" data-start="4.2" src="assets/video/39_cu-mani-connettore.mp4?v=1795280573" poster="assets/img/39_cu-mani-connettore.webp?v=1795280573" muted playsinline preload="none"></video>
+            <video class="ph clip" src="assets/video/linea-produttiva.mp4?v=1795281315" poster="assets/img/26_linea-produttiva.webp?v=1795281315" muted loop playsinline preload="none"></video>
+            <video class="ph a-cut clip2" style="--d:4.2s" data-start="4.2" src="assets/video/39_cu-mani-connettore.mp4?v=1795281315" poster="assets/img/39_cu-mani-connettore.webp?v=1795281315" muted playsinline preload="none"></video>
             <div class="velo"></div>
           </div>
           <span class="tc">Sc. 03 · 0:30 – 0:38</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
@@ -1029,7 +1023,7 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="12" tabindex="0" role="button" aria-label="Scena 05, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/goccia-impatto.mp4?v=1795280573" poster="assets/img/21_goccia.webp?v=1795280573" muted playsinline preload="auto"></video>
+            <video class="ph clip" src="assets/video/goccia-impatto.mp4?v=1795281315" poster="assets/img/21_goccia.webp?v=1795281315" muted playsinline preload="auto"></video>
             <div class="euro-c a-goccia" style="--d:1.2s">€1</div>
           </div>
           <span class="tc">Sc. 05 · 0:50 – 1:02</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
@@ -1048,7 +1042,7 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="13" tabindex="0" role="button" aria-label="Scena 06, rivedi animazione">
           <div class="stage">
-            <div class="holo3" id="s6holo"><img class="ph holo3-fallback" src="assets/img/21_goccia.webp?v=1795280573" alt=""></div>
+            <div class="holo3" id="s6holo"><img class="ph holo3-fallback" src="assets/img/21_goccia.webp?v=1795281315" alt=""></div>
             <p class="src2 a-fade" style="--d:10s"><span class="stima">Stima OE</span> &nbsp;modello SAM, perimetro spazio · valori da produrre</p>
           </div>
           <span class="tc">Sc. 06 · 1:02 – 1:15</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
@@ -1067,7 +1061,7 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="9" tabindex="0" role="button" aria-label="Scena 07, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/satellite-scansione.mp4?v=1795280573" poster="assets/img/22_satellite-eo.webp?v=1795280573" muted playsinline preload="none"></video>
+            <video class="ph clip" src="assets/video/satellite-scansione.mp4?v=1795281315" poster="assets/img/22_satellite-eo.webp?v=1795281315" muted playsinline preload="none"></video>
           </div>
           <span class="tc">Sc. 07 · 1:15 – 1:24</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
@@ -1085,7 +1079,7 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="11" tabindex="0" role="button" aria-label="Scena 08, rivedi animazione">
           <div class="stage">
-            <div class="mosaico"><figure class="a-fade" style="--d:0.20s"><video class="clip2" data-start="0.20" src="assets/video/31_eo-ghiacciaio.mp4?v=1795280573" poster="assets/img/31_eo-ghiacciaio.webp?v=1795280573" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.45s"><video class="clip2" data-start="0.45" src="assets/video/36_eo-vulcano.mp4?v=1795280573" poster="assets/img/36_eo-vulcano.webp?v=1795280573" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.70s"><video class="clip2" data-start="0.70" src="assets/video/34_eo-delta.mp4?v=1795280573" poster="assets/img/34_eo-delta.webp?v=1795280573" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.95s"><video class="clip2" data-start="0.95" src="assets/video/35_eo-campi.mp4?v=1795280573" poster="assets/img/35_eo-campi.webp?v=1795280573" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:1.20s"><video class="clip2" data-start="1.20" src="assets/video/33_eo-dune.mp4?v=1795280573" poster="assets/img/33_eo-dune.webp?v=1795280573" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:1.45s"><video class="clip2" data-start="1.45" src="assets/video/32_eo-costa.mp4?v=1795280573" poster="assets/img/32_eo-costa.webp?v=1795280573" muted loop playsinline preload="none"></video></figure></div>
+            <div class="mosaico"><figure class="a-fade" style="--d:0.20s"><video class="clip2" data-start="0.20" src="assets/video/31_eo-ghiacciaio.mp4?v=1795281315" poster="assets/img/31_eo-ghiacciaio.webp?v=1795281315" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.45s"><video class="clip2" data-start="0.45" src="assets/video/36_eo-vulcano.mp4?v=1795281315" poster="assets/img/36_eo-vulcano.webp?v=1795281315" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.70s"><video class="clip2" data-start="0.70" src="assets/video/34_eo-delta.mp4?v=1795281315" poster="assets/img/34_eo-delta.webp?v=1795281315" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.95s"><video class="clip2" data-start="0.95" src="assets/video/35_eo-campi.mp4?v=1795281315" poster="assets/img/35_eo-campi.webp?v=1795281315" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:1.20s"><video class="clip2" data-start="1.20" src="assets/video/33_eo-dune.mp4?v=1795281315" poster="assets/img/33_eo-dune.webp?v=1795281315" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:1.45s"><video class="clip2" data-start="1.45" src="assets/video/32_eo-costa.mp4?v=1795281315" poster="assets/img/32_eo-costa.webp?v=1795281315" muted loop playsinline preload="none"></video></figure></div>
             <div class="velo-sx"></div>
             <div class="parole3">
               <p class="a-in" style="--d:1s"><i></i>Sicurezza</p>
@@ -1109,16 +1103,16 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="9" tabindex="0" role="button" aria-label="Scena 09, rivedi animazione">
           <div class="stage">
-            <div class="globo" data-globo="geo"><img class="ph globo-fallback" src="assets/img/30_terra-europa.webp?v=1795280573" alt=""></div>
+            <div class="globo" data-globo="geo"><img class="ph globo-fallback" src="assets/img/30_terra-europa.webp?v=1795281315" alt=""></div>
           </div>
           <span class="tc">Sc. 09 · 1:35 – 1:44</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
           <p class="idx">Scena 09 · Lo spazio è potere <span class="chip">3D</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>STATI UNITI · EUROPA · CINA, etichette Mono in Lime accanto ai marcatori.</dd></div>
+            <div><dt>On-screen</dt><dd>STATI UNITI · CINA · EUROPA, etichette Mono in Lime accanto ai marcatori.</dd></div>
             <div><dt>Voiceover</dt><dd class="vo">Il mondo ha capito che lo spazio è potere.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Il globo ruota da ovest a est: si accendono gli Stati Uniti (2 s), l'Europa (4,6 s), la Cina (7 s), ognuno con un marcatore Lime e un'onda che si allarga.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il globo ruota da ovest a est: si accendono gli Stati Uniti (1,8 s), poi la Cina (4,6 s); poi torna indietro e si ferma sull'Europa, che si accende per ultima (7,4 s). Ogni marcatore è Lime, con un'onda che si allarga.</dd></div>
             <div><dt>Materiale</dt><dd class="prompt">Terra in 3D, stesso modello della scena 1.</dd></div>
             
           </dl>
@@ -1127,7 +1121,7 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="11" tabindex="0" role="button" aria-label="Scena 10, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/europa-notte.mp4?v=1795280573" poster="assets/img/30_terra-europa.webp?v=1795280573" muted playsinline preload="none"></video>
+            <video class="ph clip" src="assets/video/europa-notte.mp4?v=1795281315" poster="assets/img/30_terra-europa.webp?v=1795281315" muted playsinline preload="none"></video>
             <div class="velo" style="background:linear-gradient(90deg,rgba(5,6,15,.9) 0%,rgba(5,6,15,.72) 50%,rgba(5,6,15,.55) 100%),linear-gradient(0deg,rgba(5,6,15,.9) 0%,rgba(5,6,15,0) 45%)"></div>
             <div class="tblock" style="top:36%;max-width:34cqw">
               <p class="k a-up" style="--d:.3s">UE · difesa e spazio</p>
@@ -1160,25 +1154,25 @@ footer .fine{
             <div class="freccia"><svg viewBox="0 0 1728 30" preserveAspectRatio="none" aria-hidden="true"><path class="a-draw" style="--d:.8s;--t:15s" d="M0 15H1728" stroke="#B9FF69" stroke-width="3" fill="none"/></svg></div>
             <div class="ciclo">
               <div class="fase a-up" style="--d:0.20s">
-                <figure class="a-on" style="--d:1.0s"><img src="assets/img/24_laboratorio-ottico.webp?v=1795280573" alt=""></figure>
+                <figure class="a-on" style="--d:1.0s"><video class="clip2" data-start="1.0" src="assets/video/laboratorio.mp4?v=1795281315" poster="assets/img/24_laboratorio-ottico.webp?v=1795281315" muted loop playsinline preload="none"></video></figure>
                 <div class="barretta a-growX" style="--d:1.0s"></div>
                 <p class="nome a-nome" style="--d:1.0s">RICERCA</p>
                 <div class="strum"><span class="a-on2" style="--d:1.60s">UE</span><span class="a-on2" style="--d:1.95s">ESA</span></div>
               </div>
               <div class="fase a-up" style="--d:0.35s">
-                <figure class="a-on" style="--d:5.2s"><img src="assets/img/25_camera-termovuoto.webp?v=1795280573" alt=""></figure>
+                <figure class="a-on" style="--d:5.2s"><video class="clip2" data-start="5.2" src="assets/video/termovuoto.mp4?v=1795281315" poster="assets/img/25_camera-termovuoto.webp?v=1795281315" muted loop playsinline preload="none"></video></figure>
                 <div class="barretta a-growX" style="--d:5.2s"></div>
                 <p class="nome a-nome" style="--d:5.2s">SVILUPPO</p>
                 <div class="strum"><span class="a-on2" style="--d:5.80s">UE</span><span class="a-on2" style="--d:6.15s">ESA</span><span class="a-on2" style="--d:6.50s">Nazionali</span></div>
               </div>
               <div class="fase a-up" style="--d:0.50s">
-                <figure class="a-on" style="--d:9.4s"><img src="assets/img/26_linea-produttiva.webp?v=1795280573" alt=""></figure>
+                <figure class="a-on" style="--d:9.4s"><video class="clip2" data-start="9.4" src="assets/video/linea-produttiva.mp4?v=1795281315" poster="assets/img/26_linea-produttiva.webp?v=1795281315" muted loop playsinline preload="none"></video></figure>
                 <div class="barretta a-growX" style="--d:9.4s"></div>
                 <p class="nome a-nome" style="--d:9.4s">INDUSTRIALIZZAZIONE</p>
                 <div class="strum"><span class="a-on2" style="--d:10.00s">Nazionali</span><span class="a-on2" style="--d:10.35s">Regionali</span></div>
               </div>
               <div class="fase a-up" style="--d:0.65s">
-                <figure class="a-on" style="--d:13.6s"><img src="assets/img/27_decollo.webp?v=1795280573" alt=""></figure>
+                <figure class="a-on" style="--d:13.6s"><video class="clip2" data-start="13.6" src="assets/video/decollo.mp4?v=1795281315" poster="assets/img/27_decollo.webp?v=1795281315" muted loop playsinline preload="none"></video></figure>
                 <div class="barretta a-growX" style="--d:13.6s"></div>
                 <p class="nome a-nome" style="--d:13.6s">CAPACITÀ PRODUTTIVA</p>
                 <div class="strum"><span class="a-on2" style="--d:14.20s">UE</span><span class="a-on2" style="--d:14.55s">Nazionali</span><span class="a-on2" style="--d:14.90s">Regionali</span></div>
@@ -1188,12 +1182,12 @@ footer .fine{
           <span class="tc">Sc. 11 · 1:55 – 2:15</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 11 · Dalla ricerca alla fabbrica <span class="chip w">Foto</span> <span class="chip">Motion graphic</span></p>
+          <p class="idx">Scena 11 · Dalla ricerca alla fabbrica <span class="chip w">4 clip</span> <span class="chip">Motion graphic</span></p>
           <dl>
             <div><dt>On-screen</dt><dd>RICERCA → SVILUPPO → INDUSTRIALIZZAZIONE → CAPACITÀ PRODUTTIVA. Sotto ogni fase si accendono gli strumenti: UE, ESA, nazionali, regionali.</dd></div>
             <div><dt>Voiceover</dt><dd class="vo">Dalla ricerca alla fabbrica, ogni fase ha le sue risorse pubbliche. Europee, nazionali, regionali. Ma vanno conosciute, combinate, conquistate.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Quattro finestre in fila, spente in bianco e nero. Una linea Lime le attraversa da sinistra a destra: ogni fase che tocca si accende a colori, il nome diventa bianco e sotto si illuminano gli strumenti che la finanziano. Su «conosciute, combinate, conquistate» tutte e quattro sono accese.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Foto della moodboard 24, 25, 26 e 27. Nel video le etichette degli strumenti diventano i loghi UE, ESA, ASI e regionali, vettoriali dai siti istituzionali.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Quattro finestre uguali in fila, spente in bianco e nero. Una linea Lime le attraversa da sinistra a destra: ogni fase che tocca si accende a colori, il nome diventa bianco e sotto si illuminano gli strumenti che la finanziano. Su «conosciute, combinate, conquistate» tutte e quattro sono accese.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Quattro clip Kling 2.5 dalle immagini 24, 25, 26 e 27: laboratorio, camera termovuoto, linea produttiva, decollo. Ognuna parte quando la sua fase si accende. Nel video le etichette degli strumenti diventano i loghi UE, ESA, ASI e regionali, vettoriali dai siti istituzionali.</dd></div>
             <div><dt>Nota</dt><dd class="note">Quali strumenti per quale fase va controllato con il Funding Finder del sito: qui sono segnaposto.</dd></div>
           </dl>
         </div>
@@ -1201,7 +1195,7 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="9" tabindex="0" role="button" aria-label="Scena 12, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/controluce-alba.mp4?v=1795280573" poster="assets/img/28_terra-controluce.webp?v=1795280573" muted playsinline preload="none"></video>
+            <video class="ph clip" src="assets/video/controluce-alba.mp4?v=1795281315" poster="assets/img/28_terra-controluce.webp?v=1795281315" muted playsinline preload="none"></video>
             <div class="claim">
               <p class="a-up" style="--d:.6s">Misurare il valore.</p>
               <p class="a-up" style="--d:2.6s">Trovare le risorse.</p>
@@ -1224,12 +1218,12 @@ footer .fine{
       <article class="beat">
         <div class="frame " data-dur="6" tabindex="0" role="button" aria-label="Scena 13, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/fondo-logo-alba.mp4?v=1795280573" poster="assets/img/29_fondo-logo.webp?v=1795280573" muted playsinline preload="none"></video>
+            <video class="ph clip" src="assets/video/alba-dietro-terra.mp4?v=1795281315" poster="assets/img/29_fondo-logo.webp?v=1795281315" muted playsinline preload="none"></video>
             <div class="lockup">
-              <div class="marchio a-up" style="--d:.4s"><img src="assets/loghi/oe-monogramma-bianco.svg?v=1795280573" alt="OpenEconomics"><span>Scenari</span><span class="sep">|</span><span>Space Economy</span></div>
+              <div class="marchio a-up" style="--d:.4s"><img src="assets/loghi/oe-monogramma-bianco.svg?v=1795281315" alt="OpenEconomics"><span>Scenari</span><span class="sep">|</span><span>Space Economy</span></div>
               <p class="desc a-fade" style="--d:1.4s">L'osservatorio sull'economia dello spazio italiana</p>
             </div>
-            <div class="firma a-fade" style="--d:2.6s"><img class="oe" src="assets/loghi/oe-logo-white.svg?v=1795280573" alt="OpenEconomics"><span class="x">×</span><img class="ir" src="assets/loghi/inrete-logo-negativo.svg?v=1795280573" alt="Inrete"></div>
+            <div class="firma a-fade" style="--d:2.6s"><img class="oe" src="assets/loghi/oe-logo-white.svg?v=1795281315" alt="OpenEconomics"><span class="x">×</span><img class="ir" src="assets/loghi/inrete-logo-negativo.svg?v=1795281315" alt="Inrete"></div>
           </div>
           <span class="tc">Sc. 13 · 2:24 – 2:30</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
@@ -1238,8 +1232,8 @@ footer .fine{
           <dl>
             <div><dt>On-screen</dt><dd>Lockup «Scenari | Space Economy» con il monogramma OE, come nella testata del sito · sotto, «L'osservatorio sull'economia dello spazio italiana» · in basso OpenEconomics × Inrete.</dd></div>
             <div><dt>Voiceover</dt><dd class="vo">Scenari, Space Economy: l'osservatorio sull'economia dello spazio italiana.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Sul fondo quasi nero il sole spunta dal bordo della Terra, in basso al centro. Entra il nome, poi la descrizione, poi la firma dei due marchi. Resta a schermo il tempo di leggerlo.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 dal fondo 29 della moodboard: la camera sale sul bordo della Terra e il sole spunta sull'orizzonte mentre compare il nome. Loghi OE e Inrete negativi.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Sul fondo quasi nero il sole sorge da dietro il bordo della Terra, in basso al centro, e i raggi salgono verso il nome. Entra il nome, poi la descrizione, poi la firma dei due marchi. Resta a schermo il tempo di leggerlo.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 tra il fondo 29 della moodboard e un fotogramma con il sole dietro il bordo della Terra: il sole sorge da dietro il pianeta e i raggi salgono nel buio mentre compare il nome. Loghi OE e Inrete negativi.</dd></div>
             <div><dt>Nota</dt><dd class="note">Nome scelto il 21/11 al posto di ORBITA, per allinearlo al sito.</dd></div>
           </dl>
         </div>
@@ -1248,7 +1242,7 @@ footer .fine{
   </div>
 </main>
 
-<script src="assets/data/italia-punti.js?v=1795280573"></script>
+<script src="assets/data/italia-punti.js?v=1795281315"></script>
 <script>
 
 (function(){
@@ -1503,8 +1497,8 @@ footer .fine{
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="assets/globo.js?v=1795280573"></script>
+<script src="assets/globo.js?v=1795281315"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<script type="module" src="assets/sankey3d.js?v=1795280573"></script>
+<script type="module" src="assets/sankey3d.js?v=1795281315"></script>
 </body>
 </html>

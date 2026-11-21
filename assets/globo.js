@@ -83,7 +83,7 @@
     /* marcatori: Stati Uniti, Europa, Cina (solo geo) */
     var marcatori = [], etichette = [];
     if (mode === 'geo') {
-      [['Stati Uniti', -98, 39, 2.2], ['Europa', 12, 47, 4.6], ['Cina', 105, 35, 7.0]].forEach(function (m) {
+      [['Stati Uniti', -98, 39, 1.8], ['Cina', 105, 35, 4.6], ['Europa', 12, 47, 7.4]].forEach(function (m) {
         var p = dir(m[1], m[2]).multiplyScalar(1.005);
         var q = new THREE.Mesh(new THREE.PlaneGeometry(.045, .045), new THREE.MeshBasicMaterial({ color: LIME, transparent: true, depthTest: true }));
         q.position.copy(p); q.lookAt(p.clone().multiplyScalar(2)); spin.add(q);
@@ -114,7 +114,7 @@
         bagliore.scale.set(s, s, 1); bagliore.material.opacity = 1 - sm(3.4, 5.5, t);
         stelle.material.opacity = .75 * sm(.5, 4, t);
       } else {
-        spin.rotation.y = lerp(rotY(-98), rotY(105), sm(.5, 8.6, t));
+        spin.rotation.y = t < 5.2 ? lerp(rotY(-98), rotY(105), sm(.4, 5, t)) : lerp(rotY(105), rotY(12), sm(5.2, 8.2, t));
         tilt.rotation.x = .5;
         camera.position.set(0, 0, 4.1); camera.lookAt(0, 0, 0);
         mat.uniforms.hlK.value = 0;
