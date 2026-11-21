@@ -128,7 +128,7 @@
           v.project(camera);
           var e = etichette[i];
           e.style.left = ((v.x + 1) / 2 * w) + 'px'; e.style.top = ((1 - v.y) / 2 * h) + 'px';
-          e.style.opacity = (on * cl(face * 3)).toFixed(3);
+          e.style.opacity = (on * cl((face - .25) * 4)).toFixed(3);
         });
       }
       renderer.render(scene, camera);
