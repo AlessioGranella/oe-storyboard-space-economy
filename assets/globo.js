@@ -80,10 +80,17 @@
       scene.add(bagliore);
     }
 
-    /* marcatori: Stati Uniti, Europa, Cina (solo geo) */
+    /* rotazione della scena 11 (v3): veloce, poi rallenta e si ferma sull'Europa a 4,2 s */
+    function geoLon(t) { var u = cl((t - .05) / 4.15); var e = 1 - Math.pow(1 - u, 2.2); return 12 - 360 * e; }
+    function geoT(lon) { for (var t = 0; t < 4.2; t += .01) if (geoLon(t) <= lon + 8) return t; return 4.2; }
+    /* marcatori: Stati Uniti, Cina, Russia, Europa (solo geo) */
     var marcatori = [], etichette = [];
     if (mode === 'geo') {
-      [['Stati Uniti', -98, 39, .8], ['Cina', 105, 35, 4.0], ['Europa', 12, 47, 7.6]].forEach(function (m) {
+      /* v3: giro completo verso ovest, Europa → Stati Uniti → Cina → Russia → di nuovo Europa (12° → -348°);
+         ogni marcatore si accende quando la rotazione lo porta al centro, l'Europa per ultima, a frase finita */
+      [['Stati Uniti', -98, 39], ['Cina', 105, 35], ['Russia', 62, 58], ['Europa', 12, 48]].forEach(function (m) {
+        var target = m[1] > 12 ? m[1] - 360 : m[1]; m[3] = Math.min(geoT(target), 4.1);
+        if (m[0] === 'Europa') m[3] = 3.95;
         var p = dir(m[1], m[2]).multiplyScalar(1.005);
         var q = new THREE.Mesh(new THREE.PlaneGeometry(.045, .045), new THREE.MeshBasicMaterial({ color: LIME, transparent: true, depthTest: true }));
         q.position.copy(p); q.lookAt(p.clone().multiplyScalar(2)); spin.add(q);
@@ -114,8 +121,7 @@
         bagliore.scale.set(s, s, 1); bagliore.material.opacity = 1 - sm(3.4, 5.5, t);
         stelle.material.opacity = .75 * sm(.5, 4, t);
       } else {
-        /* giro continuo verso est: Stati Uniti → Cina → avanti fino all'Europa (12° + 360°) */
-        var lon = lerp(-98, 372, sm(.3, 8.4, t));
+        var lon = geoLon(t);
         spin.rotation.y = Math.PI / 2 - (lon + 180) / 360 * Math.PI * 2;
         tilt.rotation.x = .5;
         camera.position.set(0, 0, 4.1); camera.lookAt(0, 0, 0);

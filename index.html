@@ -856,6 +856,33 @@ footer .fine{
 .princ li{background:var(--notte-0);padding:18px 20px;font-size:15px;line-height:1.45;color:rgba(255,255,255,.86)}
 .princ li b{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-bottom:6px;font-weight:600}
 
+/* ── v3 ── */
+.ph.cut{object-fit:cover}
+.punto{position:absolute;left:50%;top:41%;width:7cqw;height:7cqw;transform:translate(-50%,-50%) scale(.1);opacity:0;
+  background:radial-gradient(circle,rgba(255,255,255,1) 0,rgba(255,244,222,.95) 7%,rgba(255,214,160,.35) 22%,rgba(255,190,120,0) 60%)}
+.play .punto{animation:punto 3s linear both}
+.frame:not(.play) .punto{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@keyframes punto{0%{opacity:0;transform:translate(-50%,-50%) scale(.08)}17%{opacity:1;transform:translate(-50%,-50%) scale(.14)}
+  55%{transform:translate(-50%,-50%) scale(.42)}63%{transform:translate(-50%,-50%) scale(.62)}72%{transform:translate(-50%,-50%) scale(.48)}100%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}}
+.cifre .num{font-family:var(--mono);font-weight:700;letter-spacing:-.03em;line-height:1}
+.play .a-off{animation:off .3s ease var(--d,0s) both}
+@keyframes off{from{opacity:1}to{opacity:0}}
+.frame:not(.play) .a-off{opacity:1}
+/* Sc. 13 · fase del ciclo di vita e box delle risorse */
+.fasi13{position:absolute;inset:0;z-index:20}
+.fasi13 .riga{position:absolute;left:5cqw;right:5cqw;top:4.4cqw;display:flex;flex-direction:column;gap:1.4cqw}
+.fasi13 .bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1cqw}
+.fasi13 .bar i{height:.25cqw;background:rgba(255,255,255,.28);display:block}
+.fasi13 .bar i{position:relative}
+.fasi13 .bar b{position:absolute;inset:0;background:var(--lime-400)}
+.frame:not(.play) .fasi13 .pre{opacity:0}
+.fase13{position:absolute;left:5cqw;top:34%;display:flex;flex-direction:column;gap:1cqw}
+.fase13 .nr{font-family:var(--mono);font-weight:600;font-size:1.5cqw;letter-spacing:.14em;color:rgba(255,255,255,.74)}
+.fase13 .nm{font-family:var(--serif);font-size:6cqw;line-height:1;color:var(--white)}
+.risorse{position:absolute;left:5cqw;bottom:12cqw;display:flex;gap:1.2cqw;z-index:21}
+.risorse span{font-family:var(--mono);font-weight:700;font-size:1.5cqw;letter-spacing:.12em;text-transform:uppercase;padding:1cqw 1.4cqw;background:var(--lime-400);color:var(--black)}
+.barre .nota{font-family:var(--mono);font-weight:600;font-size:1.1cqw;letter-spacing:.12em;text-transform:uppercase;color:var(--lime-400)}
+
 .vfin{background:var(--notte-0);padding:40px 0 48px}
 .vfin .wrap{display:flex;flex-direction:column;gap:16px}
 .vfin video{width:100%;aspect-ratio:16/9;background:#000;display:block;border:1px solid var(--linea)}
@@ -868,9 +895,9 @@ footer .fine{
   <div class="wrap">
     <p class="eyebrow">OpenEconomics × Inrete · Storyboard visivo · Bozza</p>
     <h1>Scenari | Space Economy · video di apertura</h1>
-    <p class="sub">Il video che apre il momento OpenEconomics agli Stati Generali della Space Economy, davanti alle imprese del settore e ai rappresentanti del Governo. Dallo script della proposta «Minisito permanente e contenuto video»: otto blocchi, qui divisi in 13 scene. Stesse immagini, stessa Terra 3D e stessi colori del minisito, così video e sito sono una cosa sola.</p>
+    <p class="sub">Il video che apre il momento OpenEconomics agli Stati Generali della Space Economy, davanti alle imprese del settore e ai rappresentanti del Governo. Dalla sceneggiatura v3 del 23/11: 16 scene, un solo punto di luce che apre e chiude. Due mondi: lo spazio, nero e blu notte, con la camera lenta; la Terra, di giorno, con tagli rapidi. Stessa grafica del minisito.</p>
     <dl class="meta">
-      <div><dt>Durata</dt><dd>2:30</dd></div>
+      <div><dt>Durata</dt><dd>1:44 circa</dd></div>
       <div><dt>Formato</dt><dd>16:9, master 4K, export 1080p per la regia</dd></div>
       <div><dt>Evento</dt><dd>Milano, MiCo · 30.11.2026</dd></div>
       <div><dt>Voce</dt><dd>Una voce narrante italiana professionale, sottotitoli sempre attivi</dd></div>
@@ -881,18 +908,19 @@ footer .fine{
 
 <section class="vfin" aria-label="Video montato">
   <div class="wrap">
-    <p class="eyebrow">Montaggio · 2:18 · voce Simone Grimaldi, lettura istituzionale · musica orchestrale in crescendo · inserti rapidi dalla moodboard v2, scene 8 e 11 per immagini · sottotitoli</p>
-    <video controls playsinline preload="metadata" poster="assets/final/poster.jpg?v=1795373228" src="assets/final/Scenari_Space_Economy.mp4?v=1795373228"></video>
+    <p class="eyebrow">Montaggio v3 · sceneggiatura del 23/11 · 16 scene · voce Simone Grimaldi · musica orchestrale provvisoria · sottotitoli</p>
+    <video controls playsinline preload="metadata" poster="assets/final/poster.jpg?v=1795442600" src="assets/final/Scenari_Space_Economy.mp4?v=1795442600"></video>
   </div>
 </section>
 <section class="princ" aria-labelledby="pr-h">
   <div class="wrap">
     <h2 id="pr-h">Linguaggio visivo</h2>
     <ul>
-      <li><b>Colore</b>Fondo quasi nero del Tema Spazio, blu notte nelle immagini, una sola luce: il Lime. Il rosso Inrete solo nel logo.</li>
-      <li><b>Immagini</b>Cinematografiche, nessuna posa da stock: ingegneri al lavoro, satelliti, la Terra dall'orbita.</li>
+      <li><b>Il filo</b>Un solo punto luminoso: si avvicina nel nero, diventa l'alba orbitale, cade sull'Italia, cade nell'acqua come una moneta, risale e si spegne in chiusura.</li>
+      <li><b>Colore</b>Fondo quasi nero #0B081B, Lime come unico accento. Il rosso Inrete solo nel logo, mai in dati o grafici.</li>
+      <li><b>Persone</b>In azione, al lavoro o nella vita di ogni giorno, di spalle o in lontananza, mai in posa; niente volti in primo piano con il testo sopra.</li>
       <li><b>Dati</b>Linee sottili e punti luminosi; numeri in Atkinson Mono Lime, frasi in Hedvig. Ogni stima porta «Stima OE» e la fonte.</li>
-      <li><b>Movimento</b>Lento, sulle parole della voce. La Terra in 3D apre e torna in chiusura, come nel sito.</li>
+      <li><b>Movimento</b>Camera lenta nello spazio, tagli rapidi sulla Terra, sempre sulle parole della voce. Nessuna clip generata contiene testo, cifre o loghi.</li>
     </ul>
   </div>
 </section>
@@ -900,9 +928,9 @@ footer .fine{
 <section class="phases" aria-label="Fasi di lavoro">
   <div class="wrap">
     <ol>
-      <li class="on"><span class="n">Fase 1 · ora</span><p>Storyboard animato con foto, clip già pronti e Terra 3D. Testi e tempi da approvare.</p></li>
-      <li><span class="n">Fase 2</span><p>Clip mancanti con Kling 2.5 (scene 2, 3 e 8), numeri della stima SAM, loghi degli strumenti.</p></li>
-      <li><span class="n">Fase 3</span><p>Voce, musica, render 4K e montaggio, con le animazioni agganciate alle parole.</p></li>
+      <li><span class="n">Fase 1</span><p>Storyboard e montaggi v1–v2, moodboard v2, spoglio delle scene.</p></li>
+      <li class="on"><span class="n">Fase 2 · ora</span><p>Sceneggiatura v3: 18 clip nuove (Kling 2.5), voce, montaggio a circa 1:55.</p></li>
+      <li><span class="n">Fase 3</span><p>Numeri del Catalogo ASI e della stima SAM, foto vere (Parlamento, Copernicus), colonna sonora definitiva, master 4K.</p></li>
     </ol>
   </div>
 </section>
@@ -927,330 +955,350 @@ footer .fine{
     <div class="grid" id="grid">
 
       <article class="beat">
-        <div class="frame " data-dur="12" tabindex="0" role="button" aria-label="Scena 01, rivedi animazione">
+        <div class="frame " data-dur="3.0" tabindex="0" role="button" aria-label="Scena 01, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/apertura.mp4?v=1795373228" poster="assets/img/13_alba-punto.webp?v=1795373228" muted playsinline preload="none"></video>
+            <div class="punto"></div>
           </div>
-          <span class="tc">Sc. 01 · 0:00 – 0:12</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+          <span class="tc">Sc. 01 · 0:00,0 – 0:03,0</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 01 · Il punto di luce <span class="chip w">Clip</span> <span class="chip w">Kling 2.5 · 10 s</span></p>
+          <p class="idx">Scena 01 · Il punto <span class="chip">Spazio</span> <span class="chip">Motion graphic</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>Nessun testo. Solo il sottotitolo della voce, sempre attivo.</dd></div>
-            <div><dt>Voiceover</dt><dd class="vo">Ogni giorno, senza vederlo, usiamo lo spazio.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Nero assoluto. Un punto di luce nasce sul bordo della Terra, l'alba orbitale. Senza tagli la camera scende e gira: emerge il lato notturno del pianeta con le luci delle città e il filo d'atmosfera dal blu al verde, finché l'Italia illuminata riempie l'inquadratura. Negli ultimi 2 s l'immagine resta ferma sull'Italia (fermo immagine della clip da 10 s). Suono basso, un respiro.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s, generata dal primo e dall'ultimo fotogramma: immagine 13 della moodboard (punto di luce) e immagine 01 (Italia di notte).</dd></div>
-            <div><dt>Nota</dt><dd class="note">La Terra 3D del sito resta nella scena 9 e nella hero del minisito.</dd></div>
-          </dl>
-        </div>
-      </article>
-      <article class="beat">
-        <div class="frame " data-dur="18" tabindex="0" role="button" aria-label="Scena 02, rivedi animazione">
-          <div class="stage">
-            <div class="shot a-cut" style="--d:0s;z-index:1">
-              <video class="ph clip2" data-start="0" src="assets/video/14_navigazione.mp4?v=1795373228" poster="assets/img/14_navigazione.webp?v=1795373228" muted playsinline preload="none"></video>
-              <div class="velo"></div>
-              <div class="lbl a-up" style="--d:0.2s"><b>01 / 05</b><span>Navigazione</span></div>
-            </div>
-            <div class="shot a-cut" style="--d:3s;z-index:2">
-              <video class="ph clip2" data-start="3" src="assets/video/15_meteo.mp4?v=1795373228" poster="assets/img/15_meteo.webp?v=1795373228" muted playsinline preload="none"></video>
-              <div class="velo"></div>
-              <div class="lbl a-up" style="--d:3.2s"><b>02 / 05</b><span>Meteo</span></div>
-            </div>
-            <div class="shot a-cut" style="--d:6s;z-index:3">
-              <video class="ph clip2" data-start="6" src="assets/video/16_pagamento.mp4?v=1795373228" poster="assets/img/16_pagamento.webp?v=1795373228" muted playsinline preload="none"></video>
-              <div class="velo"></div>
-              <div class="lbl a-up" style="--d:6.2s"><b>03 / 05</b><span>Finanza</span></div>
-            </div>
-            <div class="shot a-cut" style="--d:9s;z-index:4">
-              <video class="ph clip2" data-start="9" src="assets/video/17_agricoltura.mp4?v=1795373228" poster="assets/img/17_agricoltura.webp?v=1795373228" muted playsinline preload="none"></video>
-              <div class="velo"></div>
-              <div class="lbl a-up" style="--d:9.2s"><b>04 / 05</b><span>Agricoltura</span></div>
-            </div>
-            <div class="shot a-cut" style="--d:12s;z-index:5">
-              <video class="ph clip2" data-start="12" src="assets/video/18_alluvione.mp4?v=1795373228" poster="assets/img/18_alluvione.webp?v=1795373228" muted playsinline preload="none"></video>
-              <div class="velo"></div>
-              <div class="lbl a-up" style="--d:12.2s"><b>05 / 05</b><span>Emergenze</span></div>
-            </div>
-          </div>
-          <span class="tc">Sc. 02 · 0:12 – 0:30</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
-        </div>
-        <div class="info">
-          <p class="idx">Scena 02 · Usi quotidiani dello spazio <span class="chip w">5 clip</span></p>
-          <dl>
-            <div><dt>On-screen</dt><dd>NAVIGAZIONE · METEO · FINANZA · AGRICOLTURA · EMERGENZE, una parola per inquadratura, in basso a sinistra con il contatore 01/05.</dd></div>
-            <div><dt>Voiceover</dt><dd class="vo">Per orientarci. Per prevedere il tempo. Per pagare. Per coltivare. Per proteggere un territorio quando l'acqua sale.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Montaggio rapido a tempo di voce, un taglio ogni 3 s, cinque video puliti con solo la parola in basso a sinistra. L'ultima inquadratura, il fiume in piena, resta fino alla fine della scena (12–18 s).</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Cinque clip Kling 2.5 da 5 s, dalle immagini 14, 15, 16, 17 e 18 della moodboard: auto che avanza sotto la pioggia, perturbazione che ruota, pagamento che va a buon fine, trattore che traccia i filari, fiume in piena visto dal drone. Nel video se ne usano 3 s ciascuna.</dd></div>
-            <div><dt>Nota</dt><dd class="note">L'alluvione è un'illustrazione: nel video vero si può affiancare una mappa Copernicus EMS reale, con il credito.</dd></div>
-          </dl>
-        </div>
-      </article>
-      <article class="beat">
-        <div class="frame " data-dur="8" tabindex="0" role="button" aria-label="Scena 03, rivedi animazione">
-          <div class="stage">
-            <video class="ph clip" src="assets/video/linea-produttiva.mp4?v=1795373228" poster="assets/img/26_linea-produttiva.webp?v=1795373228" muted loop playsinline preload="none"></video>
-            <video class="ph a-cut clip2" style="--d:4.2s" data-start="4.2" src="assets/video/39_cu-mani-connettore.mp4?v=1795373228" poster="assets/img/39_cu-mani-connettore.webp?v=1795373228" muted playsinline preload="none"></video>
-            <div class="velo"></div>
-          </div>
-          <span class="tc">Sc. 03 · 0:30 – 0:38</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
-        </div>
-        <div class="info">
-          <p class="idx">Scena 03 · L'industria italiana <span class="chip w">2 clip</span></p>
-          <dl>
-            <div><dt>On-screen</dt><dd>Nessun testo: le persone al lavoro parlano da sole.</dd></div>
-            <div><dt>Voiceover</dt><dd class="vo">Dietro questi servizi c'è un'industria italiana.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Taglio netto dal satellite alla sala di integrazione: tecnici al lavoro, lento avanzamento della camera (0–4 s). Stacco sul dettaglio delle mani che serrano un connettore (4–8 s).</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Clip della linea produttiva (la stessa del sito) e clip Kling 2.5 del closeup 39, le mani sul connettore.</dd></div>
-            <div><dt>Nota</dt><dd class="note">Persone solo al lavoro, mai in posa, come chiede lo script.</dd></div>
-          </dl>
-        </div>
-      </article>
-      <article class="beat">
-        <div class="frame " data-dur="12" tabindex="0" role="button" aria-label="Scena 04, rivedi animazione">
-          <div class="stage">
-            <div class="mappa"><svg id="itamap" viewBox="0 0 686 900" data-d="0.3" data-h="3.4" aria-hidden="true"></svg></div>
-            <div class="cifre">
-              <div class="cifra a-up" style="--d:6.2s"><span class="num ph-n">N</span><span class="k">imprese</span></div>
-              <div class="cifra a-up" style="--d:7.6s"><span class="num ph-n">N</span><span class="k">distretti</span></div>
-              <div class="cifra a-up" style="--d:9s"><span class="num ph-n">N</span><span class="k">addetti</span></div>
-            </div>
-            <p class="src2 a-fade" style="--d:9.6s">Fonte: Catalogo ASI · valori da produrre</p>
-          </div>
-          <span class="tc">Sc. 04 · 0:38 – 0:50</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
-        </div>
-        <div class="info">
-          <p class="idx">Scena 04 · La filiera sulla mappa <span class="chip">Motion graphic</span> <span class="chip g">Dati da produrre</span></p>
-          <dl>
-            <div><dt>On-screen</dt><dd><mark>[N] imprese · [N] distretti · [N] addetti</mark>, i tre numeri in Lime a sinistra, uno dopo l'altro. A destra l'Italia a punti; i poli della filiera si accendono in Lime.</dd></div>
-            <div><dt>Voiceover</dt><dd class="vo">Una delle poche al mondo capace di coprire l'intera filiera: dai satelliti ai lanciatori, dai moduli abitativi ai dati.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">L'Italia si compone a punti da nord a sud (0–3 s), come vista da un satellite. Sui segmenti della voce si accendono i poli: satelliti (Torino, Roma, L'Aquila), lanciatori (Colleferro), moduli abitativi (Torino), dati (Matera, Fucino). Entrano i tre numeri.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Mappa dai confini openpolis, la stessa del minisito (sezione «La filiera italiana»).</dd></div>
-            <div><dt>Nota</dt><dd class="note">I poli sono segnaposto presi da luoghi noti della filiera: vanno verificati con il Catalogo ASI insieme ai tre numeri.</dd></div>
-          </dl>
-        </div>
-      </article>
-      <article class="beat">
-        <div class="frame " data-dur="12" tabindex="0" role="button" aria-label="Scena 05, rivedi animazione">
-          <div class="stage">
-            <video class="ph clip" src="assets/video/goccia-impatto.mp4?v=1795373228" poster="assets/img/21_goccia.webp?v=1795373228" muted playsinline preload="auto"></video>
-            <div class="euro-c a-goccia" style="--d:1.2s">€1</div>
-          </div>
-          <span class="tc">Sc. 05 · 0:50 – 1:02</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
-        </div>
-        <div class="info">
-          <p class="idx">Scena 05 · Un euro <span class="chip w">Clip</span> <span class="chip">Motion graphic</span></p>
-          <dl>
-            <div><dt>On-screen</dt><dd><b>€1</b> in Lime, al centro, nel punto in cui la goccia tocca l'acqua.</dd></div>
-            <div><dt>Voiceover</dt><dd class="vo">Ogni euro investito nello spazio non resta nello spazio.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Acqua scura e ferma. Una goccia cade al centro e tocca la superficie (1,2 s): dal punto d'impatto sale «€1», come se nascesse dalla goccia; intorno restano solo le onde vere dell'acqua. Finita la caduta la clip resta sull'ultimo fotogramma, con l'acqua che si calma. Ritmo lento, si respira.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 della goccia che cade (5 s).</dd></div>
+            <div><dt>On-screen</dt><dd>Nessuna scritta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">nessuna voce</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Nero pieno. Il puntino luminoso compare a 0,5 s, lontano, e si avvicina piano alla camera con una sola pulsazione. È il filo di tutto il video: lo stesso punto apre e chiude.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Grafica: un punto di luce su nero.</dd></div>
             
           </dl>
         </div>
       </article>
       <article class="beat">
-        <div class="frame " data-dur="13" tabindex="0" role="button" aria-label="Scena 06, rivedi animazione">
+        <div class="frame " data-dur="2.0" tabindex="0" role="button" aria-label="Scena 02, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/euro-italia.mp4?v=1795373228" poster="assets/img/01_italia-orbita.webp?v=1795373228" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:0s;z-index:1" data-start="0" data-off="0" data-rate="1.4" src="assets/video/apertura.mp4?v=1795442600" poster="assets/img/v3/apertura.jpg?v=1795442600" muted playsinline preload="none"></video>
+          </div>
+          <span class="tc">Sc. 02 · 0:02,5 – 0:04,5</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 02 · L'alba orbitale <span class="chip">Discesa</span> <span class="chip w">Clip</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessuna scritta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">nessuna voce</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il bagliore del punto diventa il sole sul bordo della Terra (dissolvenza di 0,5 s). La camera comincia a scendere. Parte il suono, non ancora una musica.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s (apertura), dall'alba orbitale all'Italia di notte, accelerata 1,4×.</dd></div>
+            
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="6.0" tabindex="0" role="button" aria-label="Scena 03, rivedi animazione">
+          <div class="stage">
+            <video class="ph cut clip2 a-cut" style="--d:0s;z-index:1" data-start="0" data-off="2.8" data-rate="1.2" src="assets/video/apertura.mp4?v=1795442600" poster="assets/img/v3/apertura.jpg?v=1795442600" muted playsinline preload="none"></video>
+          </div>
+          <span class="tc">Sc. 03 · 0:04,5 – 0:10,5</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 03 · La caduta <span class="chip">Discesa</span> <span class="chip w">Clip</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessuna scritta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Ogni giorno, senza vederlo, usiamo lo spazio.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Prosegue la stessa ripresa: emerge il lato notturno con le luci delle città, l'atmosfera passa dal blu al verde, l'Italia riempie il quadro. Nell'ultimo secondo l'immagine si ferma su una luce: il punto è atterrato. Poi taglio duro.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Seconda parte della clip di apertura.</dd></div>
+            
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="11.9" tabindex="0" role="button" aria-label="Scena 04, rivedi animazione">
+          <div class="stage">
+            <video class="ph cut clip2 a-cut" style="--d:0s;z-index:1" data-start="0" data-off="0.3" data-rate="1.25" src="assets/video/v3-navigatore.mp4?v=1795442600" poster="assets/img/v3/v3-navigatore.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:0.74s;z-index:2" data-start="0.74" data-off="0.3" data-rate="1.25" src="assets/video/v3-autostrada.mp4?v=1795442600" poster="assets/img/v3/v3-autostrada.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:1.48s;z-index:3" data-start="1.48" data-off="0.6" data-rate="1.25" src="assets/video/inserti/01_meteo-temporale.mp4?v=1795442600" poster="assets/img/v3/01_meteo-temporale.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:2.38s;z-index:4" data-start="2.38" data-off="0.3" data-rate="1.25" src="assets/video/v3-nuvole.mp4?v=1795442600" poster="assets/img/v3/v3-nuvole.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:3.28s;z-index:5" data-start="3.28" data-off="0.3" data-rate="1.25" src="assets/video/inserti/11_fin-mercato.mp4?v=1795442600" poster="assets/img/v3/11_fin-mercato.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:3.79s;z-index:6" data-start="3.79" data-off="0.3" data-rate="1.25" src="assets/video/v3-contactless.mp4?v=1795442600" poster="assets/img/v3/v3-contactless.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:4.31s;z-index:7" data-start="4.31" data-off="0.3" data-rate="1.25" src="assets/video/17_agricoltura.mp4?v=1795442600" poster="assets/img/v3/17_agricoltura.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:4.95s;z-index:8" data-start="4.95" data-off="0.3" data-rate="1.25" src="assets/video/inserti/20_agr-vigneti.mp4?v=1795442600" poster="assets/img/v3/20_agr-vigneti.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:5.59s;z-index:9" data-start="5.59" data-off="0.3" data-rate="1.25" src="assets/video/v3-chat.mp4?v=1795442600" poster="assets/img/v3/v3-chat.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:6.33s;z-index:10" data-start="6.33" data-off="0.3" data-rate="1.25" src="assets/video/v3-videochiamata.mp4?v=1795442600" poster="assets/img/v3/v3-videochiamata.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:7.07s;z-index:11" data-start="7.07" data-off="0.8" data-rate="1.25" src="assets/video/v3-divano.mp4?v=1795442600" poster="assets/img/v3/v3-divano.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:7.81s;z-index:12" data-start="7.81" data-off="0.6" data-rate="1.25" src="assets/video/v3-bar-tv.mp4?v=1795442600" poster="assets/img/v3/v3-bar-tv.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:8.55s;z-index:13" data-start="8.55" data-off="0.5" data-rate="1.25" src="assets/video/18_alluvione.mp4?v=1795442600" poster="assets/img/v3/18_alluvione.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:9.75s;z-index:14" data-start="9.75" data-off="1.4" data-rate="1.25" src="assets/video/v3-strada-allagata.mp4?v=1795442600" poster="assets/img/v3/v3-strada-allagata.jpg?v=1795442600" muted playsinline preload="none"></video>
+          </div>
+          <span class="tc">Sc. 04 · 0:10,4 – 0:22,3</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 04 · Gli usi quotidiani <span class="chip">Terra</span> <span class="chip w">14 riprese</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessuna scritta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Per orientarci. Per prevedere il tempo. Per pagare. Per coltivare. Per comunicare. Per divertirci. Per proteggere un territorio dagli eventi climatici.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Sette battute, una per frase, due immagini per battuta: il taglio segue la voce. Orientarci (navigatore, autostrada), prevedere il tempo (supercella, nuvole sulla pianura), pagare (POS al mercato, contactless al bar), coltivare (trattore con il GPS, filari dal drone), comunicare (ragazzi in piazza, videochiamata in cucina), divertirci (partita sul divano, bar con la TV), eventi climatici (area allagata dal drone, strada di paese allagata). L'ultima battuta dura circa 3 s.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5: nove nuove (navigatore di giorno, autostrada, nuvole, contactless, chat, videochiamata, divano, bar con la TV, strada allagata) e cinque dalla moodboard v2 e dalla v2 del video (supercella, mercato, trattore, vigneti, alluvione). Accelerate 1,25×.</dd></div>
+            <div><dt>Nota</dt><dd class="note">Persone di spalle o in lontananza, nessuna in posa.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="5.0" tabindex="0" role="button" aria-label="Scena 05, rivedi animazione">
+          <div class="stage">
+            <video class="ph cut clip2 a-cut" style="--d:0s;z-index:1" data-start="0" data-off="1" data-rate="1.1" src="assets/video/linea-produttiva.mp4?v=1795442600" poster="assets/img/v3/linea-produttiva.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:1.65s;z-index:2" data-start="1.65" data-off="0.5" data-rate="1.1" src="assets/video/39_cu-mani-connettore.mp4?v=1795442600" poster="assets/img/v3/39_cu-mani-connettore.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:3.3s;z-index:3" data-start="3.3" data-off="0" data-rate="1.1" src="assets/video/v3-banco-prova.mp4?v=1795442600" poster="assets/img/v3/v3-banco-prova.jpg?v=1795442600" muted playsinline preload="none"></video>
+          </div>
+          <span class="tc">Sc. 05 · 0:22,3 – 0:27,3</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 05 · L'industria italiana <span class="chip">Terra</span> <span class="chip w">3 clip</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessuna scritta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Dietro questi servizi c'è un'industria italiana.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Taglio duro dall'acqua alla camera bianca. Tre inquadrature, una ogni 1,65 s: tecnici che montano un satellite, mani che stringono un connettore, un tecnico al banco di prova accanto al satellite con la lamina dorata.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip linea produttiva e mani sul connettore (asset v2), banco di prova nuovo (Kling 2.5).</dd></div>
+            
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="9.3" tabindex="0" role="button" aria-label="Scena 06, rivedi animazione">
+          <div class="stage">
+            <div class="mappa"><svg id="itamap" viewBox="0 0 686 900" data-d="0.1" data-h="1.4" data-l="0.5" aria-hidden="true"></svg></div>
+            <div class="cifre">
+              <div class="cifra a-up" style="--d:.8s"><span class="num ph-n">[N]</span><span class="k">distretti</span></div>
+              <div class="cifra a-up" style="--d:1.3s"><span class="num ph-n">[N]</span><span class="k">imprese</span></div>
+              <div class="cifra a-up" style="--d:1.8s"><span class="num ph-n">[N]</span><span class="k">addetti</span></div>
+            </div>
+            <p class="src2 a-fade" style="--d:2.4s">Fonte: Catalogo ASI · valori da produrre</p>
+          </div>
+          <span class="tc">Sc. 06 · 0:27,2 – 0:36,5</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 06 · La filiera sulla mappa <span class="chip">Terra</span> <span class="chip">Motion graphic</span> <span class="chip g">Dati da produrre</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd><mark>[N] distretti · [N] imprese · [N] addetti</mark> in Lime e Mono, uno sotto l'altro, in quest'ordine. Fonte: Catalogo ASI.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Una delle poche al mondo capace di coprire l'intera filiera: dai satelliti ai lanciatori, dai moduli abitativi ai dati.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">L'Italia si compone a punti in 1,5 s. I tre numeri entrano uno ogni 0,5 s sulla prima parte della frase. I poli si accendono sulla parola che li nomina: satelliti, lanciatori, moduli abitativi, dati; quelli in Sicilia (Palermo, Messina, Catania) con i dati. Solo punti che pulsano, nessun nome di città.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Mappa a punti dai confini openpolis, la stessa del minisito.</dd></div>
+            <div><dt>Nota</dt><dd class="note">Poli e numeri sono segnaposto: vanno presi dal Catalogo ASI.</dd></div>
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="4.4" tabindex="0" role="button" aria-label="Scena 07, rivedi animazione">
+          <div class="stage">
+            <video class="ph cut clip2 a-cut" style="--d:0s;z-index:1" data-start="0" data-off="0.05" data-rate="1" src="assets/video/v3-moneta.mp4?v=1795442600" poster="assets/img/v3/v3-moneta.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:1.35s;z-index:2" data-start="1.35" data-off="2.2" data-rate="0.85" src="assets/video/v3-moneta-a.mp4?v=1795442600" poster="assets/img/v3/v3-moneta-a.jpg?v=1795442600" muted playsinline preload="none"></video>
+          </div>
+          <span class="tc">Sc. 07 · 0:36,5 – 0:40,9</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 07 · Un euro <span class="chip">Terra</span> <span class="chip w">2 clip</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessuna scritta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Ogni euro investito nello spazio non resta nello spazio.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Acqua nera e ferma. La moneta da 1 euro cade a velocità reale, tocca l'acqua sulla parola «euro» e sprofonda; si aprono le onde. Taglio d'incontro: le onde diventano il bagliore dell'Italia di notte.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Due clip Kling 2.5: la caduta con lo schizzo, poi le onde di una seconda ripresa (la prima moneta rimbalzava fuori dall'acqua).</dd></div>
+            
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="8.0" tabindex="0" role="button" aria-label="Scena 08, rivedi animazione">
+          <div class="stage">
+            <video class="ph clip" src="assets/video/euro-italia.mp4?v=1795442600" poster="assets/img/01_italia-orbita.webp?v=1795442600" muted playsinline preload="none"></video>
             <div class="velo" style="background:linear-gradient(90deg,rgba(5,6,15,.78) 0%,rgba(5,6,15,.35) 34%,rgba(5,6,15,0) 55%)"></div>
             <div class="cifre">
-              <div class="cifra a-up" style="--d:4.2s"><span class="k">PIL</span><span class="num ph-n" style="font-size:7cqw">€[x]</span></div>
-              <div class="cifra a-up" style="--d:6.2s"><span class="k">Occupati</span><span class="num ph-n" style="font-size:7cqw">[N]</span></div>
-              <div class="cifra a-up" style="--d:8.4s"><span class="k">Gettito</span><span class="num ph-n" style="font-size:7cqw">€[x] mld</span></div>
+              <div class="cifra a-up" style="--d:2.34s"><span class="k">PIL</span><span class="num ph-n" style="font-size:7cqw">€[x]</span></div>
+              <div class="cifra a-up" style="--d:3.22s"><span class="k">Occupati</span><span class="num ph-n" style="font-size:7cqw">[N]</span></div>
+              <div class="cifra a-up" style="--d:3.73s"><span class="k">Gettito</span><span class="num ph-n" style="font-size:7cqw">€[x] mld</span></div>
             </div>
-            <p class="src2 a-fade" style="--d:9.4s"><span class="stima">Stima OE</span> &nbsp;modello SAM, perimetro spazio · valori da produrre</p>
+            <p class="src2 a-fade" style="--d:4.2s"><span class="stima">Stima OE</span> &nbsp;modello SAM, perimetro spazio · valori da produrre</p>
           </div>
-          <span class="tc">Sc. 06 · 1:02 – 1:15</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+          <span class="tc">Sc. 08 · 0:40,3 – 0:48,3</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 06 · La filiera moltiplica <span class="chip w">Clip</span> <span class="chip w">Kling 2.5 · 10 s</span> <span class="chip g">Stima OE</span></p>
+          <p class="idx">Scena 08 · La filiera moltiplica <span class="chip">Terra</span> <span class="chip w">Clip</span> <span class="chip g">Stima OE</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd><mark>PIL €[x] · Occupati [N] · Gettito €[x] mld</mark>, uno sotto l'altro a sinistra, con l'etichetta «Stima OE».</dd></div>
+            <div><dt>On-screen</dt><dd><mark>PIL €[x] · Occupati [N] · Gettito €[x] mld</mark>, impilati a sinistra, con l'etichetta «Stima OE · modello SAM, perimetro spazio».</dd></div>
             <div><dt>Voiceover</dt><dd class="vo">Attraversa la filiera, genera reddito, lavoro, entrate per lo Stato.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">L'Italia di notte dall'orbita. Sopra la penisola si accende un punto di luce Lime: l'euro della scena precedente. Ne scendono tre correnti luminose, una alla volta, verso le isole, il centro e il sud; dove toccano terra le luci delle città si fanno più calde e si propagano da città a città. Su «reddito» entra il PIL, su «lavoro» gli occupati, su «entrate per lo Stato» il gettito.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s tra l'immagine 01 (Italia di notte) e un fotogramma finale con le tre correnti, generato apposta. Poi la clip resta sull'ultimo fotogramma.</dd></div>
-            <div><dt>Nota</dt><dd class="note">I valori arrivano dalla stima SAM sul perimetro spazio, da avviare subito: il video si monta con i segnaposto e i numeri entrano a fine montaggio.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">L'Italia di notte dall'orbita. Un punto Lime si accende sopra la penisola e tre correnti di luce scendono una alla volta verso isole, centro e sud. PIL entra su «reddito», Occupati su «lavoro», Gettito su «entrate per lo Stato»; i contatori restano fino alla fine.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 (euro-italia) della v2.</dd></div>
+            <div><dt>Nota</dt><dd class="note">I valori arrivano dalla stima SAM sul perimetro spazio, ancora da avviare.</dd></div>
           </dl>
         </div>
       </article>
       <article class="beat">
-        <div class="frame " data-dur="9" tabindex="0" role="button" aria-label="Scena 07, rivedi animazione">
+        <div class="frame " data-dur="5.6" tabindex="0" role="button" aria-label="Scena 09, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/satellite-scansione.mp4?v=1795373228" poster="assets/img/22_satellite-eo.webp?v=1795373228" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:0s;z-index:1" data-start="0" data-off="0" data-rate="1.5" src="assets/video/v3-salita.mp4?v=1795442600" poster="assets/img/v3/v3-salita.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:2.2s;z-index:2" data-start="2.2" data-off="1" data-rate="1.3" src="assets/video/satellite-scansione.mp4?v=1795442600" poster="assets/img/v3/satellite-scansione.jpg?v=1795442600" muted playsinline preload="none"></video>
           </div>
-          <span class="tc">Sc. 07 · 1:15 – 1:24</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+          <span class="tc">Sc. 09 · 0:48,3 – 0:53,9</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 07 · Il valore che non si vede <span class="chip w">Clip</span> <span class="chip w">Kling 2.5 · 10 s</span></p>
+          <p class="idx">Scena 09 · La salita <span class="chip">Salita</span> <span class="chip w">2 clip</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>Nessun testo.</dd></div>
-            <div><dt>Voiceover</dt><dd class="vo">E poi c'è il valore che non si vede nei bilanci:</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Il satellite di osservazione attraversa il Mediterraneo al tramonto, la camera lo segue. Dal sensore sotto il satellite scende una luce sottile, appena visibile nell'atmosfera, e a terra una striscia luminosa percorre la costa: il satellite sta acquisendo un'immagine. La scansione è parte della ripresa, non una grafica sovrapposta.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s dall'immagine 22, con la scansione generata dentro la ripresa.</dd></div>
+            <div><dt>On-screen</dt><dd>Nessuna scritta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">E poi c'è il valore che non si vede nei bilanci.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il punto si stacca dall'Italia e la camera sale in verticale per 2 s: l'atmosfera si assottiglia in un arco azzurro, l'Italia diventa piccola. Arrivo in orbita: il satellite attraversa il Mediterraneo e dal sensore scende la luce che scansiona la costa. Il taglio alla scena 10 cade a fine frase.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Salita nuova (Kling 2.5) e satellite con la scansione (asset v2).</dd></div>
             
           </dl>
         </div>
       </article>
       <article class="beat">
-        <div class="frame " data-dur="11" tabindex="0" role="button" aria-label="Scena 08, rivedi animazione">
+        <div class="frame " data-dur="7.6" tabindex="0" role="button" aria-label="Scena 10, rivedi animazione">
           <div class="stage">
-            <div class="mosaico"><figure class="a-fade" style="--d:0.20s"><video class="clip2" data-start="0.20" src="assets/video/31_eo-ghiacciaio.mp4?v=1795373228" poster="assets/img/31_eo-ghiacciaio.webp?v=1795373228" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.45s"><video class="clip2" data-start="0.45" src="assets/video/36_eo-vulcano.mp4?v=1795373228" poster="assets/img/36_eo-vulcano.webp?v=1795373228" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.70s"><video class="clip2" data-start="0.70" src="assets/video/34_eo-delta.mp4?v=1795373228" poster="assets/img/34_eo-delta.webp?v=1795373228" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:0.95s"><video class="clip2" data-start="0.95" src="assets/video/35_eo-campi.mp4?v=1795373228" poster="assets/img/35_eo-campi.webp?v=1795373228" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:1.20s"><video class="clip2" data-start="1.20" src="assets/video/33_eo-dune.mp4?v=1795373228" poster="assets/img/33_eo-dune.webp?v=1795373228" muted loop playsinline preload="none"></video></figure><figure class="a-fade" style="--d:1.45s"><video class="clip2" data-start="1.45" src="assets/video/32_eo-costa.mp4?v=1795373228" poster="assets/img/32_eo-costa.webp?v=1795373228" muted loop playsinline preload="none"></video></figure></div>
-            <div class="velo-sx"></div>
-            <div class="parole3">
-              <p class="a-in" style="--d:1s"><i></i>Sicurezza</p>
-              <p class="a-in" style="--d:3.6s"><i></i>Clima</p>
-              <p class="a-in" style="--d:6.4s"><i></i>Autonomia strategica</p>
-            </div>
+            <video class="ph cut clip2 a-cut" style="--d:0s;z-index:1" data-start="0" data-off="0.3" data-rate="1.2" src="assets/video/inserti/06_com-nave.mp4?v=1795442600" poster="assets/img/v3/06_com-nave.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:1.11s;z-index:2" data-start="1.11" data-off="0.5" data-rate="1.2" src="assets/video/v3-treno.mp4?v=1795442600" poster="assets/img/v3/v3-treno.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:2.22s;z-index:3" data-start="2.22" data-off="0" data-rate="1.2" src="assets/video/31_eo-ghiacciaio.mp4?v=1795442600" poster="assets/img/v3/31_eo-ghiacciaio.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:3.18s;z-index:4" data-start="3.18" data-off="0.3" data-rate="1.2" src="assets/video/inserti/16_oce-onde.mp4?v=1795442600" poster="assets/img/v3/16_oce-onde.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:4.14s;z-index:5" data-start="4.14" data-off="1" data-rate="1.2" src="assets/video/inserti/08_fin-sala-operativa.mp4?v=1795442600" poster="assets/img/v3/08_fin-sala-operativa.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:5.87s;z-index:6" data-start="5.87" data-off="2" data-rate="1.2" src="assets/video/inserti/26_pc-analista.mp4?v=1795442600" poster="assets/img/v3/26_pc-analista.jpg?v=1795442600" muted playsinline preload="none"></video>
           </div>
-          <span class="tc">Sc. 08 · 1:24 – 1:35</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+          <span class="tc">Sc. 10 · 0:53,8 – 1:01,4</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 08 · Sicurezza, clima, autonomia <span class="chip w">6 clip</span> <span class="chip">Motion graphic</span></p>
+          <p class="idx">Scena 10 · Sicurezza, clima, autonomia <span class="chip">Terra</span> <span class="chip w">6 riprese</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>SICUREZZA · CLIMA · AUTONOMIA STRATEGICA, in Hedvig grande, una parola alla volta.</dd></div>
-            <div><dt>Voiceover</dt><dd class="vo">la sicurezza del Paese, la lotta al cambiamento climatico, la capacità di decidere da soli.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Si apre un mosaico di riprese satellitari in movimento (ghiacciaio, vulcano, delta, campi, dune, costa) a tutto schermo. A sinistra entrano le tre parole sulla voce: «sicurezza» (1 s), «clima» (3,6 s), «autonomia strategica» (6,4 s).</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Sei clip Kling 2.5 dalle immagini 31–36 della moodboard, illustrative: nuvole sul ghiacciaio, vapore dal vulcano, sedimenti del delta, ombre di nuvole sui campi, fiume tra le dune, onde sulla costa.</dd></div>
-            <div><dt>Nota</dt><dd class="note">Per il video finale meglio immagini Copernicus Sentinel vere (ghiacciai, incendi, siccità), con il credito ESA/Copernicus: si tratta di valore pubblico e non deve sembrare inventato.</dd></div>
+            <div><dt>On-screen</dt><dd>Nessuna scritta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">La sicurezza del Paese, la lotta al cambiamento climatico, la capacità di decidere da soli.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Sei riprese, due per parte della frase: la sicurezza del Paese (nave con le cupole radar, treno ad alta velocità), la lotta al cambiamento climatico (ghiacciaio dal satellite, oceano), la capacità di decidere da soli (sala di controllo, monitor con dati satellitari).</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Treno nuovo (Kling 2.5); nave, oceano, sala di controllo e monitor dalla moodboard v2; ghiacciaio dall'asset 31.</dd></div>
+            <div><dt>Nota</dt><dd class="note">La nave è al tramonto, non in piena luce; il ghiacciaio è un'immagine satellitare. Meglio ancora immagini Copernicus/ESA vere, con il credito.</dd></div>
           </dl>
         </div>
       </article>
       <article class="beat">
-        <div class="frame " data-dur="9" tabindex="0" role="button" aria-label="Scena 09, rivedi animazione">
+        <div class="frame " data-dur="5.5" tabindex="0" role="button" aria-label="Scena 11, rivedi animazione">
           <div class="stage">
-            <div class="globo" data-globo="geo"><img class="ph globo-fallback" src="assets/img/30_terra-europa.webp?v=1795373228" alt=""></div>
+            <div class="globo" data-globo="geo"><img class="ph globo-fallback" src="assets/img/30_terra-europa.webp?v=1795442600" alt=""></div>
           </div>
-          <span class="tc">Sc. 09 · 1:35 – 1:44</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+          <span class="tc">Sc. 11 · 1:01,4 – 1:06,9</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 09 · Lo spazio è potere <span class="chip">3D</span></p>
+          <p class="idx">Scena 11 · Lo spazio è potere <span class="chip">Orbita</span> <span class="chip">3D</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>STATI UNITI · CINA · EUROPA, etichette Mono in Lime accanto ai marcatori.</dd></div>
+            <div><dt>On-screen</dt><dd>STATI UNITI · CINA · RUSSIA · EUROPA, etichette Mono in Lime accanto ai marcatori.</dd></div>
             <div><dt>Voiceover</dt><dd class="vo">Il mondo ha capito che lo spazio è potere.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Il globo compie un giro completo, sempre verso est: si accendono gli Stati Uniti (0,8 s), poi la Cina (4 s), e la rotazione prosegue fino a fermarsi sull'Europa, che si accende per ultima (7,6 s). Ogni marcatore è Lime, con un'onda che si allarga.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Terra in 3D, stesso modello della scena 1.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il globo fa un giro completo verso ovest, veloce e continuo: si accendono Stati Uniti, Cina e Russia; il giro rallenta e si ferma sull'Europa, che si accende per ultima, dopo la fine della frase. Marcatori Lime con un'onda che si allarga.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Terra in 3D (three.js), lo stesso modello del minisito.</dd></div>
             
           </dl>
         </div>
       </article>
       <article class="beat">
-        <div class="frame " data-dur="11" tabindex="0" role="button" aria-label="Scena 10, rivedi animazione">
+        <div class="frame " data-dur="8.0" tabindex="0" role="button" aria-label="Scena 12, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/europa-notte.mp4?v=1795373228" poster="assets/img/30_terra-europa.webp?v=1795373228" muted playsinline preload="none"></video>
-            <div class="velo" style="background:linear-gradient(90deg,rgba(5,6,15,.9) 0%,rgba(5,6,15,.72) 50%,rgba(5,6,15,.55) 100%),linear-gradient(0deg,rgba(5,6,15,.9) 0%,rgba(5,6,15,0) 45%)"></div>
-            <div class="tblock" style="top:36%;max-width:34cqw">
-              <p class="k a-up" style="--d:.3s">UE · difesa e spazio</p>
-              <p class="cap a-up" style="--d:.8s">Le risorse<br>si moltiplicano</p>
-            </div>
+            <video class="ph clip" src="assets/video/v3-parlamento.mp4?v=1795442600" poster="assets/img/v3/v3-parlamento.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <div class="velo" style="background:linear-gradient(270deg,rgba(5,6,15,.82) 0%,rgba(5,6,15,.55) 50%,rgba(5,6,15,.35) 100%),linear-gradient(0deg,rgba(5,6,15,.9) 0%,rgba(5,6,15,0) 40%)"></div>
+            <p class="etq a-up" style="--d:.3s"><i></i>UE · difesa e spazio</p>
             <div class="barre">
-              <div class="barra"><span class="v a-fade" style="--d:1.6s">€27,7 mld</span><div class="col a-grow" style="--d:1s;height:5.6cqw"></div><span class="per">2021–2027</span></div>
-              <div class="barra new"><span class="v a-fade" style="--d:4.4s">~€131 mld</span><div class="col a-grow" style="--d:2.6s;height:26.5cqw"></div><span class="per">2028–2034</span></div>
+              <div class="barra"><span class="v a-fade" style="--d:1.4s">€27,7 mld</span><div class="col a-grow" style="--d:.6s;height:4.2cqw;background:rgba(255,255,255,.6)"></div><span class="per">2021–2027</span></div>
+              <div class="barra new"><span class="v a-fade" style="--d:2.6s">~€131 mld</span><div class="col a-grow" style="--d:1.2s;height:19.9cqw"></div><span class="per">2028–2034</span><span class="nota">proposta, prezzi correnti</span></div>
             </div>
-            <div class="tl"><svg id="timeline" viewBox="0 0 1728 72" preserveAspectRatio="none" aria-hidden="true"></svg></div>
-            <p class="src2 a-fade" style="--d:5s">Proposta della Commissione per il QFP 2028–2034, prezzi correnti</p>
+            <div class="tl"><svg id="timeline" viewBox="0 0 1728 72" preserveAspectRatio="none" data-adesso="5.62" aria-hidden="true"></svg></div>
+            <p class="src2 a-fade" style="--d:3s">Proposta della Commissione per il QFP 2028–2034, prezzi correnti</p>
           </div>
-          <span class="tc">Sc. 10 · 1:44 – 1:55</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+          <span class="tc">Sc. 12 · 1:06,8 – 1:14,8</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 10 · L'Europa moltiplica le risorse <span class="chip w">Clip</span> <span class="chip">Motion graphic</span> <span class="chip g">Dato da verificare</span></p>
+          <p class="idx">Scena 12 · L'Europa moltiplica <span class="chip">Terra di nuovo</span> <span class="chip w">Clip</span> <span class="chip">Motion graphic</span> <span class="chip g">Dato da verificare</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>«UE · difesa e spazio» · <b>€27,7 mld</b> 2021–2027 contro <b>~€131 mld</b> 2028–2034 (proposta, prezzi correnti) · linea del tempo 2021 → 2034 con la Ministeriale ESA 2026.</dd></div>
+            <div><dt>On-screen</dt><dd>«UE · difesa e spazio» · <b>€27,7 mld</b> 2021–2027 contro <b>~€131 mld</b> 2028–2034, con l'etichetta «proposta, prezzi correnti» · linea del tempo 2021–2034.</dd></div>
             <div><dt>Voiceover</dt><dd class="vo">L'Europa sta moltiplicando le risorse. La partita dei prossimi anni si gioca adesso.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Due barre crescono dal basso: quella del periodo in corso, bianca e bassa; quella proposta, Lime, quasi cinque volte più alta. Sotto scorre la linea del tempo dal 2021 al 2034; su «adesso» si accende il punto Lime sul 2026.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s dall'immagine 30: l'Europa di notte vista dallo spazio, che ruota lentamente; velata per leggere le barre. Grafico con il motore OE Charts.</dd></div>
-            <div><dt>Nota</dt><dd class="note">I due valori sono quelli dello script: vanno verificati e serve dire che il secondo è una proposta in negoziazione, come a schermo.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il Parlamento europeo dall'alto, poi il drone si alza e si allontana. A destra crescono due barre sulla prima frase: quella del periodo in corso, bianca e bassa; quella proposta, Lime, quasi cinque volte più alta. Sotto, la linea del tempo; su «adesso» pulsa il punto sul 2026.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 nuova (Parlamento europeo dal drone). Grafico come nel minisito.</dd></div>
+            <div><dt>Nota</dt><dd class="note">Il Parlamento è generato con l'AI: per il video finale serve una foto aerea vera con licenza. Le due cifre vanno verificate; la seconda è sempre una proposta in negoziazione.</dd></div>
           </dl>
         </div>
       </article>
       <article class="beat">
-        <div class="frame " data-dur="20" tabindex="0" role="button" aria-label="Scena 11, rivedi animazione">
+        <div class="frame " data-dur="12.2" tabindex="0" role="button" aria-label="Scena 13, rivedi animazione">
           <div class="stage">
-            <p class="etq"><i></i>Ciclo di vita · strumenti pubblici</p>
-            <div class="freccia"><svg viewBox="0 0 1728 30" preserveAspectRatio="none" aria-hidden="true"><path class="a-draw" style="--d:.8s;--t:15s" d="M0 15H1728" stroke="#B9FF69" stroke-width="3" fill="none"/></svg></div>
-            <div class="ciclo">
-              <div class="fase a-up" style="--d:0.20s">
-                <figure class="a-on" style="--d:1.0s"><video class="clip2" data-start="1.0" src="assets/video/laboratorio.mp4?v=1795373228" poster="assets/img/24_laboratorio-ottico.webp?v=1795373228" muted loop playsinline preload="none"></video></figure>
-                <div class="barretta a-growX" style="--d:1.0s"></div>
-                <p class="nome a-nome" style="--d:1.0s">RICERCA</p>
-                <div class="strum"><span class="a-on2" style="--d:1.60s">UE</span><span class="a-on2" style="--d:1.95s">ESA</span></div>
-              </div>
-              <div class="fase a-up" style="--d:0.35s">
-                <figure class="a-on" style="--d:5.2s"><video class="clip2" data-start="5.2" src="assets/video/termovuoto.mp4?v=1795373228" poster="assets/img/25_camera-termovuoto.webp?v=1795373228" muted loop playsinline preload="none"></video></figure>
-                <div class="barretta a-growX" style="--d:5.2s"></div>
-                <p class="nome a-nome" style="--d:5.2s">SVILUPPO</p>
-                <div class="strum"><span class="a-on2" style="--d:5.80s">UE</span><span class="a-on2" style="--d:6.15s">ESA</span><span class="a-on2" style="--d:6.50s">Nazionali</span></div>
-              </div>
-              <div class="fase a-up" style="--d:0.50s">
-                <figure class="a-on" style="--d:9.4s"><video class="clip2" data-start="9.4" src="assets/video/linea-produttiva.mp4?v=1795373228" poster="assets/img/26_linea-produttiva.webp?v=1795373228" muted loop playsinline preload="none"></video></figure>
-                <div class="barretta a-growX" style="--d:9.4s"></div>
-                <p class="nome a-nome" style="--d:9.4s">INDUSTRIALIZZAZIONE</p>
-                <div class="strum"><span class="a-on2" style="--d:10.00s">Nazionali</span><span class="a-on2" style="--d:10.35s">Regionali</span></div>
-              </div>
-              <div class="fase a-up" style="--d:0.65s">
-                <figure class="a-on" style="--d:13.6s"><video class="clip2" data-start="13.6" src="assets/video/decollo.mp4?v=1795373228" poster="assets/img/27_decollo.webp?v=1795373228" muted loop playsinline preload="none"></video></figure>
-                <div class="barretta a-growX" style="--d:13.6s"></div>
-                <p class="nome a-nome" style="--d:13.6s">CAPACITÀ PRODUTTIVA</p>
-                <div class="strum"><span class="a-on2" style="--d:14.20s">UE</span><span class="a-on2" style="--d:14.55s">Nazionali</span><span class="a-on2" style="--d:14.90s">Regionali</span></div>
-              </div>
+            <video class="ph cut clip2 a-cut" style="--d:0s;z-index:1" data-start="0" data-off="0.4" data-rate="1.15" src="assets/video/laboratorio.mp4?v=1795442600" poster="assets/img/v3/laboratorio.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:1.9s;z-index:2" data-start="1.9" data-off="0.4" data-rate="1.15" src="assets/video/termovuoto.mp4?v=1795442600" poster="assets/img/v3/termovuoto.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:3.8s;z-index:3" data-start="3.8" data-off="0" data-rate="1.15" src="assets/video/v3-linea-produzione.mp4?v=1795442600" poster="assets/img/v3/v3-linea-produzione.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:5.7s;z-index:4" data-start="5.7" data-off="0.5" data-rate="1.15" src="assets/video/v3-container.mp4?v=1795442600" poster="assets/img/v3/v3-container.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <video class="ph cut clip2 a-cut" style="--d:7.52s;z-index:9" data-start="7.52" data-off="0" data-rate="1.0" src="assets/video/v3-lancio.mp4?v=1795442600" poster="assets/img/v3/v3-lancio.jpg?v=1795442600" muted playsinline preload="none"></video>
+            <div class="velo-sx a-off" style="--d:7.52s;z-index:15"></div>
+            <div class="fasi13 a-off" style="--d:7.52s">
+              <div class="riga"><p class="etq" style="position:static"><i></i>Ciclo di vita · risorse pubbliche</p><div class="bar"><i><b class="a-cut" style="--d:0s"></b></i><i><b class="a-cut" style="--d:1.9s"></b></i><i><b class="a-cut" style="--d:3.8s"></b></i><i><b class="a-cut" style="--d:5.7s"></b></i></div></div>
+              <div class="a-off pre" style="--d:1.9s;position:absolute;inset:0"><div class="fase13 a-cut" style="--d:0s"><span class="nr">01 / 04</span><span class="nm">Ricerca</span></div></div>
+              <div class="a-off pre" style="--d:3.8s;position:absolute;inset:0"><div class="fase13 a-cut" style="--d:1.9s"><span class="nr">02 / 04</span><span class="nm">Sviluppo</span></div></div>
+              <div class="a-off pre" style="--d:5.7s;position:absolute;inset:0"><div class="fase13 a-cut" style="--d:3.8s"><span class="nr">03 / 04</span><span class="nm">Industrializzazione</span></div></div>
+              <div class="" style="--d:99s;position:absolute;inset:0"><div class="fase13 a-cut" style="--d:5.7s"><span class="nr">04 / 04</span><span class="nm">Mercato</span></div></div>
             </div>
+            <div class="risorse"><span class="a-up" style="--d:4.90s">Risorse europee</span><span class="a-up" style="--d:5.76s">Risorse nazionali</span><span class="a-up" style="--d:6.71s">Risorse regionali</span></div>
           </div>
-          <span class="tc">Sc. 11 · 1:55 – 2:15</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+          <span class="tc">Sc. 13 · 1:14,8 – 1:27,0</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 11 · Dalla ricerca alla fabbrica <span class="chip w">4 clip</span> <span class="chip">Motion graphic</span></p>
+          <p class="idx">Scena 13 · Dalla ricerca alla fabbrica <span class="chip">Terra di nuovo</span> <span class="chip w">5 clip</span> <span class="chip">Motion graphic</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>RICERCA → SVILUPPO → INDUSTRIALIZZAZIONE → CAPACITÀ PRODUTTIVA. Sotto ogni fase si accendono gli strumenti: UE, ESA, nazionali, regionali.</dd></div>
+            <div><dt>On-screen</dt><dd>RISORSE EUROPEE · RISORSE NAZIONALI · RISORSE REGIONALI, tre box Lime che entrano uno per volta sulle parole. Su ogni immagine il nome della fase: RICERCA, SVILUPPO, INDUSTRIALIZZAZIONE, MERCATO, con l'avanzamento 01–04.</dd></div>
             <div><dt>Voiceover</dt><dd class="vo">Dalla ricerca alla fabbrica, ogni fase ha le sue risorse pubbliche. Europee, nazionali, regionali. Ma vanno conosciute, combinate, conquistate.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Quattro finestre uguali in fila, spente in bianco e nero. Una linea Lime le attraversa da sinistra a destra: ogni fase che tocca si accende a colori, il nome diventa bianco e sotto si illuminano gli strumenti che la finanziano. Su «conosciute, combinate, conquistate» tutte e quattro sono accese.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Quattro clip Kling 2.5 dalle immagini 24, 25, 26 e 27: laboratorio, camera termovuoto, linea produttiva, decollo. Ognuna parte quando la sua fase si accende. Nel video le etichette degli strumenti diventano i loghi UE, ESA, ASI e regionali, vettoriali dai siti istituzionali.</dd></div>
-            <div><dt>Nota</dt><dd class="note">Quali strumenti per quale fase va controllato con il Funding Finder del sito: qui sono segnaposto.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Il Paese per immagini veloci, una per fase: laboratorio con il laser verde (ricerca), camera termovuoto con il satellite (sviluppo), linea di produzione (industrializzazione), container su un camion (mercato). I tre box entrano su «europee, nazionali, regionali». Su «ma vanno conosciute» parte il lancio di giorno, che chiude la scena e rilancia la storia nello spazio.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Laboratorio e termovuoto (asset v2); linea di produzione, container e lancio diurno nuovi (Kling 2.5).</dd></div>
+            <div><dt>Nota</dt><dd class="note">L'abbinamento tra risorse e fasi va controllato con il Funding Finder.</dd></div>
           </dl>
         </div>
       </article>
       <article class="beat">
-        <div class="frame " data-dur="9" tabindex="0" role="button" aria-label="Scena 12, rivedi animazione">
+        <div class="frame " data-dur="8.0" tabindex="0" role="button" aria-label="Scena 14, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/controluce-alba.mp4?v=1795373228" poster="assets/img/28_terra-controluce.webp?v=1795373228" muted playsinline preload="none"></video>
-            <div class="claim">
-              <p class="a-up" style="--d:.6s">Misurare il valore.</p>
-              <p class="a-up" style="--d:2.6s">Trovare le risorse.</p>
-              <p class="a-up" style="--d:4.6s"><span class="a-lime" style="--d:5s">Crescere.</span></p>
-            </div>
+            <video class="ph cut clip2 a-cut" style="--d:0s;z-index:1" data-start="0" data-off="0" data-rate="1.25" src="assets/video/v3-lancio-punto.mp4?v=1795442600" poster="assets/img/v3/v3-lancio-punto.jpg?v=1795442600" muted playsinline preload="none"></video>
           </div>
-          <span class="tc">Sc. 12 · 2:15 – 2:24</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+          <span class="tc">Sc. 14 · 1:27,0 – 1:35,0</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 12 · Misurare. Trovare. Crescere. <span class="chip w">Clip</span> <span class="chip w">Kling 2.5 · 10 s</span></p>
+          <p class="idx">Scena 14 · Misurare. Trovare. Crescere. <span class="chip">Di nuovo orbita</span> <span class="chip w">Clip</span> <span class="chip w">Kling 2.5 · 10 s</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>«Misurare il valore.» · «Trovare le risorse.» · «Crescere.» in Hedvig, una riga per volta; «Crescere» passa al Lime.</dd></div>
+            <div><dt>On-screen</dt><dd>Nessuna scritta: solo la voce.</dd></div>
             <div><dt>Voiceover</dt><dd class="vo">Misurare il valore. Trovare le risorse. Crescere.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">La Terra torna intera, in controluce: il sole sorge da dietro il pianeta e l'anello d'atmosfera si accende, mentre la camera arretra. Le tre frasi entrano a sinistra sulla voce. Sono le due porte del sito («Misura il tuo impatto», «Mappa i tuoi fondi») più il risultato.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s dall'immagine 28: il sole sorge da dietro la Terra, l'anello d'atmosfera si accende e la camera arretra.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Si riparte dal lancio: il razzo sale e si allontana, il cielo passa dal blu al nero, finché resta solo un punto luminoso su schermo nero. Una frase ogni 2 s. Il punto si spegne dopo «Crescere» e resta come punto della scena 15.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 da 10 s, generata dal primo e dall'ultimo fotogramma (razzo in quota, punto su nero), accelerata 1,25×.</dd></div>
             
           </dl>
         </div>
       </article>
       <article class="beat">
-        <div class="frame " data-dur="6" tabindex="0" role="button" aria-label="Scena 13, rivedi animazione">
+        <div class="frame " data-dur="8.0" tabindex="0" role="button" aria-label="Scena 15, rivedi animazione">
           <div class="stage">
-            <video class="ph clip" src="assets/video/alba-dietro-terra.mp4?v=1795373228" poster="assets/img/29_fondo-logo.webp?v=1795373228" muted playsinline preload="none"></video>
+            <video class="ph clip" src="assets/video/fondo-logo.mp4?v=1795442600" poster="assets/img/29_fondo-logo.webp?v=1795442600" muted playsinline preload="none"></video>
             <div class="lockup">
-              <div class="marchio a-up" style="--d:.4s"><img src="assets/loghi/oe-monogramma-bianco.svg?v=1795373228" alt="OpenEconomics"><span>Scenari</span><span class="sep">|</span><span>Space Economy</span></div>
+              <div class="marchio a-up" style="--d:.4s"><img src="assets/loghi/oe-monogramma-bianco.svg?v=1795442600" alt="OpenEconomics"><span>Scenari</span><span class="sep">|</span><span>Space Economy</span></div>
               <p class="desc a-fade" style="--d:1.4s">L'osservatorio sull'economia dello spazio italiana</p>
             </div>
-            <div class="firma a-fade" style="--d:2.6s"><img class="oe" src="assets/loghi/oe-logo-white.svg?v=1795373228" alt="OpenEconomics"><img class="ir" src="assets/loghi/inrete-logo-negativo.svg?v=1795373228" alt="Inrete"></div>
+            <div class="firma a-fade" style="--d:2.6s"><img class="oe" src="assets/loghi/oe-logo-white.svg?v=1795442600" alt="OpenEconomics"><img class="ir" src="assets/loghi/inrete-logo-negativo.svg?v=1795442600" alt="Inrete"></div>
           </div>
-          <span class="tc">Sc. 13 · 2:24 – 2:30</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+          <span class="tc">Sc. 15 · 1:34,2 – 1:42,2</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
         </div>
         <div class="info">
-          <p class="idx">Scena 13 · Scenari | Space Economy <span class="chip w">Clip</span> <span class="chip">Motion graphic</span> <span class="chip">Loghi</span></p>
+          <p class="idx">Scena 15 · Scenari | Space Economy <span class="chip">Chiusura</span> <span class="chip w">Clip</span> <span class="chip">Motion graphic</span> <span class="chip">Loghi</span></p>
           <dl>
-            <div><dt>On-screen</dt><dd>Lockup «Scenari | Space Economy» con il monogramma OE, come nella testata del sito · sotto, «L'osservatorio sull'economia dello spazio italiana» · in basso OpenEconomics a sinistra e Inrete a destra, lontano dalla luce del sole.</dd></div>
-            <div><dt>Voiceover</dt><dd class="vo">Scenari, Space Economy: l'osservatorio sull'economia dello spazio italiana.</dd></div>
-            <div><dt>Regia</dt><dd class="prompt">Sul fondo quasi nero il sole sorge da dietro il bordo della Terra, in basso al centro, e i raggi salgono verso il nome. Entra il nome, poi la descrizione, poi la firma dei due marchi. Resta a schermo il tempo di leggerlo.</dd></div>
-            <div><dt>Materiale</dt><dd class="prompt">Clip Kling 2.5 tra il fondo 29 della moodboard e un fotogramma con il sole dietro il bordo della Terra: il sole sorge da dietro il pianeta e i raggi salgono nel buio mentre compare il nome. Loghi OE e Inrete negativi.</dd></div>
-            <div><dt>Nota</dt><dd class="note">Nome scelto il 21/11 al posto di ORBITA, per allinearlo al sito.</dd></div>
+            <div><dt>On-screen</dt><dd>Lockup «Scenari | Space Economy» con il monogramma OE · «L'osservatorio sull'economia dello spazio italiana» · OpenEconomics a sinistra e Inrete a destra.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">Scenari   Space Economy. L'osservatorio sull'economia dello spazio italiana.</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Fondo nero con il bordo blu della Terra in basso. Una sola entrata, senza movimenti: il lockup, poi la descrizione, poi i due marchi. Resta fermo e leggibile più di 3 s.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">Clip del fondo (asset v2), loghi OE e Inrete negativi.</dd></div>
+            
+          </dl>
+        </div>
+      </article>
+      <article class="beat">
+        <div class="frame " data-dur="3.0" tabindex="0" role="button" aria-label="Scena 16, rivedi animazione">
+          <div class="stage">
+          </div>
+          <span class="tc">Sc. 16 · 1:41,2 – 1:44,2</span><span class="replay">↻ Rivedi</span><div class="safe"></div>
+        </div>
+        <div class="info">
+          <p class="idx">Scena 16 · Nero <span class="chip">Chiusura</span></p>
+          <dl>
+            <div><dt>On-screen</dt><dd>Nessuna scritta.</dd></div>
+            <div><dt>Voiceover</dt><dd class="vo">nessuna voce</dd></div>
+            <div><dt>Regia</dt><dd class="prompt">Tutto sfuma in nero pieno in 1 s; poi 2 s di nero e silenzio.</dd></div>
+            <div><dt>Materiale</dt><dd class="prompt">—</dd></div>
+            
           </dl>
         </div>
       </article>
@@ -1258,7 +1306,7 @@ footer .fine{
   </div>
 </main>
 
-<script src="assets/data/italia-punti.js?v=1795373228"></script>
+<script src="assets/data/italia-punti.js?v=1795442600"></script>
 <script>
 
 (function(){
@@ -1282,7 +1330,7 @@ footer .fine{
 
 
   
-  /* ── Più video nello stesso frame: ognuno parte al suo taglio (data-start) ── */
+  /* ── Più video nello stesso frame: ognuno parte al suo taglio (data-start), dal secondo data-off, a velocità data-rate ── */
   document.querySelectorAll('.frame').forEach(function(f){
     var vs = f.querySelectorAll('video.clip2'); if (!vs.length) return;
     var tm = [];
@@ -1292,43 +1340,48 @@ footer .fine{
       vs.forEach(function(v){
         if (!on){ v.pause(); return; }
         if (v.preload === 'none'){ v.preload = 'auto'; v.load(); }
-        try { v.currentTime = 0; } catch(e){}
+        try { v.currentTime = parseFloat(v.dataset.off || 0); } catch(e){}
+        v.playbackRate = parseFloat(v.dataset.rate || 1);
         v.pause();
         tm.push(setTimeout(function(){ v.play().catch(function(){}); }, parseFloat(v.dataset.start || 0) * 1000));
       });
     }).observe(f, { attributes: true, attributeFilter: ['class'] });
   });
 
-  /* ── Sc. 4: l'Italia a punti, da nord a sud, poi i poli della filiera ── */
+  /* ── Sc. 6: l'Italia a punti in 1,5 s, poi i poli sulle parole (nessun nome di città) ── */
   (function(){
     var svg = document.getElementById('itamap'); if (!svg || !window.ITA) return;
-    var d0 = parseFloat(svg.dataset.d), dh = parseFloat(svg.dataset.h), H = window.ITA.h;
+    var d0 = parseFloat(svg.dataset.d), dh = parseFloat(svg.dataset.h), L = parseFloat(svg.dataset.l), H = window.ITA.h;
     window.ITA.dots.forEach(function(p){
       var r = el('rect', {x:p[0] - 2.6, y:p[1] - 2.6, width:5.2, height:5.2, fill:'rgba(255,255,255,.34)', class:'a-pop'}, svg);
       r.style.setProperty('--d', (d0 + p[1] / H * dh).toFixed(2) + 's');
     });
-    var T = {"Torino":4.2,"Roma":4.4,"L'Aquila":4.6,"Colleferro":5.6,"Matera":8.6,"Fucino":8.8,"Milano":4.8,"Napoli":5,"Firenze":5.2,"Brindisi":6,"Cagliari":6.2,"Taranto":6.4};
-    window.ITA.hub.forEach(function(h){
-      var d = T[h[0]] || 5;
-      var g = el('g', {class:'a-pop'}, svg); g.style.setProperty('--d', d + 's');
-      el('circle', {cx:h[1], cy:h[2], r:16, fill:'none', stroke:css('--lime-400'), 'stroke-opacity':.45, 'stroke-width':2}, g);
+    /* satelliti 4,06 s · lanciatori 4,80 · moduli abitativi 6,06 · dati 7,52 (nella voce) */
+    var P = {satelliti:4.06, lanciatori:4.8, moduli:6.06, dati:7.52};
+    var G = {"Torino":'satelliti',"Milano":'satelliti',"Firenze":'satelliti',"Roma":'satelliti',"L'Aquila":'satelliti',
+             "Colleferro":'lanciatori',"Napoli":'lanciatori',"Brindisi":'moduli',"Taranto":'moduli',"Cagliari":'moduli',
+             "Matera":'dati',"Fucino":'dati',"Palermo":'dati',"Messina":'dati',"Catania":'dati'};
+    var hub = window.ITA.hub.concat([["Palermo",392,706],["Messina",545,692],["Catania",498,745]]);
+    hub.forEach(function(h, k){
+      var d = P[G[h[0]]] + L + (k % 3) * .08;
+      var g = el('g', {class:'a-pop'}, svg); g.style.setProperty('--d', d.toFixed(2) + 's');
+      var ring = el('circle', {cx:h[1], cy:h[2], r:16, fill:'none', stroke:css('--lime-400'), 'stroke-opacity':.5, 'stroke-width':2, class:'onda13'}, g);
       el('rect', {x:h[1] - 6, y:h[2] - 6, width:12, height:12, fill:css('--lime-400')}, g);
-      var t = el('text', {x:h[1] + 22, y:h[2] + 5, class:'hublbl a-fade'}, svg); t.textContent = h[0]; t.style.setProperty('--d', (d + .2) + 's');
     });
   })();
 
-  /* ── Sc. 10: linea del tempo 2021 → 2034 ── */
+  /* ── Sc. 12: linea del tempo 2021 → 2034, punto sul 2026 su «adesso» ── */
   (function(){
     var svg = document.getElementById('timeline'); if (!svg) return;
     var W = 1728, a = 2021, b = 2034, X = function(y){ return (y - a) / (b - a) * W; };
-    var line = el('path', {d:'M0 20H'+W, stroke:'rgba(255,255,255,.4)', 'stroke-width':2, fill:'none'}, svg); drawable(line, .4, 4);
+    var line = el('path', {d:'M0 20H'+W, stroke:'rgba(255,255,255,.4)', 'stroke-width':2, fill:'none'}, svg); drawable(line, .4, 2.4);
     for (var y = a; y <= b; y++){
       var big = (y === 2021 || y === 2027 || y === 2028 || y === 2034);
       var t = el('rect', {x:X(y) - 1, y:big ? 8 : 14, width:2, height:big ? 24 : 12, fill:'rgba(255,255,255,.6)', class:'a-fade'}, svg);
-      t.style.setProperty('--d', (.4 + (y - a) * .25) + 's');
-      if (big){ var l = el('text', {x:X(y), y:62, 'text-anchor':'middle', class:'tl-lbl a-fade'}, svg); l.textContent = y; l.style.setProperty('--d', (.6 + (y - a) * .25) + 's'); }
+      t.style.setProperty('--d', (.4 + (y - a) * .15) + 's');
+      if (big){ var l = el('text', {x:X(y), y:62, 'text-anchor':'middle', class:'tl-lbl a-fade'}, svg); l.textContent = y; l.style.setProperty('--d', (.6 + (y - a) * .15) + 's'); }
     }
-    var now = el('g', {class:'a-pop'}, svg); now.style.setProperty('--d', '8.6s');
+    var now = el('g', {class:'a-pop'}, svg); now.style.setProperty('--d', svg.dataset.adesso + 's');
     el('rect', {x:X(2026) - 9, y:11, width:18, height:18, fill:css('--lime-400')}, now);
     var l = el('text', {x:X(2026), y:62, 'text-anchor':'middle', class:'tl-lbl', fill:css('--lime-400')}, now); l.textContent = 'ADESSO';
   })();
@@ -1513,7 +1566,7 @@ footer .fine{
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="assets/globo.js?v=1795373228"></script>
+<script src="assets/globo.js?v=1795442600"></script>
 
 </body>
 </html>
